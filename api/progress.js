@@ -1,6 +1,11 @@
+function cors(res){
+ res.setHeader("Access-Control-Allow-Origin","https://faizyaaabkhan-code.github.io");
+ res.setHeader("Access-Control-Allow-Headers","Content-Type, Authorization");
+ res.setHeader("Access-Control-Allow-Methods","GET,PUT,OPTIONS");
+}
 const {getFile,putFile}=require("../lib/github");
 const {verify}=require("../lib/auth");
-module.exports=async(req,res)=>{
+module.exports=async(req,res)=>{ cors(res); if(req.method==="OPTIONS")return res.status(204).end();
  try{
   const p=verify((req.headers.authorization||"").replace(/^Bearer\s+/i,""));
   if(!p)return res.status(401).json({error:"Session expired. Please sign in again."});
