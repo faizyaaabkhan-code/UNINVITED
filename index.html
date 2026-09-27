@@ -12,7 +12,7 @@
 <body><div class="wrap"><header><div class="kicker">Private Investigation Channel</div><div class="title">UNINVITED</div><div class="sub">CASE 0147 · Detective Theo Marsh</div></header><div id="app"></div></div>
 <script>
 
-const KEY="UNINVITED_V5_CONVERSATION";
+const KEY="UNINVITED_V6_CONVERSATION";
 const LEADS=[
  {n:1,answer:"1058",prompt:"The CCTV report has a blind spot around the cellar. The relevant seating section is Tables 46 through 50. Test that against the ledger. Give me the count.",ok:"Correct. 1,058 records remain. Let's keep going."},
  {n:2,answer:"162",prompt:"I found a damaged handwritten mark. The first initial could be T, H, J, or I. Test those possibilities against the 1,058. Give me the count.",ok:"Correct. 162 records remain. Let's keep going."},
@@ -35,8 +35,8 @@ function task(t){S.task=t;save()}
 function opening(){if(S.messages.length)return;add("theo","I'm Detective Theo Marsh. I have parts of the investigation file. What I don't have is the complete wedding ledger. You do.\n\nI'll give you one lead at a time. Test each lead against the ledger and give me the count.");add("theo",LEADS[0].prompt)}
 function render(){
  opening();
- var nav='<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!S.iris?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+(S.iris?"🔓":"🔒")+'</button><button class="tab '+(S.tab==="status"?"active":"")+'" onclick="tab(\'status\')">CASE STATUS</button></div>';
- document.getElementById("app").innerHTML=nav+journeyBar()+(S.tab==="theo"?theo():S.tab==="legal"?legal():status())+'<div class="small" style="margin-top:12px">Private case channel · your progress is saved in this browser.</div>';
+ var nav='<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!S.iris?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+(S.iris?"🔓":"🔒")+'</button><button class="tab '+(S.tab==="status"?"active":"")+'" onclick="tab(\'status\')">CASE STATUS</button><button class="tab" onclick="resetCase()">START OVER</button></div>';
+ document.getElementById("app").innerHTML=nav+journeyBar()+(S.tab==="theo"?theo():S.tab==="legal"?legal():status())+'<div class="small" style="margin-top:12px">Private case channel · V6 investigation journey · your progress is saved in this browser.</div>';
 }
 function journeyBar(){
  var steps=[
@@ -197,7 +197,7 @@ function finalReport(n){
  if(!ok){var miss=[];if(!has(n,["iris","iris smith"]))miss.push("Iris");if(!has(n,["professional","work","credit","conflict","grievance"]))miss.push("the professional conflict");if(!has(n,["confront","cellar"]))miss.push("the cellar confrontation");if(!has(n,["grab"]))miss.push("Margery grabbing Iris");if(!has(n,["push","shove"]))miss.push("the shove");if(!has(n,["fall","stairs"]))miss.push("the fall");if(!has(n,["alive"]))miss.push("Margery being alive after the fall");if(!has(n,["help","call"]))miss.push("Iris not calling for help");if(!has(n,["jasmine","lie"]))miss.push("why Jasmine lied");if(!has(n,["marriage","blackmail"]))miss.push("the secret marriage/blackmail");add("theo","Your reconstruction is close, but I'm still missing: "+miss.join(", ")+". Put those pieces together without assuming intent that the evidence doesn't establish.");return}
  S.final=true;S.task="CASE CLOSED";add("theo","You found the name. I found the truth behind it.\n\nCASE 0147 — KILLER IDENTIFIED — IRIS SMITH");save();
 }
-function resetCase(){if(confirm("Reset this case? All progress and conversation on this device will be erased.")){localStorage.removeItem(KEY);S=structuredClone(initial);render()}}
+function resetCase(){if(confirm("Start this investigation over? Your current conversation and progress on this device will be erased.")){localStorage.removeItem(KEY);localStorage.removeItem("UNINVITED_V5_CONVERSATION");localStorage.removeItem("UNINVITED_V4_CONVERSATION");S=structuredClone(initial);render()}}
 render();
 
 </script></body></html>
