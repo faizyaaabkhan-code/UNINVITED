@@ -158,6 +158,10 @@
       {
         "w": "theo",
         "t": "The relationship is important, but the police file doesn't contain the complete professional history. Request IRIS / MARGERY PROFESSIONAL HISTORY from the Legal Team."
+      },
+      {
+        "w": "theo",
+        "t": "The Legal Team has released its background material on Iris. Read it, then come back and tell me what you learned."
       }
     ],
     "docs": [
@@ -182,5 +186,5 @@
     "task": "Request IRIS / MARGERY PROFESSIONAL HISTORY.",
     "final": false
   },
-  "updatedAt": "2026-09-27T13:11:11.499Z"
+  "updatedAt": "2026-09-27T13:11:15.453Z"
 }
