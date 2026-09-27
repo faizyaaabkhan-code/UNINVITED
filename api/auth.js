@@ -4,12 +4,12 @@ module.exports=async(req,res)=>{
  try{
   if(req.method!=="POST")return res.status(405).json({error:"Method not allowed"});
   const {action}=req.body||{};
+  const indexPath="data/index.json";
+  const idxFile=await getFile(indexPath);
+  const idx=idxFile?JSON.parse(idxFile.content):{players:{},codes:{}};
   if(action==="create"){
     const {name,email,password}=req.body;
     if(!name||!email||!password||password.length<8)return res.status(400).json({error:"Name, email, and password (8+ characters) are required."});
-    const indexPath="data/index.json";
-    const idxFile=await getFile(indexPath);
-    const idx=idxFile?JSON.parse(idxFile.content):{players:{},codes:{}};
     let code=caseCode();
     while(idx.codes[code]) code=caseCode();
     const emailKey=email.trim().toLowerCase();
