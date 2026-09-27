@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 3,
+    "lead": 4,
     "iris": false,
     "messages": [
       {
@@ -82,6 +82,18 @@
       {
         "w": "theo",
         "t": "Now we're starting to see a pattern.\n\nI found another detail in the evidence file.\n\nOne of the guest badges recovered from the relevant area was pink. The reception records distinguish between the bride's side and the groom's side.\n\nCheck which of the remaining records belong to the bride's side."
+      },
+      {
+        "w": "player",
+        "t": "22"
+      },
+      {
+        "w": "theo",
+        "t": "22."
+      },
+      {
+        "w": "theo",
+        "t": "That's a much smaller group.\n\nI went back through the final seating records because there's something unusual about the last revision.\n\nThe seating plan was updated after the RSVP deadline. The revision included people from the late-confirmation list.\n\nCheck the remaining records against the late-confirmation initials: E or L."
       }
     ],
     "docs": [],
@@ -89,5 +101,5 @@
     "task": "",
     "final": false
   },
-  "updatedAt": "2026-09-27T13:06:10.558Z"
+  "updatedAt": "2026-09-27T13:06:32.787Z"
 }
