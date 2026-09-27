@@ -1,4 +1,18 @@
 {
-  "players": {},
-  "codes": {}
+  "players": {
+    "f645d7d0-b698-40a6-b3ce-07e25aa9d1a3": {
+      "id": "f645d7d0-b698-40a6-b3ce-07e25aa9d1a3",
+      "name": "faiz",
+      "email": "faizyaaabkhan@gmail.com",
+      "caseCode": "UNV-F531BB-0250"
+    }
+  },
+  "codes": {
+    "UNV-F531BB-0250": {
+      "code": "UNV-F531BB-0250",
+      "status": "active",
+      "playerId": "f645d7d0-b698-40a6-b3ce-07e25aa9d1a3",
+      "createdAt": "2026-09-27T12:59:36.701Z"
+    }
+  }
 }
