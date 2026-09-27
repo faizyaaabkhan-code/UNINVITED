@@ -1,6 +1,11 @@
+function cors(res){
+ res.setHeader("Access-Control-Allow-Origin","https://faizyaaabkhan-code.github.io");
+ res.setHeader("Access-Control-Allow-Headers","Content-Type, Authorization");
+ res.setHeader("Access-Control-Allow-Methods","POST,OPTIONS");
+}
 const {getFile,putFile}=require("../lib/github");
 const {hashPassword,verifyPassword,sign,id,caseCode}=require("../lib/auth");
-module.exports=async(req,res)=>{
+module.exports=async(req,res)=>{ cors(res); if(req.method==="OPTIONS")return res.status(204).end();
  try{
   if(req.method!=="POST")return res.status(405).json({error:"Method not allowed"});
   const {action}=req.body||{};
