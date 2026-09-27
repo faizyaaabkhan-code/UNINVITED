@@ -150,6 +150,14 @@
       {
         "w": "theo",
         "t": "The Legal Team has released the Alder Hollow material. Tell me what it establishes about Iris's connection to this wedding."
+      },
+      {
+        "w": "player",
+        "t": "Iris was involved in the Alder Hollow wedding preparation. Margery continued to rely on Iris's work while their professional dispute remained unresolved.  The relationship deteriorated further during the final preparations."
+      },
+      {
+        "w": "theo",
+        "t": "The relationship is important, but the police file doesn't contain the complete professional history. Request IRIS / MARGERY PROFESSIONAL HISTORY from the Legal Team."
       }
     ],
     "docs": [
@@ -171,8 +179,8 @@
       "alder": true,
       "conflict": true
     },
-    "task": "Explain Iris's Alder Hollow connection to Theo.",
+    "task": "Request IRIS / MARGERY PROFESSIONAL HISTORY.",
     "final": false
   },
-  "updatedAt": "2026-09-27T13:10:53.088Z"
+  "updatedAt": "2026-09-27T13:11:04.257Z"
 }
