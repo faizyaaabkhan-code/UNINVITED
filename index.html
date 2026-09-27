@@ -27,7 +27,11 @@ const LEADS=[
 const initial={tab:"theo",lead:0,iris:false,messages:[],docs:[],facts:{},task:"",final:false};
 let S=load();
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||structuredClone(initial)}catch(e){return structuredClone(initial)}}
-function save(){localStorage.setItem(KEY,JSON.stringify(S))}
+function save(){
+ localStorage.setItem(KEY,JSON.stringify(S));
+ var auth=getAuth();
+ if(auth&&auth.token){clearTimeout(window.__saveTimer);window.__saveTimer=setTimeout(function(){api("/api/progress",{method:"PUT",body:JSON.stringify({progress:S})}).catch(function(){});},250);}
+}
 function esc(x){return String(x).replace(/[&<>\"']/g,function(m){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]})}
 function add(w,t){S.messages.push({w:w,t:t});save()}
 function norm(s){return String(s).toLowerCase().replace(/[^a-z0-9$ ]/g," ").replace(/\s+/g," ").trim()}
