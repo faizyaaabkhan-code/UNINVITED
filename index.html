@@ -13,8 +13,8 @@
 <body><div class="wrap"><header><div class="kicker">Private Investigation Channel</div><div class="title">UNINVITED</div><div class="sub">CASE 0147 · Detective Theo Marsh</div></header><div id="app"></div></div>
 <script>
 const KEY="UNINVITED_V7_CONVERSATION";
-const AUTH_KEY="UNINVITED_AUTH_V1";
-const DEMO_ACCESS_CODE="CASE0147";
+const AUTH_KEY="UNINVITED_AUTH_V2";
+const API_BASE="https://YOUR-UNINVITED-BACKEND.vercel.app";
 const LEADS=[
  {n:1,answer:"1058",prompt:"I went back through the CCTV report.\n\nMost of the reception was covered, but there was a gap in the camera coverage. The report places the blind spot around Tables 46 through 50.\n\nThat's important, but it doesn't tell us who was there.\n\nCheck that section of the wedding ledger for me.",ok:"1,058."},
  {n:2,answer:"162",prompt:"That's still too many people.\n\nI went back to the physical evidence.\n\nThere's a handwritten mark on one of the items recovered during the investigation. It's damaged, but I can make out what might be a first initial.\n\nT, H, J, or I.\n\nI'm not confident enough to say which one it is.\n\nSee what that does to the group.",ok:"162."},
@@ -41,41 +41,42 @@ function opening(){
 }
 function getAuth(){try{return JSON.parse(localStorage.getItem(AUTH_KEY))||null}catch(e){return null}}
 function setAuth(a){localStorage.setItem(AUTH_KEY,JSON.stringify(a))}
-function logout(){localStorage.removeItem(AUTH_KEY);render()}
+function api(path,options){
+ options=options||{}; options.headers=Object.assign({"Content-Type":"application/json"},options.headers||{});
+ var auth=getAuth(); if(auth&&auth.token) options.headers.Authorization="Bearer "+auth.token;
+ return fetch(API_BASE+path,options).then(async function(r){var d={};try{d=await r.json()}catch(e){}if(!r.ok)throw new Error(d.error||"Connection error.");return d;});
+}
+function save(){
+ localStorage.setItem(KEY,JSON.stringify(S));
+ var auth=getAuth();
+ if(auth&&auth.token){clearTimeout(window.__saveTimer);window.__saveTimer=setTimeout(function(){api("/api/progress",{method:"PUT",body:JSON.stringify({progress:S})}).catch(function(){});},250);}
+}
+async function signIn(){
+ var email=(document.getElementById("authEmail")||{}).value||"", password=(document.getElementById("authPassword")||{}).value||"", caseCode=((document.getElementById("authCaseCode")||{}).value||"").trim().toUpperCase();
+ if(!email||!email.includes("@")||!password||!caseCode){authMessage("Email, password, and your assigned case code are required.");return}
+ try{var d=await api("/api/auth",{method:"POST",body:JSON.stringify({action:"login",email,password,caseCode})});setAuth({token:d.token,player:d.player});S=d.progress||structuredClone(initial);localStorage.setItem(KEY,JSON.stringify(S));render();}catch(e){authMessage(e.message)}
+}
+async function createAccount(){
+ var name=(document.getElementById("authName")||{}).value||"", email=(document.getElementById("authEmail")||{}).value||"", password=(document.getElementById("authPassword")||{}).value||"", caseCode=((document.getElementById("authCaseCode")||{}).value||"").trim().toUpperCase();
+ if(!name||!email.includes("@")||password.length<8||!caseCode){authMessage("Name, email, password (8+ characters), and your assigned case code are required.");return}
+ try{var d=await api("/api/auth",{method:"POST",body:JSON.stringify({action:"create",name,email,password,caseCode})});setAuth({token:d.token,player:d.player});S=structuredClone(initial);localStorage.setItem(KEY,JSON.stringify(S));render();}catch(e){authMessage(e.message)}
+}
+function logout(){localStorage.removeItem(AUTH_KEY);localStorage.removeItem(KEY);S=structuredClone(initial);render()}
 function authTab(t){window.AUTH_TAB=t;renderAuth()}
 function authMessage(msg){var e=document.getElementById("authError");if(e){e.textContent=msg;e.style.display="block"}}
-function signIn(){
- var email=(document.getElementById("authEmail")||{}).value||"";
- var password=(document.getElementById("authPassword")||{}).value||"";
- if(!email||!email.includes("@")||!password){authMessage("Enter your email and password.");return}
- setAuth({email:email,method:"signin",name:email.split("@")[0]});S=load();render();
-}
-function createAccount(){
- var name=(document.getElementById("authName")||{}).value||"";
- var email=(document.getElementById("authEmail")||{}).value||"";
- var password=(document.getElementById("authPassword")||{}).value||"";
- if(!name||!email.includes("@")||password.length<6){authMessage("Enter your name, a valid email, and a password of at least 6 characters.");return}
- setAuth({email:email,method:"account",name:name});S=load();render();
-}
-function loginCode(){
- var code=((document.getElementById("accessCode")||{}).value||"").trim().toUpperCase().replace(/\s+/g,"");
- if(code!==DEMO_ACCESS_CODE){authMessage("That access code isn't recognized.");return}
- setAuth({email:"case-access",method:"code",name:"Case Access"});S=load();render();
-}
 function renderAuth(){
  var t=window.AUTH_TAB||"signin";
+ var code='<label>Assigned case code</label><input id="authCaseCode" class="code-box" autocomplete="off" placeholder="UNV-XXXXXX-XXXX">';
  var body=t==="signin"
-  ? '<h2 class="auth-title">Sign in to your case room</h2><p class="auth-copy">Continue your investigation from any session on this browser.</p><div class="auth-form"><label>Email</label><input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com"><label>Password</label><input id="authPassword" type="password" autocomplete="current-password" placeholder="Password"><div class="auth-actions"><button class="btn primary" onclick="signIn()">SIGN IN</button></div></div>'
-  : t==="create"
-  ? '<h2 class="auth-title">Create your detective account</h2><p class="auth-copy">Set up a local prototype account for the companion site.</p><div class="auth-form"><label>Name</label><input id="authName" autocomplete="name" placeholder="Your name"><label>Email</label><input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com"><label>Password</label><input id="authPassword" type="password" autocomplete="new-password" placeholder="At least 6 characters"><div class="auth-actions"><button class="btn primary" onclick="createAccount()">CREATE ACCOUNT</button></div></div>'
-  : '<h2 class="auth-title">Enter your case access code</h2><p class="auth-copy">Use the code supplied with your UNINVITED investigation materials.</p><div class="auth-form"><label>Case access code</label><input id="accessCode" class="code-box" autocomplete="one-time-code" placeholder="CASE0147" onkeydown="if(event.key===\'Enter\')loginCode()"><div class="auth-actions"><button class="btn primary" onclick="loginCode()">ENTER CASE</button></div></div>';
- document.getElementById("app").innerHTML='<div class="auth-shell"><div class="auth-card"><div class="auth-brand"><div class="kicker">Private Investigation Channel</div><div class="title">UNINVITED</div><div class="sub">CASE 0147 · Secure Entry</div></div><div class="auth-tabs"><button class="auth-tab '+(t==="signin"?"active":"")+'" onclick="authTab(\'signin\')">SIGN IN</button><button class="auth-tab '+(t==="create"?"active":"")+'" onclick="authTab(\'create\')">CREATE ACCOUNT</button><button class="auth-tab '+(t==="code"?"active":"")+'" onclick="authTab(\'code\')">LOGIN WITH CODE</button></div><div id="authError" class="auth-error"></div>'+body+'<div class="auth-note">Prototype authentication · account access is stored locally in this browser. Connect a backend before using real customer accounts or paid access.</div></div></div>';
+ ? '<h2 class="auth-title">Sign in to your case room</h2><p class="auth-copy">This case room is private. You must already have an account and the unique case code assigned to you.</p><div class="auth-form"><label>Email</label><input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com"><label>Password</label><input id="authPassword" type="password" autocomplete="current-password" placeholder="Password">'+code+'<div class="auth-actions"><button class="btn primary" onclick="signIn()">SIGN IN</button></div></div>'
+ : '<h2 class="auth-title">Create your detective account</h2><p class="auth-copy">Your account can only be created with a valid, unused case code assigned to you by the case administrator.</p><div class="auth-form"><label>Name</label><input id="authName" autocomplete="name" placeholder="Your name"><label>Email</label><input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com"><label>Password</label><input id="authPassword" type="password" autocomplete="new-password" placeholder="At least 8 characters">'+code+'<div class="auth-actions"><button class="btn primary" onclick="createAccount()">CREATE ACCOUNT</button></div></div>';
+ document.getElementById("app").innerHTML='<div class="auth-shell"><div class="auth-card"><div class="auth-tabs"><button class="'+(t==="signin"?"active":"")+'" onclick="authTab(\'signin\')">SIGN IN</button><button class="'+(t==="create"?"active":"")+'" onclick="authTab(\'create\')">CREATE ACCOUNT</button></div>'+body+'<div id="authError" class="auth-error"></div><div class="auth-note">Your case code is unique to your investigation. It is required for both account creation and sign in.</div></div></div>';
 }
 function render(){
  if(!getAuth()){renderAuth();return}
  opening();
  var auth=getAuth();
- var account='<div class="account-bar">Signed in as '+esc(auth&&auth.name?auth.name:auth.email)+' <button class="btn" onclick="logout()">SIGN OUT</button></div>';
+ var account='<div class="account-bar">Case '+esc(auth.player.caseCode)+' · Signed in as '+esc(auth.player.name)+' <button class="btn" onclick="logout()">SIGN OUT</button></div>';
  var nav=account+'<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!S.iris?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+(S.iris?"🔓":"🔒")+'</button><button class="tab '+(S.tab==="status"?"active":"")+'" onclick="tab(\'status\')">CASE STATUS</button><button class="tab" onclick="resetCase()">START OVER</button></div>';
  document.getElementById("app").innerHTML=nav+journeyBar()+(S.tab==="theo"?theo():S.tab==="legal"?legal():status())+'<div class="small" style="margin-top:12px">Private case channel · V7 investigation journey · your progress is saved in this browser.</div>';
 }
