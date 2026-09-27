@@ -118,6 +118,14 @@
       {
         "w": "theo",
         "t": "Only two people still fit everything we've found.\n\nI went back to the evidence recovered from the reception.\n\nThere's a torn seating marker. Most of it is missing, but one detail is still readable:\n\nTable 49.\n\nI don't have the seat number.\n\nCheck the two remaining records against Table 49. Who's left?"
+      },
+      {
+        "w": "player",
+        "t": "who jasmine"
+      },
+      {
+        "w": "theo",
+        "t": "Check the evidence against the ledger again. Tell me what you find."
       }
     ],
     "docs": [],
@@ -125,5 +133,5 @@
     "task": "",
     "final": false
   },
-  "updatedAt": "2026-09-27T13:07:32.578Z"
+  "updatedAt": "2026-09-27T13:07:56.012Z"
 }
