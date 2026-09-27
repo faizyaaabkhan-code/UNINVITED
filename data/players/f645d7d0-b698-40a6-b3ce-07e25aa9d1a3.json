@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 2,
+    "lead": 3,
     "iris": false,
     "messages": [
       {
@@ -70,6 +70,18 @@
       {
         "w": "theo",
         "t": "Check the evidence against the ledger again. Tell me what you find."
+      },
+      {
+        "w": "player",
+        "t": "52"
+      },
+      {
+        "w": "theo",
+        "t": "52."
+      },
+      {
+        "w": "theo",
+        "t": "Now we're starting to see a pattern.\n\nI found another detail in the evidence file.\n\nOne of the guest badges recovered from the relevant area was pink. The reception records distinguish between the bride's side and the groom's side.\n\nCheck which of the remaining records belong to the bride's side."
       }
     ],
     "docs": [],
@@ -77,5 +89,5 @@
     "task": "",
     "final": false
   },
-  "updatedAt": "2026-09-27T13:05:35.158Z"
+  "updatedAt": "2026-09-27T13:06:10.558Z"
 }
