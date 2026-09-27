@@ -11,55 +11,159 @@
 </head>
 <body><div class="wrap"><header><div class="kicker">Private Investigation Channel</div><div class="title">UNINVITED</div><div class="sub">CASE 0147 · Detective Theo Marsh</div></header><div id="app"></div></div>
 <script>
-const KEY="UNINVITED_V4_MASTER_CONVERSATION";
+
+const KEY="UNINVITED_V5_CONVERSATION";
 const LEADS=[
-{n:1,answer:"1058",prompt:"The CCTV report has a blind spot around the cellar. The relevant seating section is Tables 46 through 50. Test that against the ledger. Give me the count.",ok:"Correct. 1,058 records remain. Let's keep going."},
-{n:2,answer:"162",prompt:"I found a damaged handwritten mark. The first initial could be T, H, J, or I. Test those possibilities against the 1,058.",ok:"Correct. 162 records remain. Let's keep going."},
-{n:3,answer:"52",prompt:"There's gravy residue associated with the relevant evidence. The kitchen record identifies it as chicken service. Test Chicken against the 162.",ok:"Correct. 52 records remain. Let's keep going."},
-{n:4,answer:"22",prompt:"A pink guest badge was recovered. Pink was used for the bride's side. Apply that to the 52.",ok:"Correct. 22 records remain. Let's keep going."},
-{n:5,answer:"11",prompt:"The final seating revision was made after the RSVP deadline and incorporated the late-confirmation list. Keep the records that did not RSVP on time. Apply that to the 22.",ok:"Correct. 11 records remain. Let's keep going."},
-{n:6,answer:"2",prompt:"The unidentified gift was in the middle value bracket: $50–150. Apply that to the 11.",ok:"Correct. 2 records remain. Let's keep going."},
-{n:7,answer:"49",prompt:"The torn seating marker retains the table number: 49. Use that final filter on the two remaining records. Give me the table number.",ok:"Seven leads. One name. The ledger points to Iris Smith — Table 49, Seat 8. Don't accuse her yet. The ledger identifies the person. Now we need to find out what that name means."}
+ {n:1,answer:"1058",prompt:"The CCTV report has a blind spot around the cellar. The relevant seating section is Tables 46 through 50. Test that against the ledger. Give me the count.",ok:"Correct. 1,058 records remain. Let's keep going."},
+ {n:2,answer:"162",prompt:"I found a damaged handwritten mark. The first initial could be T, H, J, or I. Test those possibilities against the 1,058. Give me the count.",ok:"Correct. 162 records remain. Let's keep going."},
+ {n:3,answer:"52",prompt:"There's gravy residue associated with the relevant evidence. The kitchen record identifies it as chicken service. Test Chicken against the 162. Give me the count.",ok:"Correct. 52 records remain. Let's keep going."},
+ {n:4,answer:"22",prompt:"A pink guest badge was recovered. Pink was used for the bride's side. Apply that to the 52. Give me the count.",ok:"Correct. 22 records remain. Let's keep going."},
+ {n:5,answer:"11",prompt:"The final seating revision was made after the RSVP deadline and incorporated the late-confirmation list. Keep the records that did not RSVP on time. Apply that to the 22. Give me the count.",ok:"Correct. 11 records remain. Let's keep going."},
+ {n:6,answer:"2",prompt:"The unidentified gift was in the middle value bracket: $50–150. Apply that to the 11. Give me the count.",ok:"Correct. 2 records remain. Let's keep going."},
+ {n:7,answer:"49",prompt:"The torn seating marker retains the table number: 49. Use that final filter on the two remaining records. Give me the table number.",ok:"Seven leads. One name. The ledger points to Iris Smith — Table 49, Seat 8. Don't accuse her yet. The ledger identifies the person. Now we need to find out what that name means."}
 ];
-const initial={tab:"theo",lead:0,iris:false,messages:[],legalDocs:[],facts:{},task:null,final:false};
+const initial={tab:"theo",lead:0,iris:false,messages:[],docs:[],facts:{},task:"",final:false};
 let S=load();
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||structuredClone(initial)}catch(e){return structuredClone(initial)}}
 function save(){localStorage.setItem(KEY,JSON.stringify(S))}
-function esc(x){return String(x).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
-function add(who,text){S.messages.push({who,text});save()}
-function normalize(s){return s.toLowerCase().replace(/[^a-z0-9$ ]/g," ").replace(/\s+/g," ").trim()}
-function has(s,arr){return arr.some(x=>s.includes(x))}
-function currentLead(){return LEADS[S.lead]}
-function setTask(text){S.task=text;save()}
+function esc(x){return String(x).replace(/[&<>"']/g,function(m){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]})}
+function add(w,t){S.messages.push({w:w,t:t});save()}
+function norm(s){return String(s).toLowerCase().replace(/[^a-z0-9$ ]/g," ").replace(/\s+/g," ").trim()}
+function has(s,a){return a.some(function(x){return s.indexOf(x)>=0})}
+function fact(k){return !!S.facts[k]}
+function task(t){S.task=t;save()}
 function opening(){if(S.messages.length)return;add("theo","I'm Detective Theo Marsh. I have parts of the investigation file. What I don't have is the complete wedding ledger. You do.\n\nI'll give you one lead at a time. Test each lead against the ledger and give me the count.");add("theo",LEADS[0].prompt)}
-function render(){opening();const app=document.getElementById("app");app.innerHTML='<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!S.iris?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+(S.iris?"🔓":"🔒")+'</button><button class="tab '+(S.tab==="status"?"active":"")+'" onclick="tab(\'status\')">CASE STATUS</button></div>'+(S.tab==="theo"?theoView():S.tab==="legal"?legalView():statusView())+'<div class="small" style="margin-top:12px">Progress is saved in this browser. Resetting starts a new case on this device.</div>'}
-function theoView(){let chat=S.messages.map(m=>'<div class="msg '+m.who+'"><div class="bubble"><div class="speaker">'+(m.who==="theo"?"Theo Marsh":"You")+'</div>'+esc(m.text)+'</div></div>').join("");let task=S.task?'<div class="task"><strong>Current investigation</strong>'+esc(S.task)+'</div>':"";return '<div class="panel"><div class="chat" id="chat">'+chat+'</div>'+task+'<div class="composer"><input id="input" placeholder="'+(S.final?"Case closed.":"Ask Theo anything about the case…")+'" '+(S.final?"disabled":"")+' onkeydown="if(event.key===\'Enter\')send()"><button class="btn primary" onclick="send()" '+(S.final?"disabled":"")+'>Send</button></div></div>'}
-function legalView(){if(!S.iris)return '<div class="panel locked">The Legal Team channel is locked. Identify the person the ledger points to first.</div>';let docs=S.legalDocs.length?S.legalDocs.map(d=>'<div class="panel doc"><h3>'+esc(d.title)+'</h3>'+d.body+'</div>').join(""):"";return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p>We've received Detective Marsh\'s request. Ask us for information about Iris Smith.</p><div class="composer"><input id="legalInput" placeholder="Ask for Iris\'s background, professional history, or Alder Hollow connection…" onkeydown="if(event.key===\'Enter\')legalSend()"><button class="btn primary" onclick="legalSend()">Send</button></div></div>'+docs}
-function statusView(){const f=S.facts;return '<div class="panel"><h2>CASE 0147</h2><div class="statusrow"><div class="statusbox"><b>Ledger</b><span>'+(S.iris?"✓ Iris identified":"Lead "+S.lead+" of 7")+'</span></div><div class="statusbox"><b>Iris</b><span>'+(f.conflict?"✓ Professional conflict":"○ Investigation")+'</span></div><div class="statusbox"><b>Timeline</b><span>'+(f.timeline?"✓ Reconstructed":"○ Not established")+'</span></div><div class="statusbox"><b>Cellar</b><span>'+(f.cellar?"✓ Event reconstructed":"○ Not established")+'</span></div><div class="statusbox"><b>Jasmine</b><span>'+(f.jasmine?"✓ Original accusation explained":"○ Not resolved")+'</span></div><div class="statusbox"><b>Final</b><span>'+(S.final?"✓ Case closed":"🔒")+'</span></div></div><div style="margin-top:18px"><button class="btn" onclick="resetCase()">Reset case</button></div></div>'}
-function tab(t){S.tab=t;save();render()}
-function send(){const el=document.getElementById("input");if(!el||!el.value.trim())return;const q=el.value.trim();add("player",q);processTheo(q);render();setTimeout(()=>{const c=document.getElementById("chat");if(c)c.scrollTop=c.scrollHeight},20)}
-function processTheo(q){const n=normalize(q);if(!S.iris){processLeads(n);return}processInvestigation(n,q)}
-function processLeads(n){const L=currentLead();if(!L)return;if(n===L.answer||n===("0"+L.answer)||(L.n===7&&has(n,["49"]))){S.lead++;if(L.n<7){add("theo",L.ok);add("theo",LEADS[S.lead].prompt)}else{S.iris=true;S.facts.identified=true;add("theo",L.ok);add("theo","The ledger tells us who to investigate. It doesn't tell us why she might have gone after Margery.\n\nJasmine's legal team has information that isn't in my police file. I've asked them to open their case material to you.\n\nStart there. Find out who Iris was, how she worked with Margery, and what changed between them.");setTask("Use the Legal Team to investigate Iris before deciding what the ledger result means.")}save()}else{add("theo","Check the current lead against the ledger again. I need the count, not a guess.");}}
-function processInvestigation(n,q){
- if(has(n,["what did legal","what did they find","legal team","what does the legal team say"])){add("theo","Bring me the substance of what they found. Tell me in your own words what you learned about Iris and Margery.");return}
- if(has(n,["who is iris","iris background","what was iris doing","iris job","iris profession","iris wedding"])){S.facts.irisBackground=true;add("theo","Iris worked in event design and logistics. She was professionally involved in the Alder Hollow wedding and had worked with Margery on previous events. She wasn't just another wedding guest.");setTask("Now establish Iris's professional relationship with Margery.");return}
- if(has(n,["relationship","know margery","worked with margery","iris and margery"])){S.facts.relationship=true;add("theo","Iris had a professional relationship with Margery. Margery repeatedly relied on Iris when event-design or production problems needed solving, while Iris had complained about being excluded from meetings and client-facing interactions.");setTask("Find out what made that professional relationship deteriorate.");return}
- if(has(n,["motive","why would iris","why was iris angry","problem with margery","conflict","credit","take credit","exploited"])){if(!S.facts.irisBackground&&!S.facts.relationship){add("theo","Motive needs evidence. Start with who Iris was and how she worked with Margery. The Legal Team can help with that.");setTask("Investigate Iris's professional relationship with Margery.");return}S.facts.conflict=true;add("theo","The legal material shows a repeated professional conflict: Margery relied on Iris's work, Iris was excluded from important meetings and client interactions, and work Iris contributed was presented without proper credit. Margery dismissed her complaints and could influence future recommendations.\n\nThat's a credible professional grievance. But motive isn't the same thing as murder.");setTask("Establish opportunity. Reconstruct where everyone was around 8:05 and afterward.");return}
- if(has(n,["timeline","8:05","after 8","where was jasmine","where was margery","opportunity"])){if(!S.facts.conflict){add("theo","We can reconstruct the timeline, but establish the Iris–Margery conflict first. Otherwise we're mixing opportunity with motive.");return}S.facts.timeline=true;S.facts.opportunity=true;add("theo","Here's what the evidence gives us in pieces:\n\nJasmine and Margery argued around 8:05 PM. Jasmine returned to the reception. Margery later went toward the cellar. There is no evidence placing Jasmine in the cellar.\n\nThe remaining question is who else needs to be accounted for.\n\nYou already have the name: Iris.");setTask("Reconstruct the sequence: Jasmine's argument → Jasmine returns → Margery goes to the cellar → Iris must be accounted for.");return}
- if(has(n,["cellar","confrontation","grabbed","grab","push","shove","fell","stairs","alive","call for help","help"])){if(!S.facts.timeline){add("theo","We aren't ready to reconstruct the cellar yet. First establish the timeline: the 8:05 argument, Jasmine returning to the reception, and Margery going toward the cellar.");return}if(has(n,["alive","still alive","dead immediately"])){S.facts.alive=true;add("theo","No. Margery was still alive after the fall.");}else if(has(n,["help","call"])){S.facts.noHelp=true;add("theo","Iris could have called for help. She didn't. She left the cellar without calling for assistance.");}else if(has(n,["push","shove"])){S.facts.push=true;add("theo","Yes. Margery grabbed Iris during the confrontation. Iris shoved her, and Margery fell down the cellar stairs.");}else if(has(n,["grab"])){add("theo","Margery grabbed Iris during the confrontation.");}else{add("theo","They confronted each other in the cellar. The evidence points to their unresolved professional conflict as the reason. Ask me what happened next.");}if(S.facts.push&&S.facts.alive&&S.facts.noHelp)S.facts.cellar=true;return}
- if(has(n,["why did she lie","why jasmine lie","jasmine lie","protect her marriage","secret marriage","blackmail"])){S.facts.jasmine=true;add("theo","Jasmine lied to protect her secret marriage. Margery had discovered the marriage certificate and used it to demand money: $5,000 was paid, then Margery demanded another $15,000. Jasmine refused, and Margery threatened to tell Ethan's family. They argued around 8:05 PM. But none of that puts Jasmine in the cellar.");return}
- if(has(n,["did jasmine follow","jasmine cellar","jasmine went downstairs","jasmine go downstairs"])){S.facts.jasmine=true;add("theo","No evidence places Jasmine in the cellar. Jasmine returned to the reception after the 8:05 argument. She did not follow Margery downstairs.");setTask("Now account for the person who could have reached the cellar.");return}
- if(has(n,["i don't believe iris","dont believe iris","not iris","iris innocent"])){add("theo","That's a theory worth testing. Don't believe me just because the ledger identified her. Tell me what doesn't fit. We have to separate motive, opportunity, and what actually happened in the cellar.");return}
- if(has(n,["who killed","killer","is iris the killer","did iris kill"])){add("theo","The ledger points to Iris Smith, but don't skip the investigation. A name isn't a murder case. We still need the motive, timeline, cellar event, aftermath, and the reason Jasmine was blamed.");return}
- if(has(n,["jasmine","arrested","why jasmine"])){S.facts.jasmine=true;add("theo","Jasmine was arrested because the police had a strong apparent case: a secret marriage, Margery's blackmail demands, the 8:05 argument, and Jasmine's later lie about what the argument was really about. But the investigation did not establish that Jasmine followed Margery to the cellar.");return}
- if(has(n,["final report","final","who was responsible","what happened and why was jasmine blamed"])){add("theo","Give me the complete reconstruction: who was responsible, what happened in the cellar, what happened after the fall, and why Jasmine was blamed.");return}
- add("theo","I can work with that question, but I need to keep the evidence in order. Ask me about Iris, Margery, Jasmine, the timeline, the cellar, or what the evidence does — and I'll tell you what the file establishes so far.");
+function render(){
+ opening();
+ var nav='<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!S.iris?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+(S.iris?"🔓":"🔒")+'</button><button class="tab '+(S.tab==="status"?"active":"")+'" onclick="tab(\'status\')">CASE STATUS</button></div>';
+ document.getElementById("app").innerHTML=nav+(S.tab==="theo"?theo():S.tab==="legal"?legal():status())+'<div class="small" style="margin-top:12px">V5 deterministic case engine · progress is saved in this browser.</div>';
 }
-function legalSend(){const el=document.getElementById("legalInput");if(!el||!el.value.trim())return;const q=normalize(el.value);
- if(has(q,["relationship","conflict","margery","professional","credit"])){if(!S.legalDocs.some(d=>d.title.includes("RELATIONSHIP"))){S.legalDocs.push({title:"PRIVATE CASE RESEARCH — IRIS SMITH / MARGERY VOSS",body:"<p>The records show a repeated pattern.</p><ul><li>Margery relied on Iris when problems needed solving.</li><li>Iris's contributions were not consistently credited.</li><li>Iris was increasingly excluded from client-facing work.</li><li>Margery continued contacting Iris when something went wrong.</li><li>Iris objected to the arrangement.</li><li>Margery dismissed the complaints.</li><li>Margery's recommendations could affect Iris's future opportunities.</li></ul><p>The relationship appears to have deteriorated significantly before the Alder Hollow wedding.</p>"})}}
- else if(has(q,["alder","wedding","connection"])){if(!S.legalDocs.some(d=>d.title.includes("ALDER HOLLOW"))){S.legalDocs.push({title:"PRIVATE CASE NOTE — ALDER HOLLOW / IRIS",body:"<p>Iris was involved in the Alder Hollow wedding preparation.</p><p>Margery continued to rely on Iris's work while their professional dispute remained unresolved.</p><p>The relationship deteriorated further during the final preparations.</p>"})}}
- else {if(!S.legalDocs.some(d=>d.title.includes("IRIS SMITH"))){S.legalDocs.push({title:"PRIVATE CASE RESEARCH — IRIS SMITH",body:"<p><b>Professional field:</b> Event design and logistics.</p><p><b>Alder Hollow:</b> Iris was professionally involved in the wedding preparation.</p><p><b>Connection to Margery Voss:</b> Iris had worked with Margery on previous events. Margery repeatedly relied on Iris when production or design problems needed solving.</p><p><b>Professional complaints:</b></p><ul><li>Excluded from meetings.</li><li>Excluded from client-facing interactions.</li><li>Work she contributed was presented without proper credit.</li><li>Often contacted when something needed fixing.</li></ul><p>Margery dismissed Iris's complaints as essentially “how the industry works.” Margery also had influence over recommendations and future opportunities available to Iris.</p>"})}}
- save();render()}
+function theo(){
+ var chat=S.messages.map(function(m){return '<div class="msg '+m.w+'"><div class="bubble"><div class="speaker">'+(m.w==="theo"?"Theo Marsh":"You")+'</div>'+esc(m.t)+'</div></div>'}).join("");
+ var t=S.task?'<div class="task"><strong>Current investigation</strong>'+esc(S.task)+'</div>':"";
+ return '<div class="panel"><div class="chat" id="chat">'+chat+'</div>'+t+'<div class="composer"><input id="input" placeholder="'+(S.final?"Case closed.":"Ask Theo anything about the case…")+'" '+(S.final?"disabled":"")+' onkeydown="if(event.key===\'Enter\')send()"><button class="btn primary" onclick="send()" '+(S.final?"disabled":"")+'>Send</button></div></div>';
+}
+function legal(){
+ var docs=S.docs.map(function(d){return '<div class="panel doc"><h3>'+esc(d.title)+'</h3>'+d.body+'</div>'}).join("");
+ return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p>We can provide material about Iris. Ask for her background, professional history, or Alder Hollow connection. We will not disclose what happened in the cellar.</p><div class="composer"><input id="legalInput" placeholder="Ask for a case document…" onkeydown="if(event.key===\'Enter\')legalSend()"><button class="btn primary" onclick="legalSend()">Request</button></div></div>'+docs;
+}
+function status(){
+ var f=S.facts;
+ return '<div class="panel"><h2>CASE 0147</h2><div class="statusrow">'+
+ '<div class="statusbox"><b>Ledger</b><span>'+(S.iris?"✓ Iris identified":"Lead "+S.lead+" of 7")+'</span></div>'+
+ '<div class="statusbox"><b>Iris</b><span>'+(fact("irisBackground")&&fact("relationship")&&fact("conflict")?"✓ Established":"○ Investigation")+'</span></div>'+
+ '<div class="statusbox"><b>Timeline</b><span>'+(fact("timeline")?"✓ Reconstructed":"○ Not established")+'</span></div>'+
+ '<div class="statusbox"><b>Cellar</b><span>'+(fact("cellar")?"✓ Reconstructed":"○ Not established")+'</span></div>'+
+ '<div class="statusbox"><b>Jasmine</b><span>'+(fact("jasmineComplete")?"✓ Explained":"○ Not resolved")+'</span></div>'+
+ '<div class="statusbox"><b>Final</b><span>'+(S.final?"✓ Case closed":"🔒")+'</span></div>'+
+ '</div><div style="margin-top:18px"><button class="btn" onclick="resetCase()">Reset case</button></div></div>';
+}
+function tab(t){S.tab=t;save();render()}
+function send(){var el=document.getElementById("input");if(!el||!el.value.trim())return;var q=el.value.trim();add("player",q);route(q);render();var c=document.getElementById("chat");if(c)c.scrollTop=c.scrollHeight}
+function legalSend(){var el=document.getElementById("legalInput");if(!el||!el.value.trim())return;var q=norm(el.value);addLegal(q);render()}
+function addLegal(q){
+ if(has(q,["background","who is iris","what does iris do","job","profession","work"])){
+  if(!S.docs.some(function(d){return d.id==="background"}))S.docs.push({id:"background",title:"WHO IS IRIS?",body:"<p>Iris Smith works in event design and logistics. She was professionally involved in the Alder Hollow wedding and had worked with Margery on previous events.</p><p>Margery relied on Iris when event-design or production problems needed solving. Iris was not simply a wedding guest.</p>"});
+  add("theo","The Legal Team has released its background material on Iris. Read it, then come back here and tell me what you learned.");
+ }else if(has(q,["relationship","professional history","history","margery","credit","excluded"])){
+  if(!S.docs.some(function(d){return d.id==="relationship"}))S.docs.push({id:"relationship",title:"IRIS / MARGERY PROFESSIONAL HISTORY",body:"<p>The records show a repeated pattern.</p><ul><li>Margery relied on Iris when problems needed fixing.</li><li>Iris was excluded from meetings and client-facing interactions.</li><li>Iris's work was presented without proper credit.</li><li>Margery continued contacting Iris when something went wrong.</li><li>Iris complained about the arrangement.</li><li>Margery dismissed the complaints as “how the industry works.”</li><li>Margery could affect future recommendations and opportunities.</li></ul>"});
+  add("theo","The Legal Team has released the professional-history material. Bring the substance back to me in your own words.");
+ }else if(has(q,["alder","wedding","connection"])){
+  if(!S.docs.some(function(d){return d.id==="alder"}))S.docs.push({id:"alder",title:"ALDER HOLLOW / IRIS",body:"<p>Iris was involved in the Alder Hollow wedding preparation. Margery continued to rely on Iris's work while their professional dispute remained unresolved.</p><p>The relationship deteriorated further during the final preparations.</p>"});
+  add("theo","The Legal Team has released the Alder Hollow material. Tell me what it establishes about Iris's connection to this wedding.");
+ }else{
+  add("theo","Be specific. Ask the Legal Team for Iris's background, her professional history with Margery, or her Alder Hollow connection.");
+ }
+ save();
+}
+function reportBack(n){
+ var changed=false;
+ if(has(n,["event design","event designer","logistics","worked with margery","worked for margery"])&&!fact("irisBackground")){S.facts.irisBackground=true;changed=true}
+ if(has(n,["excluded","meetings","client","credit","no credit","took credit","presented her work","margery relied","how the industry works","recommendations","future opportunities"])&&!fact("relationship")){S.facts.relationship=true;changed=true}
+ if(has(n,["professional conflict","professional dispute","exploited","used her work","repeated pattern"])&&!fact("conflict")){S.facts.conflict=true;changed=true}
+ if(has(n,["alder hollow","wedding preparation","involved in the wedding"])&&!fact("alder")){S.facts.alder=true;changed=true}
+ return changed;
+}
+function route(raw){
+ var n=norm(raw);
+ if(!S.iris){return leadRoute(n)}
+ if(S.final){add("theo","CASE 0147 is closed. The investigation record is complete.");return}
+ if(has(n,["final report","complete reconstruction","who was responsible, what happened","who was responsible and why"]))return finalReport(n);
+ if(reportBack(n)){return acknowledgeReport()}
+ if(has(n,["what did legal","what did they find","what did the legal team","legal team"]))return add("theo","I need your interpretation, not a reference to the documents. Tell me what you learned about Iris and Margery in your own words.");
+ if(has(n,["who is iris","what was iris doing","iris background","iris job","iris profession"]))return irisBackground();
+ if(has(n,["relationship","know margery","worked with margery","iris and margery"]))return relationship();
+ if(has(n,["motive","why would iris","why was iris angry","why was iris upset","conflict","credit","take credit","exploited"]))return conflict();
+ if(has(n,["timeline","8:05","where was jasmine","where was margery","opportunity","sequence"]))return timeline(n);
+ if(has(n,["cellar","confrontation","grabbed","grab","physical","push","shove","fell","stairs","alive","help","call"]))return cellar(n);
+ if(has(n,["secret marriage","marriage certificate","blackmail","$5","5000","15000","15,000","threatened ethan","ethan family"]))return jasmine(n);
+ if(has(n,["did jasmine follow","jasmine cellar","jasmine downstairs","jasmine go down"]))return jasmineCellar();
+ if(has(n,["why jasmine","why was jasmine arrested","jasmine arrested","jasmine lie","protect her marriage"]))return jasmine(n);
+ if(has(n,["i don't believe iris","dont believe iris","not iris","iris innocent"]))return challenge();
+ if(has(n,["who killed","killer","is iris the killer","did iris kill"]))return add("theo","The ledger identifies Iris Smith. That is not the same as proving the whole event. We still need motive, opportunity, the cellar sequence, aftermath, and the reason Jasmine was blamed.");
+ if(has(n,["margery","who was margery","about margery"]))return add("theo","Margery was the wedding coordinator. The relevant relationships here are her conflict with Iris and her blackmail of Jasmine. Ask me which one you want to reconstruct.");
+ return add("theo","That's relevant to the case, but I won't jump ahead of the evidence. Ask about Iris, Margery, Jasmine, the timeline, the cellar, or what a particular piece of evidence establishes.");
+}
+function leadRoute(n){
+ var L=LEADS[S.lead];
+ if(!L)return;
+ if(n===L.answer||n==="0"+L.answer||(L.n===7&&has(n,["49"]))){
+  S.lead++;
+  add("theo",L.ok);
+  if(L.n<7)add("theo",LEADS[S.lead].prompt);
+  else{S.iris=true;S.facts.identified=true;task("Use the Legal Team to investigate who Iris was, how she worked with Margery, and what changed between them.");add("theo","The ledger identifies the person. It does not establish motive, the cellar event, or why Jasmine was blamed.\n\nThe Legal Team can give you information that is not in my police file. Start there. Then bring your findings back to me.");}
+  save();
+ }else add("theo","Check the current lead against the ledger again. I need the count, not a guess.");
+}
+function irisBackground(){
+ if(S.docs.some(function(d){return d.id==="background"})){add("theo","The Legal Team's background material establishes Iris as an event-design and logistics professional who worked on Alder Hollow and had worked with Margery before. Bring that finding back to me.");task("Tell Theo what you learned about Iris.");return}
+ add("theo","The Legal Team has information about Iris that I don't have in my police file. Ask them for her background first.");task("Open the Legal Team and request WHO IS IRIS?");
+}
+function relationship(){
+ if(!fact("irisBackground")){add("theo","Before we interpret the relationship, establish who Iris was and what she did at Alder Hollow. The Legal Team has that material.");task("Request WHO IS IRIS? from the Legal Team.");return}
+ if(S.docs.some(function(d){return d.id==="relationship"})){add("theo","The professional-history document describes repeated reliance on Iris's work, exclusion from meetings and client interactions, and lack of credit. Bring that back to me in your own words.");task("Explain Iris and Margery's professional relationship to Theo.");return}
+ add("theo","The relationship is important, but the police file doesn't contain the complete professional history. Request IRIS / MARGERY PROFESSIONAL HISTORY from the Legal Team.");task("Request IRIS / MARGERY PROFESSIONAL HISTORY.");
+}
+function conflict(){
+ if(!fact("irisBackground")||!fact("relationship")){add("theo","Motive needs context. Establish who Iris was and how she worked with Margery before deciding what the conflict means.");return}
+ if(S.docs.some(function(d){return d.id==="relationship"})){add("theo","The records show a serious professional conflict: Iris's work was used without proper credit, she was excluded from important interactions, and Margery dismissed her complaints while retaining influence over future recommendations. That's evidence of grievance. It is not, by itself, proof of murder or intent.");S.facts.conflict=true;task("Now reconstruct the timeline and establish Iris's opportunity.");return}
+}
+function acknowledgeReport(){
+ if(fact("irisBackground")&&fact("relationship")&&!fact("conflict")){add("theo","That gives me Iris's background and professional relationship with Margery. Now tell me what the repeated pattern meant: exclusion, lack of credit, and Margery's response to Iris's complaints.");task("Establish the professional conflict.");return}
+ if(fact("irisBackground")&&fact("relationship")&&fact("conflict")){add("theo","That's the part I needed. The evidence supports a serious professional conflict. Keep the distinction clear: grievance is not the same thing as intent to kill.");task("Reconstruct the timeline around 8:05 PM.");return}
+ add("theo","I have the document trail. Tell me the substance of what you learned, rather than just saying you read it.");
+}
+function timeline(n){
+ if(!fact("conflict")){add("theo","We can look at the timeline, but first establish Iris's professional conflict with Margery. Otherwise we're mixing motive and opportunity.");return}
+ S.facts.timeline=true;
+ add("theo","Put the sequence together: Jasmine and Margery argued around 8:05 PM. Jasmine returned to the reception. Margery later went toward the cellar. There is no evidence placing Jasmine in the cellar.\n\nWhat is missing from that sequence?");
+ task("Identify the person who still needs to be accounted for.");
+}
+function cellar(n){
+ if(!fact("timeline")){add("theo","The cellar matters, but establish the 8:05 timeline first: Jasmine argues with Margery, Jasmine returns to the reception, and Margery later goes toward the cellar.");return}
+ if(!fact("confrontation")){if(has(n,["did iris meet","meet margery","were they together","did they confront"])){S.facts.confrontation=true;add("theo","Yes. Iris and Margery met in the cellar. The evidence is consistent with the unresolved professional conflict bringing them into confrontation.");task("What happened during the confrontation?");}else add("theo","I can give you the first piece: Iris reached the cellar and confronted Margery. Ask what happened during that confrontation.");return}
+ if(!fact("grab")){if(has(n,["grab","grabbed","who became physical","who touched first","who started"])){S.facts.grab=true;add("theo","Margery grabbed Iris first.");task("What did Iris do after Margery grabbed her?");}else add("theo","There was a physical confrontation. Ask who became physical first.");return}
+ if(!fact("push")){if(has(n,["push","pushed","shove","shoved"])){S.facts.push=true;add("theo","Iris shoved Margery. Margery fell backward down the cellar stairs.");task("Was Margery already dead when she reached the bottom?");}else add("theo","Margery grabbed Iris. What did Iris do?");return}
+ if(!fact("alive")){if(has(n,["alive","still alive","not dead","dead immediately","survive"])){S.facts.alive=true;add("theo","No. Margery was still alive after the fall.");task("Could Iris have called for help?");}else add("theo","The fall is established. Now ask whether Margery was still alive afterward.");return}
+ if(!fact("noHelp")){if(has(n,["call","help","could she help","could iris help","did she call"])){S.facts.noHelp=true;add("theo","Yes. Iris could have called for help. She chose not to. She left the cellar without calling for assistance.");S.facts.cellar=true;task("Now reconstruct why Jasmine looked guilty even though there is no evidence she went to the cellar.");}else add("theo","Yes. Iris had an opportunity to call for help. Did she?");return}
+ if(fact("cellar"))add("theo","The cellar sequence is established: confrontation, Margery grabs Iris, Iris shoves, Margery falls, remains alive, and Iris leaves without calling for help. Don't add an intent to kill that the evidence does not establish.");
+}
+function jasmine(n){
+ if(!fact("timeline")){add("theo","Jasmine's story is important, but first keep the timeline straight. Her argument with Margery happened around 8:05 PM, after which Jasmine returned to the reception.");return}
+ if(has(n,["secret marriage","marriage certificate","married","certificate"])){S.facts.jasmineMarriage=true;add("theo","Margery discovered that Jasmine and Ethan had secretly married about six weeks before the public wedding. That gave Margery leverage over Jasmine.");task("What did Margery demand from Jasmine?");return}
+ if(has(n,["blackmail","$5","5000","15000","15,000","money","demand"])){if(!fact("jasmineMarriage")){add("theo","Start with the secret marriage. The money dispute only makes sense in that context.");return}S.facts.jasmineBlackmail=true;add("theo","Margery demanded $5,000, which Jasmine paid. Later Margery demanded another $15,000. Jasmine refused, and Margery threatened to tell Ethan's family.");task("What happened after Jasmine refused?");return}
+ if(has(n,["lie","protect her marriage","why did jasmine lie","argument","8:05"])){if(!fact("jasmineBlackmail")){add("theo","The argument is tied to the secret marriage and blackmail. Establish those facts first.");return}S.facts.jasmineArgument=true;S.facts.jasmineLie=true;add("theo","Jasmine and Margery argued around 8:05 PM. Jasmine later lied about the reason for the argument to protect her marriage and secret. That lie made the police case against her look stronger.");task("Does any of that place Jasmine in the cellar?");return}
+ if(has(n,["no","doesn't","does not","not in the cellar","cellar"])){if(fact("jasmineLie")){S.facts.jasmineNoCellar=true;S.facts.jasmineComplete=true;add("theo","No. Nothing in that chain places Jasmine in the cellar. She returned to the reception after the argument. That's why the original accusation and the actual cellar event need to be separated.");task("Now prepare the complete final report.");}else add("theo","Before that conclusion, reconstruct the secret marriage, blackmail demands, argument, and Jasmine's protective lie.");return}
+ add("theo","Jasmine's apparent case has several pieces: secret marriage, blackmail, the 8:05 argument, and a protective lie. Ask about any one of those.");
+}
+function jasmineCellar(){if(!fact("jasmineLie")){add("theo","We need the full Jasmine sequence first: secret marriage, blackmail, argument, and protective lie.");return}S.facts.jasmineNoCellar=true;add("theo","No evidence places Jasmine in the cellar. She returned to the reception after the 8:05 argument. The police case against her came from the surrounding circumstances and her lie, not proof that she went downstairs.");if(fact("jasmineBlackmail")){S.facts.jasmineComplete=true;task("Prepare the final report: responsibility, motive, cellar event, aftermath, and why Jasmine was blamed.");}}
+function challenge(){add("theo","Good. Test Iris rather than accepting the name blindly. The strongest questions are: what was her relationship with Margery, what opportunity did she have, what happened in the cellar, and what evidence separates her from Jasmine?");}
+function finalReport(n){
+ var ok=has(n,["iris","iris smith"])&&has(n,["professional","work","credit","conflict","grievance"])&&has(n,["confront","cellar"])&&has(n,["grab"])&&has(n,["push","shove"])&&has(n,["fall","stairs"])&&has(n,["alive"])&&has(n,["help","call"])&&has(n,["jasmine"])&&has(n,["lie"])&&has(n,["marriage","blackmail"])&&has(n,["not","no","didn't","did not"]);
+ if(!ok){var miss=[];if(!has(n,["iris","iris smith"]))miss.push("Iris");if(!has(n,["professional","work","credit","conflict","grievance"]))miss.push("the professional conflict");if(!has(n,["confront","cellar"]))miss.push("the cellar confrontation");if(!has(n,["grab"]))miss.push("Margery grabbing Iris");if(!has(n,["push","shove"]))miss.push("the shove");if(!has(n,["fall","stairs"]))miss.push("the fall");if(!has(n,["alive"]))miss.push("Margery being alive after the fall");if(!has(n,["help","call"]))miss.push("Iris not calling for help");if(!has(n,["jasmine","lie"]))miss.push("why Jasmine lied");if(!has(n,["marriage","blackmail"]))miss.push("the secret marriage/blackmail");add("theo","Your reconstruction is close, but I'm still missing: "+miss.join(", ")+". Put those pieces together without assuming intent that the evidence doesn't establish.");return}
+ S.final=true;S.task="CASE CLOSED";add("theo","You found the name. I found the truth behind it.\n\nCASE 0147 — KILLER IDENTIFIED — IRIS SMITH");save();
+}
 function resetCase(){if(confirm("Reset this case? All progress and conversation on this device will be erased.")){localStorage.removeItem(KEY);S=structuredClone(initial);render()}}
 render();
+
 </script></body></html>
