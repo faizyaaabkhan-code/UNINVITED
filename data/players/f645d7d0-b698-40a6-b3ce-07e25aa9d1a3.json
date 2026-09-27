@@ -1,0 +1,14 @@
+{
+  "player": {
+    "id": "f645d7d0-b698-40a6-b3ce-07e25aa9d1a3",
+    "name": "faiz",
+    "email": "faizyaaabkhan@gmail.com",
+    "password": {
+      "salt": "4d0d21f1cad73488a8c6c0849bf09aa0",
+      "hash": "a451321e5a2bd90c4170703cba71abc9f948c68d755664095580a850935a69545d626c04d9427db5e916b3918808e1a537d3e388728748ac6cc1749d9e190f8d"
+    },
+    "caseCode": "UNV-F531BB-0250",
+    "createdAt": "2026-09-27T12:59:36.701Z"
+  },
+  "progress": null
+}
