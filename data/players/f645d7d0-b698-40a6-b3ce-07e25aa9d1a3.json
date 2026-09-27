@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 5,
+    "lead": 6,
     "iris": false,
     "messages": [
       {
@@ -82,6 +82,18 @@
       {
         "w": "theo",
         "t": "Eleven.\n\nI found another piece of the evidence that may help.\n\nAn unidentified wedding gift was recorded in the inventory. We never established who sent it, but the inventory gives us an approximate value.\n\nIt falls somewhere between $50 and $150.\n\nCheck that value range against the eleven remaining records.\n\nWhat count do you get?"
+      },
+      {
+        "w": "player",
+        "t": "2"
+      },
+      {
+        "w": "theo",
+        "t": "2."
+      },
+      {
+        "w": "theo",
+        "t": "Only two people still fit everything we've found.\n\nI went back to the evidence recovered from the reception.\n\nThere's a torn seating marker. Most of it is missing, but one detail is still readable:\n\nTable 49.\n\nI don't have the seat number.\n\nCheck the two remaining records against Table 49.\n\nGive me the full name, table number, and seat number of the person who remains."
       }
     ],
     "docs": [],
@@ -89,5 +101,5 @@
     "task": "",
     "final": false
   },
-  "updatedAt": "2026-09-27T13:51:05.579Z"
+  "updatedAt": "2026-09-27T13:51:09.712Z"
 }
