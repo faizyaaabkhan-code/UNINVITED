@@ -115,17 +115,17 @@ function addLegal(q){
  if(has(q,["interview","question iris","question her","speak to iris","talk to iris","confront iris"])){
   if(!S.docs.some(function(d){return d.id==="interview"}))S.docs.push({id:"interview",title:"IRIS SMITH — INTERVIEW",body:"<p>Iris initially refuses to discuss what happened after she left Table 49.</p><p>When confronted with the seating record and the timeline, she finally admits:</p><p><strong>“I went to find Margery.”</strong></p><p>Iris says she confronted Margery in the cellar about the way Margery had treated her and taken credit for her work.</p><p>They argued. Margery grabbed Iris. Iris pushed her. Margery fell down the cellar stairs.</p><p><strong>Margery was still alive after the fall.</strong></p><p>Iris admits she could have called for help.</p><p><strong>She didn't.</strong></p><p>She left the cellar and returned to the reception without telling anyone what had happened.</p>"}); 
   S.facts.irisInterview=true;
-  add("theo","The Legal Team has interviewed Iris. What did they tell you about what happened after she left Table 49?");
+  add("theo","Did the Legal Team find out what happened after Iris left Table 49?");
   task("Bring Theo the update from the Legal Team.");
  }else if(has(q,["background","who is iris","what does iris do","job","profession","work"])){
   if(!S.docs.some(function(d){return d.id==="background"}))S.docs.push({id:"background",title:"WHO IS IRIS?",body:"<p>Iris Smith works in event design and logistics. She was professionally involved in the Alder Hollow wedding and had worked with Margery on previous events.</p><p>Margery relied on Iris when event-design or production problems needed solving. Iris was not simply a wedding guest.</p>"});
-  add("theo","The Legal Team has sent me an update on Iris. What did they tell you about who she is and what she was doing at Alder Hollow?");
+  add("theo","Did the Legal Team find out who she is and what she was doing at Alder Hollow?");
  }else if(has(q,["professional history","professional","relationship","history","iris margery","margery iris","credit","excluded"])){
   if(!S.docs.some(function(d){return d.id==="relationship"}))S.docs.push({id:"relationship",title:"IRIS / MARGERY PROFESSIONAL HISTORY",body:"<p>The records show a repeated pattern.</p><ul><li>Margery relied on Iris when problems needed fixing.</li><li>Iris was excluded from meetings and client-facing interactions.</li><li>Iris's work was presented without proper credit.</li><li>Margery continued contacting Iris when something went wrong.</li><li>Iris complained about the arrangement.</li><li>Margery dismissed the complaints as “how the industry works.”</li><li>Margery could affect future recommendations and opportunities.</li></ul>"});
-  add("theo","The Legal Team has sent you the professional history between Iris and Margery. What did they tell you about the relationship between them?");
+  add("theo","Did the Legal Team find out what was going on between Iris and Margery?");
  }else if(has(q,["alder","wedding","connection"])){
   if(!S.docs.some(function(d){return d.id==="alder"}))S.docs.push({id:"alder",title:"ALDER HOLLOW / IRIS",body:"<p>Iris was involved in the Alder Hollow wedding preparation. Margery continued to rely on Iris's work while their professional dispute remained unresolved.</p><p>The relationship deteriorated further during the final preparations.</p>"});
-  add("theo","The Legal Team has sent an update about Alder Hollow. What did they tell you about Iris's connection to the wedding?");
+  add("theo","Did the Legal Team find out what Iris's connection to the Alder Hollow wedding was?");
  }else{
   add("theo","The Legal Team can give you updates on Iris, her professional history with Margery, her Alder Hollow connection, or the interview. Ask them for whichever piece you need next, then tell me what they found.");
  }
