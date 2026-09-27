@@ -56,5 +56,5 @@ module.exports=async(req,res)=>{ cors(res); if(req.method==="OPTIONS")return res
     return res.json({token,player:{id:p.id,name:p.name,email:p.email,caseCode:p.caseCode},progress:full.progress||null});
   }
   return res.status(400).json({error:"Unknown auth action."});
- }catch(e){return res.status(500).json({error:"Authentication service error."})}
+ }catch(e){ console.error("UNINVITED AUTH ERROR:", e && e.stack ? e.stack : e); return res.status(500).json({error:"Authentication service error."})}
 };
