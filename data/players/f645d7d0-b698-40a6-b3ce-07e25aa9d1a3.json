@@ -146,6 +146,10 @@
       {
         "w": "theo",
         "t": "That's more significant than simply saying they didn't get along.\n\nThe file shows a repeated professional conflict: exclusion, lack of credit, and Margery retaining influence over Iris's future opportunities.\n\nBut there's one thing I still don't know.\n\nHow did that conflict connect to Alder Hollow itself?"
+      },
+      {
+        "w": "theo",
+        "t": "The Legal Team has released the Alder Hollow material. Tell me what it establishes about Iris's connection to this wedding."
       }
     ],
     "docs": [
@@ -153,6 +157,11 @@
         "id": "background",
         "title": "WHO IS IRIS?",
         "body": "<p>Iris Smith works in event design and logistics. She was professionally involved in the Alder Hollow wedding and had worked with Margery on previous events.</p><p>Margery relied on Iris when event-design or production problems needed solving. Iris was not simply a wedding guest.</p>"
+      },
+      {
+        "id": "alder",
+        "title": "ALDER HOLLOW / IRIS",
+        "body": "<p>Iris was involved in the Alder Hollow wedding preparation. Margery continued to rely on Iris's work while their professional dispute remained unresolved.</p><p>The relationship deteriorated further during the final preparations.</p>"
       }
     ],
     "facts": {
@@ -165,5 +174,5 @@
     "task": "Explain Iris's Alder Hollow connection to Theo.",
     "final": false
   },
-  "updatedAt": "2026-09-27T13:10:23.057Z"
+  "updatedAt": "2026-09-27T13:10:25.645Z"
 }
