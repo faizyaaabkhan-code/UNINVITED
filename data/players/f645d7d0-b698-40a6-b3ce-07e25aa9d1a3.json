@@ -134,14 +134,24 @@
       {
         "w": "theo",
         "t": "Iris Smith. Table 49, Seat 8.\n\nThat's our person.\n\nBut a name isn't a murder.\n\nI want to know who Iris was, what her relationship with Margery was, and what brought her into this investigation.\n\nThat's where your side of the investigation becomes important."
+      },
+      {
+        "w": "theo",
+        "t": "The Legal Team has released its background material on Iris. Read it, then come back and tell me what you learned."
       }
     ],
-    "docs": [],
+    "docs": [
+      {
+        "id": "background",
+        "title": "WHO IS IRIS?",
+        "body": "<p>Iris Smith works in event design and logistics. She was professionally involved in the Alder Hollow wedding and had worked with Margery on previous events.</p><p>Margery relied on Iris when event-design or production problems needed solving. Iris was not simply a wedding guest.</p>"
+      }
+    ],
     "facts": {
       "identified": true
     },
     "task": "Use the Legal Team to investigate who Iris was, how she worked with Margery, and what changed between them.",
     "final": false
   },
-  "updatedAt": "2026-09-27T13:09:06.555Z"
+  "updatedAt": "2026-09-27T13:09:09.278Z"
 }
