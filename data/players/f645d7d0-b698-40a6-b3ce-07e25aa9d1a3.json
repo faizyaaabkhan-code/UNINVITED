@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 0,
+    "lead": 1,
     "iris": false,
     "messages": [
       {
@@ -22,6 +22,18 @@
       {
         "w": "theo",
         "t": "I went back through the CCTV report.\n\nMost of the reception was covered, but there was a gap in the camera coverage. The report places the blind spot around Tables 46 through 50.\n\nThat's important, but it doesn't tell us who was there.\n\nCheck that section of the wedding ledger for me.\n\nWhat count do you get?"
+      },
+      {
+        "w": "player",
+        "t": "1058"
+      },
+      {
+        "w": "theo",
+        "t": "1,058."
+      },
+      {
+        "w": "theo",
+        "t": "That's still too many people.\n\nI went back to the physical evidence.\n\nThere's a handwritten mark on one of the items recovered during the investigation. It's damaged, but I can make out what might be a first initial.\n\nT, H, J, or I.\n\nI'm not confident enough to say which one it is.\n\nSee what that does to the group.\n\nWhat count do you get?"
       }
     ],
     "docs": [],
@@ -29,5 +41,5 @@
     "task": "",
     "final": false
   },
-  "updatedAt": "2026-09-27T13:49:19.195Z"
+  "updatedAt": "2026-09-27T13:50:25.128Z"
 }
