@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>UNINVITED — Private Case Room</title>
 <style>
-:root{--bg:#11100f;--panel:#1b1917;--panel2:#211e1b;--text:#eee8df;--muted:#a9a097;--line:#3b342e;--accent:#a84b48;--gold:#c8a66a}
+*{box-sizing:border-box}:root{--bg:#0d0c0b;--panel:#171513;--panel2:#1e1a18;--text:#f1ece5;--muted:#aaa198;--line:#39312c;--accent:#9f4643;--gold:#c9a86b;--green:#8ea77c}body{margin:0;background:radial-gradient(circle at 50% -10%,#241c19 0,#0d0c0b 45%);color:var(--text);font:15px/1.6 Georgia,serif}.wrap{max-width:1060px;margin:auto;padding:22px 18px 60px}header{border-bottom:1px solid var(--line);padding:8px 0 18px;margin-bottom:14px}.kicker{font:10px Arial,sans-serif;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}.title{font-size:34px;letter-spacing:.16em;margin:4px 0}.sub{color:var(--muted);font-size:13px}.nav{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.tab,.btn{border:1px solid var(--line);background:rgba(23,21,19,.9);color:var(--text);padding:10px 14px;border-radius:7px;cursor:pointer}.tab.active,.btn.primary{background:var(--accent);border-color:var(--accent)}.tab:disabled{opacity:.38;cursor:not-allowed}.panel{background:rgba(23,21,19,.94);border:1px solid var(--line);border-radius:10px;padding:18px;margin:10px 0}.chat{height:54vh;min-height:420px;overflow:auto;padding:8px 4px}.msg{margin:15px 0;display:flex}.msg.theo{justify-content:flex-start}.msg.player{justify-content:flex-end}.bubble{max-width:78%;padding:13px 16px;border-radius:10px;white-space:pre-wrap}.theo .bubble{background:var(--panel2);border:1px solid var(--line)}.player .bubble{background:#382525;border:1px solid #65403e}.speaker{font:10px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}.player .speaker{color:#d5aaa5}.composer{display:flex;gap:8px;margin-top:12px}.composer input{flex:1;background:#0b0a09;border:1px solid var(--line);color:var(--text);padding:13px;border-radius:7px;font:15px Georgia,serif}.composer button{min-width:100px}.task{border-left:3px solid var(--gold);padding:11px 14px;background:#141210;margin:14px 0;color:#ddd4c9}.task strong{display:block;color:var(--gold);font:10px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:3px}.statusrow{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.statusbox{background:var(--panel2);border:1px solid var(--line);padding:12px;border-radius:7px}.statusbox b{display:block;color:var(--gold);font:10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}.statusbox span{color:var(--muted)}.small{font:11px Arial,sans-serif;color:var(--muted)}.locked{color:var(--muted);font-style:italic}.doc{background:#eee7da;color:#211c18;padding:20px;border-radius:7px}.doc h3{margin-top:0;color:#211c18}.journey{display:flex;gap:5px;flex-wrap:wrap;margin:0 0 12px}.step{font:9px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 8px;border:1px solid var(--line);border-radius:5px;color:#80776f}.step.on{color:var(--gold);border-color:#705b40;background:#211c16}.step.done{color:var(--green);border-color:#48543e}.hint{font-size:13px;color:var(--muted);margin:0 0 10px}.legal-intro{color:#bdb4aa}.doc ul{padding-left:20px}@media(max-width:650px){.bubble{max-width:92%}.statusrow{grid-template-columns:1fr}.composer{flex-direction:column}.composer button{width:100%}.chat{height:55vh;min-height:380px}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 Georgia,serif}.wrap{max-width:980px;margin:auto;padding:24px 18px 60px}header{border-bottom:1px solid var(--line);padding:10px 0 20px;margin-bottom:18px}.kicker{font:11px Arial,sans-serif;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}.title{font-size:32px;letter-spacing:.12em;margin:5px 0}.sub{color:var(--muted)}.nav{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tab,.btn{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:10px 14px;border-radius:8px;cursor:pointer}.tab.active,.btn.primary{background:var(--accent);border-color:var(--accent)}.tab:disabled{opacity:.4;cursor:not-allowed}.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin:12px 0}.chat{max-height:58vh;overflow:auto;padding:4px}.msg{margin:12px 0;display:flex}.msg.theo{justify-content:flex-start}.msg.player{justify-content:flex-end}.bubble{max-width:82%;padding:12px 15px;border-radius:12px;white-space:pre-wrap}.theo .bubble{background:var(--panel2);border:1px solid var(--line)}.player .bubble{background:#382525;border:1px solid #65403e}.speaker{font:10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}.composer{display:flex;gap:8px;margin-top:12px}.composer input{flex:1;background:#0e0d0c;border:1px solid var(--line);color:var(--text);padding:12px;border-radius:8px;font:15px Georgia,serif}.composer button{min-width:100px}.task{border-left:3px solid var(--gold);padding:10px 14px;background:#171513;margin:14px 0}.task strong{display:block;color:var(--gold);font:11px Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase}.statusrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.statusbox{background:var(--panel2);border:1px solid var(--line);padding:10px;border-radius:8px}.statusbox b{display:block;color:var(--gold);font:11px Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em}.statusbox span{color:var(--muted)}.small{font:12px Arial,sans-serif;color:var(--muted)}.locked{color:var(--muted);font-style:italic}.doc{background:#eee7da;color:#211c18;padding:20px;border-radius:8px}.doc h3{margin-top:0}@media(max-width:650px){.bubble{max-width:92%}.statusrow{grid-template-columns:1fr}.composer{flex-direction:column}.composer button{width:100%}}
 </style>
 </head>
@@ -36,20 +36,31 @@ function opening(){if(S.messages.length)return;add("theo","I'm Detective Theo Ma
 function render(){
  opening();
  var nav='<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!S.iris?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+(S.iris?"🔓":"🔒")+'</button><button class="tab '+(S.tab==="status"?"active":"")+'" onclick="tab(\'status\')">CASE STATUS</button></div>';
- document.getElementById("app").innerHTML=nav+(S.tab==="theo"?theo():S.tab==="legal"?legal():status())+'<div class="small" style="margin-top:12px">V5 deterministic case engine · progress is saved in this browser.</div>';
+ document.getElementById("app").innerHTML=nav+journeyBar()+(S.tab==="theo"?theo():S.tab==="legal"?legal():status())+'<div class="small" style="margin-top:12px">Private case channel · your progress is saved in this browser.</div>';
+}
+function journeyBar(){
+ var steps=[
+  ["LEDGER",S.iris||S.lead>=7],
+  ["IRIS",S.facts.irisBackground&&S.facts.relationship&&S.facts.conflict],
+  ["TIMELINE",S.facts.timeline],
+  ["CELLAR",S.facts.cellar],
+  ["JASMINE",S.facts.jasmineComplete],
+  ["FINAL",S.final]
+ ];
+ return '<div class="journey">'+steps.map(function(x,i){return '<div class="step '+(x[1]?"done":(i===0&&!S.iris||i===1&&S.iris&&!x[1]?"on":""))+'">'+(x[1]?"✓ ":"")+x[0]+'</div>'}).join("")+'</div>';
 }
 function theo(){
  var chat=S.messages.map(function(m){return '<div class="msg '+m.w+'"><div class="bubble"><div class="speaker">'+(m.w==="theo"?"Theo Marsh":"You")+'</div>'+esc(m.t)+'</div></div>'}).join("");
- var t=S.task?'<div class="task"><strong>Current investigation</strong>'+esc(S.task)+'</div>':"";
+ var t=S.task?'<div class="task"><strong>Next move</strong>'+esc(S.task)+'</div>':"";
  return '<div class="panel"><div class="chat" id="chat">'+chat+'</div>'+t+'<div class="composer"><input id="input" placeholder="'+(S.final?"Case closed.":"Ask Theo anything about the case…")+'" '+(S.final?"disabled":"")+' onkeydown="if(event.key===\'Enter\')send()"><button class="btn primary" onclick="send()" '+(S.final?"disabled":"")+'>Send</button></div></div>';
 }
 function legal(){
  var docs=S.docs.map(function(d){return '<div class="panel doc"><h3>'+esc(d.title)+'</h3>'+d.body+'</div>'}).join("");
- return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p>We can provide material about Iris. Ask for her background, professional history, or Alder Hollow connection. We will not disclose what happened in the cellar.</p><div class="composer"><input id="legalInput" placeholder="Ask for a case document…" onkeydown="if(event.key===\'Enter\')legalSend()"><button class="btn primary" onclick="legalSend()">Request</button></div></div>'+docs;
+ return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p>You have access to documents the police file does not contain. Read them as an investigator, then return to Theo and explain what they establish in your own words.</p><div class="composer"><input id="legalInput" placeholder="Ask for a case document…" onkeydown="if(event.key===\'Enter\')legalSend()"><button class="btn primary" onclick="legalSend()">Request</button></div></div>'+docs;
 }
 function status(){
  var f=S.facts;
- return '<div class="panel"><h2>CASE 0147</h2><div class="statusrow">'+
+ return '<div class="panel"><div class="speaker">Investigation board</div><h2>CASE 0147</h2><p class="hint">This board shows broad investigative progress. It does not reveal the answers for you.</p><div class="statusrow">'+
  '<div class="statusbox"><b>Ledger</b><span>'+(S.iris?"✓ Iris identified":"Lead "+S.lead+" of 7")+'</span></div>'+
  '<div class="statusbox"><b>Iris</b><span>'+(fact("irisBackground")&&fact("relationship")&&fact("conflict")?"✓ Established":"○ Investigation")+'</span></div>'+
  '<div class="statusbox"><b>Timeline</b><span>'+(fact("timeline")?"✓ Reconstructed":"○ Not established")+'</span></div>'+
@@ -78,9 +89,9 @@ function addLegal(q){
 }
 function reportBack(n){
  var changed=false;
- if(has(n,["event design","event designer","logistics","worked with margery","worked for margery"])&&!fact("irisBackground")){S.facts.irisBackground=true;changed=true}
- if(has(n,["excluded","meetings","client","credit","no credit","took credit","presented her work","margery relied","how the industry works","recommendations","future opportunities"])&&!fact("relationship")){S.facts.relationship=true;changed=true}
- if(has(n,["professional conflict","professional dispute","exploited","used her work","repeated pattern"])&&!fact("conflict")){S.facts.conflict=true;changed=true}
+ if(has(n,["event design","event designer","event-design","logistics","worked with margery","worked for margery","worked alongside margery","worked on the wedding"])&&!fact("irisBackground")){S.facts.irisBackground=true;changed=true}
+ if(has(n,["excluded","exclusion","meetings","client","client-facing","credit","no credit","took credit","stole credit","presented her work","used her work","margery relied","how the industry works","recommendations","future opportunities","opportunities"])&&!fact("relationship")){S.facts.relationship=true;changed=true}
+ if(has(n,["professional conflict","professional dispute","serious conflict","exploited","exploitation","used her work","repeated pattern","grievance","resentment"])&&!fact("conflict")){S.facts.conflict=true;changed=true}
  if(has(n,["alder hollow","wedding preparation","involved in the wedding"])&&!fact("alder")){S.facts.alder=true;changed=true}
  return changed;
 }
@@ -134,20 +145,43 @@ function acknowledgeReport(){
  add("theo","I have the document trail. Tell me the substance of what you learned, rather than just saying you read it.");
 }
 function timeline(n){
- if(!fact("conflict")){add("theo","We can look at the timeline, but first establish Iris's professional conflict with Margery. Otherwise we're mixing motive and opportunity.");return}
- S.facts.timeline=true;
- add("theo","Put the sequence together: Jasmine and Margery argued around 8:05 PM. Jasmine returned to the reception. Margery later went toward the cellar. There is no evidence placing Jasmine in the cellar.\n\nWhat is missing from that sequence?");
- task("Identify the person who still needs to be accounted for.");
+ if(!fact("conflict")){add("theo","We can reconstruct the timeline, but first establish Iris's professional conflict with Margery. Motive and opportunity are separate questions.");return}
+ var hasJ=has(n,["jasmine"]), has805=has(n,["8:05","805"]), hasReturn=has(n,["returned","reception","back to the reception"]), hasM=has(n,["margery"]), hasCell=has(n,["cellar","downstairs"]), hasI=has(n,["iris"]);
+ if(hasJ&&has805&&hasReturn&&hasM&&hasCell&&hasI){
+  S.facts.timeline=true;
+  add("theo","That's the sequence I needed. Jasmine and Margery argued around 8:05 PM. Jasmine returned to the reception. Margery later went toward the cellar. Iris is the person whose opportunity still needs to be accounted for.\n\nNow we can examine what happened when Iris and Margery met.");
+  task("Ask Theo about the cellar confrontation.");
+  save();return;
+ }
+ add("theo","Put the sequence together in your own words. Include: Jasmine and Margery's 8:05 PM argument, Jasmine returning to the reception, Margery later going toward the cellar, and the person whose opportunity is still unexplained.");
+ task("Reconstruct the 8:05 PM sequence, then identify who is missing from it.");
 }
+
 function cellar(n){
- if(!fact("timeline")){add("theo","The cellar matters, but establish the 8:05 timeline first: Jasmine argues with Margery, Jasmine returns to the reception, and Margery later goes toward the cellar.");return}
- if(!fact("confrontation")){if(has(n,["did iris meet","meet margery","were they together","did they confront"])){S.facts.confrontation=true;add("theo","Yes. Iris and Margery met in the cellar. The evidence is consistent with the unresolved professional conflict bringing them into confrontation.");task("What happened during the confrontation?");}else add("theo","I can give you the first piece: Iris reached the cellar and confronted Margery. Ask what happened during that confrontation.");return}
- if(!fact("grab")){if(has(n,["grab","grabbed","who became physical","who touched first","who started"])){S.facts.grab=true;add("theo","Margery grabbed Iris first.");task("What did Iris do after Margery grabbed her?");}else add("theo","There was a physical confrontation. Ask who became physical first.");return}
- if(!fact("push")){if(has(n,["push","pushed","shove","shoved"])){S.facts.push=true;add("theo","Iris shoved Margery. Margery fell backward down the cellar stairs.");task("Was Margery already dead when she reached the bottom?");}else add("theo","Margery grabbed Iris. What did Iris do?");return}
- if(!fact("alive")){if(has(n,["alive","still alive","not dead","dead immediately","survive"])){S.facts.alive=true;add("theo","No. Margery was still alive after the fall.");task("Could Iris have called for help?");}else add("theo","The fall is established. Now ask whether Margery was still alive afterward.");return}
- if(!fact("noHelp")){if(has(n,["call","help","could she help","could iris help","did she call"])){S.facts.noHelp=true;add("theo","Yes. Iris could have called for help. She chose not to. She left the cellar without calling for assistance.");S.facts.cellar=true;task("Now reconstruct why Jasmine looked guilty even though there is no evidence she went to the cellar.");}else add("theo","Yes. Iris had an opportunity to call for help. Did she?");return}
- if(fact("cellar"))add("theo","The cellar sequence is established: confrontation, Margery grabs Iris, Iris shoves, Margery falls, remains alive, and Iris leaves without calling for help. Don't add an intent to kill that the evidence does not establish.");
+ if(!fact("timeline")){add("theo","The cellar matters, but establish the 8:05 sequence first. Tell me what happened between Jasmine's argument with Margery and Margery going toward the cellar, and account for Iris.");return}
+ if(!fact("confrontation")){
+  if(has(n,["did iris meet","meet margery","were they together","confront","met in the cellar","iris and margery"])){S.facts.confrontation=true;add("theo","Yes. Iris and Margery met in the cellar. The unresolved professional conflict gives us a reason to examine that meeting closely.");task("Ask what happened during the confrontation.");save();return}
+  add("theo","Yes, Iris reached the cellar. The next question is what happened when she and Margery met.");return
+ }
+ if(!fact("grab")){
+  if(has(n,["grab","grabbed","who became physical","who touched first","who started","physical first"])){S.facts.grab=true;add("theo","Margery grabbed Iris first.");task("What did Iris do after Margery grabbed her?");save();return}
+  add("theo","There was a physical confrontation. Ask who became physical first.");return
+ }
+ if(!fact("push")){
+  if(has(n,["push","pushed","shove","shoved"])){S.facts.push=true;add("theo","Iris shoved Margery. Margery fell backward down the cellar stairs.");task("Was Margery already dead when she reached the bottom?");save();return}
+  add("theo","Margery grabbed Iris. What did Iris do next?");return
+ }
+ if(!fact("alive")){
+  if(has(n,["alive","still alive","not dead","dead immediately","survive","survived"])){S.facts.alive=true;add("theo","No. Margery was still alive after the fall.");task("Could Iris have called for help, and what did she do?");save();return}
+  add("theo","The fall is established. Now ask whether Margery was still alive afterward.");return
+ }
+ if(!fact("noHelp")){
+  if(has(n,["call","called","help","assistance","didn't help","did not help","left her","left the cellar","walked away"])){S.facts.noHelp=true;S.facts.cellar=true;add("theo","Iris could have called for help. She chose not to. She left the cellar without calling for assistance.");task("Now reconstruct why Jasmine looked guilty even though the evidence does not place her in the cellar.");save();return}
+  add("theo","Yes. Iris had an opportunity to call for help. Did she call for it?");return
+ }
+ add("theo","The cellar sequence is established: confrontation, Margery grabs Iris, Iris shoves, Margery falls, remains alive, and Iris leaves without calling for help. Keep one distinction clear: the evidence establishes what happened, not an independently proven plan to kill.");
 }
+
 function jasmine(n){
  if(!fact("timeline")){add("theo","Jasmine's story is important, but first keep the timeline straight. Her argument with Margery happened around 8:05 PM, after which Jasmine returned to the reception.");return}
  if(has(n,["secret marriage","marriage certificate","married","certificate"])){S.facts.jasmineMarriage=true;add("theo","Margery discovered that Jasmine and Ethan had secretly married about six weeks before the public wedding. That gave Margery leverage over Jasmine.");task("What did Margery demand from Jasmine?");return}
