@@ -11,7 +11,7 @@
     "createdAt": "2026-09-27T12:59:36.701Z"
   },
   "progress": {
-    "tab": "legal",
+    "tab": "theo",
     "lead": 7,
     "iris": true,
     "messages": [
@@ -153,5 +153,5 @@
     "task": "Use the Legal Team to investigate who Iris was, how she worked with Margery, and what changed between them.",
     "final": false
   },
-  "updatedAt": "2026-09-27T13:09:09.278Z"
+  "updatedAt": "2026-09-27T13:09:17.533Z"
 }
