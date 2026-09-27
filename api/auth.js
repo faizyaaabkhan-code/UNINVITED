@@ -8,12 +8,12 @@ const {hashPassword,verifyPassword,sign,id,caseCode}=require("../lib/auth");
 module.exports=async(req,res)=>{ cors(res); if(req.method==="OPTIONS")return res.status(204).end();
  try{
   if(req.method!=="POST")return res.status(405).json({error:"Method not allowed"});
-  const {action}=req.body||{};
+  const body=req.body&&typeof req.body==="string"?JSON.parse(req.body):(req.body||{}); const {action}=body;
   const indexPath="data/index.json";
   const idxFile=await getFile(indexPath);
   const idx=idxFile?JSON.parse(idxFile.content):{players:{},codes:{}};
   if(action==="create"){
-    const {name,email,password}=req.body;
+    const {name,email,password}=body;
     if(!name||!email||!password||password.length<8)return res.status(400).json({error:"Name, email, and password (8+ characters) are required."});
     let code=caseCode();
     while(idx.codes[code]) code=caseCode();
@@ -30,7 +30,7 @@ module.exports=async(req,res)=>{ cors(res); if(req.method==="OPTIONS")return res
     return res.json({token,player:{id:playerId,name:player.name,email:player.email,caseCode:code}});
   }
   if(action==="login"){
-    const {email,password}=req.body;
+    const {email,password}=body;
     const idxFile=await getFile("data/index.json");
     const idx=idxFile?JSON.parse(idxFile.content):{players:{},codes:{}};
     const emailKey=String(email||"").trim().toLowerCase();
@@ -44,7 +44,7 @@ module.exports=async(req,res)=>{ cors(res); if(req.method==="OPTIONS")return res
     return res.json({token,player:{id:p.id,name:p.name,email:p.email,caseCode:p.caseCode},progress:full.progress||null});
   }
   if(action==="codeLogin"){
-    const code=String(req.body.caseCode||"").trim().toUpperCase();
+    const code=String(body.caseCode||"").trim().toUpperCase();
     const rec=idx.codes[code];
     if(!rec||!rec.playerId)return res.status(401).json({error:"That case code was not found."});
     const p=idx.players[rec.playerId];
