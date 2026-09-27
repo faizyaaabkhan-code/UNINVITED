@@ -114,6 +114,10 @@
       {
         "w": "theo",
         "t": "The Legal Team can give you updates on Iris, her professional history with Margery, her Alder Hollow connection, or the interview. Ask them for whichever piece you need next, then tell me what they found."
+      },
+      {
+        "w": "theo",
+        "t": "The Legal Team can give you updates on Iris, her professional history with Margery, her Alder Hollow connection, or the interview. Ask them for whichever piece you need next, then tell me what they found."
       }
     ],
     "docs": [],
@@ -123,5 +127,5 @@
     "task": "Use the Legal Team to investigate who Iris was, how she worked with Margery, and what changed between them. Bring Theo each update as you get it.",
     "final": false
   },
-  "updatedAt": "2026-09-27T13:52:49.076Z"
+  "updatedAt": "2026-09-27T13:52:57.321Z"
 }
