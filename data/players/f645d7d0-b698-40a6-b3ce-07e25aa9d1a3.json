@@ -40,6 +40,10 @@
       {
         "w": "theo",
         "t": "That's still too many people.\n\nI went back to the physical evidence.\n\nThere's a handwritten mark on one of the items recovered during the investigation. It's damaged, but I can make out what might be a first initial.\n\nT, H, J, or I.\n\nI'm not confident enough to say which one it is.\n\nSee what that does to the group.\n\nWhat count do you get?"
+      },
+      {
+        "w": "theo",
+        "t": "Hint — Use the first initial of the guest’s first name. Keep T, H, J, and I."
       }
     ],
     "docs": [],
@@ -47,8 +51,9 @@
     "task": "",
     "final": false,
     "hints": {
-      "1": true
+      "1": true,
+      "2": true
     }
   },
-  "updatedAt": "2026-09-28T13:50:32.963Z"
+  "updatedAt": "2026-09-28T13:50:34.974Z"
 }
