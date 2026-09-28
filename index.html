@@ -100,7 +100,7 @@ function render(){
  opening();
  var auth=getAuth();
  var account='<div class="account-bar">Case '+esc(auth.player.caseCode)+' · Signed in as '+esc(auth.player.name)+' <button class="btn" onclick="logout()">SIGN OUT</button></div>';
- var nav=account+'<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!S.iris?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+(S.iris?"🔓":"🔒")+'</button><button class="tab '+(S.tab==="status"?"active":"")+'" onclick="tab(\'status\')">CASE STATUS</button><button class="tab" onclick="resetCase()">START OVER</button></div>';
+ var nav=account+'<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!S.iris&&S.profileStage!==1&&S.profileStage!==3?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+(S.iris||S.profileStage===1||S.profileStage===3?"🔓":"🔒")+'</button><button class="tab '+(S.tab==="status"?"active":"")+'" onclick="tab(\'status\')">CASE STATUS</button><button class="tab" onclick="resetCase()">START OVER</button></div>';
  document.getElementById("app").innerHTML=nav+journeyBar()+(S.tab==="theo"?theo():S.tab==="legal"?legal():status())+'<div class="small" style="margin-top:12px">Private case channel · V8 investigation journey · your progress is saved to your case.</div>';
 }
 function journeyBar(){
@@ -228,7 +228,7 @@ function leadRoute(n){
   S.lead++;
   if(L.n===3&&S.profileStage===0){
    add("theo",L.ok);
-   add("theo","There's another part of the original investigation I want you to see before we continue with the ledger.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us somewhere to start.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nRSVP: Confirmed after the RSVP deadline\n\nThere is one person I want to test first. Ella Taylor overlaps three of those characteristics in the ledger, although her first name falls outside the I–Q range. That makes her a useful false positive to test.\n\nSend an accusation against Ella Taylor to Jasmine's Legal Team and ask them to interrogate her.");
+   add("theo","There's another part of the original investigation I want you to see before we continue with the ledger.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us somewhere to start.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nRSVP: Confirmed after the RSVP deadline\n\nThere is one person I want to test first. Ella Taylor overlaps three of those characteristics in the ledger.");
    S.profileStage=1;
    task("Send an accusation against Ella Taylor to the Legal Team.");
   }else if(L.n===4&&S.profileStage===2){
