@@ -166,6 +166,10 @@
       {
         "w": "theo",
         "t": "The Legal Team has released its background material on Iris. Read it, then come back and tell me what you learned."
+      },
+      {
+        "w": "theo",
+        "t": "Did the Legal Team find out what happened after Iris left Table 49?"
       }
     ],
     "docs": [
@@ -178,6 +182,11 @@
         "id": "alder",
         "title": "ALDER HOLLOW / IRIS",
         "body": "<p>Iris was involved in the Alder Hollow wedding preparation. Margery continued to rely on Iris's work while their professional dispute remained unresolved.</p><p>The relationship deteriorated further during the final preparations.</p>"
+      },
+      {
+        "id": "interview",
+        "title": "IRIS SMITH — INTERVIEW",
+        "body": "<p>Iris initially refuses to discuss what happened after she left Table 49.</p><p>When confronted with the seating record and the timeline, she finally admits:</p><p><strong>“I went to find Margery.”</strong></p><p>Iris says she confronted Margery in the cellar about the way Margery had treated her and taken credit for her work.</p><p>They argued. Margery grabbed Iris. Iris pushed her. Margery fell down the cellar stairs.</p><p><strong>Margery was still alive after the fall.</strong></p><p>Iris admits she could have called for help.</p><p><strong>She didn't.</strong></p><p>She left the cellar and returned to the reception without telling anyone what had happened.</p>"
       }
     ],
     "facts": {
@@ -185,10 +194,11 @@
       "irisBackground": true,
       "relationship": true,
       "alder": true,
-      "conflict": true
+      "conflict": true,
+      "irisInterview": true
     },
-    "task": "Request IRIS / MARGERY PROFESSIONAL HISTORY.",
+    "task": "Bring Theo the update from the Legal Team.",
     "final": false
   },
-  "updatedAt": "2026-09-28T05:29:53.531Z"
+  "updatedAt": "2026-09-28T05:29:57.041Z"
 }
