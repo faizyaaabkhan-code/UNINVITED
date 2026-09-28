@@ -52,6 +52,10 @@
       {
         "w": "theo",
         "t": "I also had the lab re-check something recovered from the reception.\n\nThey identified chicken gravy.\n\nIt may give us another way to narrow the same group.\n\nCheck the meal field.\n\nWhat count do you get?"
+      },
+      {
+        "w": "theo",
+        "t": "Hint — Use the MEAL field. Ck means Chicken."
       }
     ],
     "docs": [],
@@ -59,8 +63,9 @@
     "task": "",
     "final": false,
     "hints": {
-      "1": true
+      "1": true,
+      "3": true
     }
   },
-  "updatedAt": "2026-09-28T09:27:12.850Z"
+  "updatedAt": "2026-09-28T09:27:15.006Z"
 }
