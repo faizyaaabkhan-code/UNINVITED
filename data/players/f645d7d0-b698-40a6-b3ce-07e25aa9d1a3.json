@@ -12,10 +12,10 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 6,
+    "lead": 7,
     "profileStage": 4,
     "pendingAccusation": "",
-    "iris": false,
+    "iris": true,
     "messages": [
       {
         "w": "theo",
@@ -108,6 +108,14 @@
       {
         "w": "theo",
         "t": "Hint — The torn marker gives only Table 49. Check the two remaining records and identify the person at that table."
+      },
+      {
+        "w": "player",
+        "t": "Iris smith table 49 and seat 8"
+      },
+      {
+        "w": "theo",
+        "t": "Iris Smith. Table 49, Seat 8.\n\nThat's the identification I needed.\n\nShe doesn't fit the guest profile cleanly. She wasn't an ordinary guest — she was part of the wedding management team, so the late-confirmation criterion doesn't apply to her.\n\nThat doesn't clear her. It means the original profile was built around the guests, not everyone who had access to the cellar.\n\nNow I want answers about what happened between Iris and Margery.\n\nEmail Jasmine's Legal Team and ask them to interrogate Iris. Find out what happened."
       }
     ],
     "docs": [
@@ -123,14 +131,14 @@
       }
     ],
     "facts": {
-      "identified": false,
+      "identified": true,
       "interrogationSent": false
     },
-    "task": "Check the remaining records against the late-confirmation initials E or L. What count do you get?",
+    "task": "Email the Legal Team and request an interrogation of Iris.",
     "final": false,
     "hints": {
       "7": true
     }
   },
-  "updatedAt": "2026-09-28T09:41:56.927Z"
+  "updatedAt": "2026-09-28T09:42:04.522Z"
 }
