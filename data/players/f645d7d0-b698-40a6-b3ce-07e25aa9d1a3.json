@@ -170,18 +170,28 @@
       {
         "w": "theo",
         "t": "The professional-history document describes repeated reliance on Iris's work, exclusion from meetings and client interactions, and lack of credit. Bring that back to me in your own words."
+      },
+      {
+        "w": "theo",
+        "t": "I got the update.\n\nJasmine has been released.\n\nIris Smith has been arrested.\n\nThat closes the case.\n\nCASE 0147 — KILLER IDENTIFIED — IRIS SMITH\n\nCASE CLOSED."
       }
     ],
-    "docs": [],
+    "docs": [
+      {
+        "id": "interrogation",
+        "title": "IRIS SMITH — INTERROGATION REPORT",
+        "body": "<p>Thank you for the hard work. We were able to interrogate Iris Smith.</p><p>Iris admitted that she went to find Margery in the cellar. Their confrontation was rooted in a long-running professional conflict.</p><p>Iris worked in event design and logistics and had repeatedly helped Margery with events. Margery relied on her work but excluded her from meetings and client-facing interactions and took credit for work Iris had done. Iris had complained about this treatment, but Margery dismissed it as “how the industry works” and could affect Iris’s future recommendations and opportunities.</p><p>That conflict was still present during the Alder Hollow wedding.</p><p>Iris admitted that she confronted Margery in the cellar. They argued. Margery grabbed Iris. Iris pushed her, and Margery fell down the cellar stairs.</p><p><strong>Margery was still alive after the fall.</strong></p><p>Iris could have called for help.</p><p><strong>She didn't.</strong></p><p>She left the cellar and returned to the reception without telling anyone what had happened.</p><p>We also reviewed the evidence concerning Jasmine. Her argument with Margery was connected to Margery blackmailing her over the secret marriage to Ethan Mercer. Jasmine lied afterward because she wanted to protect her marriage.</p><p>The evidence does not place Jasmine in the cellar.</p><p><strong>Jasmine has been released.</strong></p><p><strong>Iris Smith has been arrested.</strong></p><p>We have provided the findings to the relevant authorities.</p>"
+      }
+    ],
     "facts": {
       "identified": true,
-      "interrogationSent": false
+      "interrogationSent": true
     },
-    "task": "Email the Legal Team and request an interrogation of Iris.",
-    "final": false,
+    "task": "CASE CLOSED",
+    "final": true,
     "hints": {},
     "profileStage": 4,
     "pendingAccusation": ""
   },
-  "updatedAt": "2026-09-28T13:50:10.912Z"
+  "updatedAt": "2026-09-28T13:50:14.742Z"
 }
