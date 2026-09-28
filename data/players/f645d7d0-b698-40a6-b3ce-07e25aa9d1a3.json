@@ -142,6 +142,10 @@
       {
         "w": "theo",
         "t": "Did the Legal Team find out who she is and what she was doing at Alder Hollow?"
+      },
+      {
+        "w": "theo",
+        "t": "Did the Legal Team find out what Iris's connection to the Alder Hollow wedding was?"
       }
     ],
     "docs": [
@@ -154,6 +158,11 @@
         "id": "relationship",
         "title": "IRIS / MARGERY PROFESSIONAL HISTORY",
         "body": "<p>The records show a repeated pattern.</p><ul><li>Margery relied on Iris when problems needed fixing.</li><li>Iris was excluded from meetings and client-facing interactions.</li><li>Iris's work was presented without proper credit.</li><li>Margery continued contacting Iris when something went wrong.</li><li>Iris complained about the arrangement.</li><li>Margery dismissed the complaints as “how the industry works.”</li><li>Margery could affect future recommendations and opportunities.</li></ul>"
+      },
+      {
+        "id": "alder",
+        "title": "ALDER HOLLOW / IRIS",
+        "body": "<p>Iris was involved in the Alder Hollow wedding preparation. Margery continued to rely on Iris's work while their professional dispute remained unresolved.</p><p>The relationship deteriorated further during the final preparations.</p>"
       }
     ],
     "facts": {
@@ -166,5 +175,5 @@
     "task": "Tell Theo what the Alder Hollow material establishes, then move to the timeline.",
     "final": false
   },
-  "updatedAt": "2026-09-28T01:29:37.226Z"
+  "updatedAt": "2026-09-28T01:29:52.351Z"
 }
