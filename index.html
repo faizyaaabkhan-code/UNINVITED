@@ -37,6 +37,7 @@ function normalizeState(input){
  var msgText=(s.messages||[]).map(function(m){return String(m&&m.t||"")}).join(" ").toLowerCase();
  if(s.profileStage===0&&msgText.indexOf("ella taylor")>=0){s.profileStage=1;s.pendingAccusation="Ella Taylor";}
  if(s.profileStage===2&&msgText.indexOf("owen hawthorne")>=0&&msgText.indexOf("send an accusation against owen")>=0){s.profileStage=3;s.pendingAccusation="Owen Hawthorne";}
+ if((Number(s.lead)||0)>=7 || msgText.indexOf("iris smith. table 49")>=0){s.iris=true;s.facts=s.facts||{};s.facts.identified=true;s.profileStage=4;}
  var hadReport=s.docs.some(function(d){return d.id==="interrogation"});
  if(s.iris){s.profileStage=4;s.lead=Math.max(7,Number(s.lead)||0)}
  s.facts={identified:!!s.iris,interrogationSent:!!(s.facts.interrogationSent||hadReport)};
@@ -188,7 +189,10 @@ function sendSuspectInterrogation(){
  render();
 }
 function sendInterrogationEmail(){
- if(!S.iris||S.facts.interrogationSent)return;
+ if(S.facts.interrogationSent)return;
+ if(!S.iris && Number(S.lead)<7)return;
+ S.iris=true;
+ S.facts.identified=true;
  S.facts.interrogationSent=true;
  S.docs.push({id:"interrogation",title:"IRIS SMITH — INTERROGATION REPORT",body:"<p>Thank you for the hard work. We were able to interrogate Iris Smith.</p><p>Iris admitted that she went to find Margery in the cellar. Their confrontation was rooted in a long-running professional conflict.</p><p>Iris worked in event design and logistics and had repeatedly helped Margery with events. Margery relied on her work but excluded her from meetings and client-facing interactions and took credit for work Iris had done. Iris had complained about this treatment, but Margery dismissed it as “how the industry works” and could affect Iris’s future recommendations and opportunities.</p><p>That conflict was still present during the Alder Hollow wedding.</p><p>Iris admitted that she confronted Margery in the cellar. They argued. Margery grabbed Iris. Iris pushed her, and Margery fell down the cellar stairs.</p><p><strong>Margery was still alive after the fall.</strong></p><p>Iris could have called for help.</p><p><strong>She didn't.</strong></p><p>She left the cellar and returned to the reception without telling anyone what had happened.</p><p>We also reviewed the evidence concerning Jasmine. Her argument with Margery was connected to Margery blackmailing her over the secret marriage to Ethan Mercer. Jasmine lied afterward because she wanted to protect her marriage.</p><p>The evidence does not place Jasmine in the cellar.</p><p><strong>Jasmine has been released.</strong></p><p><strong>Iris Smith has been arrested.</strong></p><p>We have provided the findings to the relevant authorities.</p>"});
  S.final=true;
