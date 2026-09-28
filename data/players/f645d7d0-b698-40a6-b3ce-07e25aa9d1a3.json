@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 1,
+    "lead": 2,
     "iris": false,
     "messages": [
       {
@@ -34,6 +34,18 @@
       {
         "w": "theo",
         "t": "That's still too many people.\n\nI went back to the physical evidence.\n\nThere's a handwritten mark on one of the items recovered during the investigation. It's damaged, but I can make out what might be a first initial.\n\nT, H, J, or I.\n\nI'm not confident enough to say which one it is.\n\nSee what that does to the group.\n\nWhat count do you get?"
+      },
+      {
+        "w": "player",
+        "t": "162"
+      },
+      {
+        "w": "theo",
+        "t": "162."
+      },
+      {
+        "w": "theo",
+        "t": "I also had the lab re-check something recovered from the reception.\n\nThey identified chicken gravy.\n\nIt may give us another way to narrow the same group.\n\nCheck the meal field.\n\nWhat count do you get?"
       }
     ],
     "docs": [],
@@ -41,5 +53,5 @@
     "task": "",
     "final": false
   },
-  "updatedAt": "2026-09-28T01:26:44.944Z"
+  "updatedAt": "2026-09-28T01:26:51.086Z"
 }
