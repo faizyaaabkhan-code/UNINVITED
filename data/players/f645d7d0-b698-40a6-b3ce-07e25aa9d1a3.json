@@ -142,6 +142,14 @@
       {
         "w": "theo",
         "t": "Did the Legal Team find out who she is and what she was doing at Alder Hollow?"
+      },
+      {
+        "w": "theo",
+        "t": "Did the Legal Team find out who she is and what she was doing at Alder Hollow?"
+      },
+      {
+        "w": "theo",
+        "t": "Did the Legal Team find out what Iris's connection to the Alder Hollow wedding was?"
       }
     ],
     "docs": [
@@ -149,6 +157,11 @@
         "id": "background",
         "title": "WHO IS IRIS?",
         "body": "<p>Iris Smith works in event design and logistics. She was professionally involved in the Alder Hollow wedding and had worked with Margery on previous events.</p><p>Margery relied on Iris when event-design or production problems needed solving. Iris was not simply a wedding guest.</p>"
+      },
+      {
+        "id": "alder",
+        "title": "ALDER HOLLOW / IRIS",
+        "body": "<p>Iris was involved in the Alder Hollow wedding preparation. Margery continued to rely on Iris's work while their professional dispute remained unresolved.</p><p>The relationship deteriorated further during the final preparations.</p>"
       }
     ],
     "facts": {
@@ -157,5 +170,5 @@
     "task": "Use the Legal Team to investigate who Iris was, how she worked with Margery, and what changed between them. Bring Theo each update as you get it.",
     "final": false
   },
-  "updatedAt": "2026-09-28T01:23:17.868Z"
+  "updatedAt": "2026-09-28T01:23:18.844Z"
 }
