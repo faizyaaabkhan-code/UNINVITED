@@ -104,6 +104,10 @@
       {
         "w": "theo",
         "t": "Only two people still fit everything we've found.\n\nI went back to the evidence recovered from the reception.\n\nThere's a torn seating marker. Most of it is missing, but one detail is still readable:\n\nTable 49.\n\nI don't have the seat number.\n\nCheck the two remaining records against Table 49.\n\nGive me the full name, table number, and seat number of the person who remains."
+      },
+      {
+        "w": "theo",
+        "t": "Hint — The torn marker gives only Table 49. Check the two remaining records and identify the person at that table."
       }
     ],
     "docs": [
@@ -124,7 +128,9 @@
     },
     "task": "Check the remaining records against the late-confirmation initials E or L. What count do you get?",
     "final": false,
-    "hints": {}
+    "hints": {
+      "7": true
+    }
   },
-  "updatedAt": "2026-09-28T09:41:49.996Z"
+  "updatedAt": "2026-09-28T09:41:56.927Z"
 }
