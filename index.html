@@ -95,11 +95,11 @@ function theo(){
 }
 function legal(){
  var docs=S.docs.map(function(d){return '<div class="panel doc"><h3>'+esc(d.title)+'</h3>'+d.body+'</div>'}).join("");
- if(!S.iris)return '<div class="panel"><div class="speaker">Jasmine\\'s Legal Team</div><p class="legal-intro">The Legal Team is locked until Iris is identified from the wedding ledger.</p></div>';
+ if(!S.iris)return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The Legal Team is locked until Iris is identified from the wedding ledger.</p></div>';
  if(!S.facts.interrogationSent){
-  return '<div class="panel"><div class="speaker">Jasmine\\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\\'s Legal Team</p><p><strong>Subject:</strong> Request for Iris Smith Interrogation</p><p>Detective Theo Marsh has identified Iris Smith as the person connected to the evidence from the wedding ledger.</p><p>Please interrogate Iris about her relationship with Margery Voss, their professional history, and what happened after she left Table 49.</p><p>We need to know what happened that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendInterrogationEmail()">SEND EMAIL</button></div></div>'+docs;
+  return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\'s Legal Team</p><p><strong>Subject:</strong> Request for Iris Smith Interrogation</p><p>Detective Theo Marsh has identified Iris Smith as the person connected to the evidence from the wedding ledger.</p><p>Please interrogate Iris about her relationship with Margery Voss, their professional history, and what happened after she left Table 49.</p><p>We need to know what happened that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendInterrogationEmail()">SEND EMAIL</button></div></div>'+docs;
  }
- return '<div class="panel"><div class="speaker">Jasmine\\'s Legal Team</div><p class="legal-intro">Your email has been received. We completed the interrogation and returned our findings below.</p></div>'+docs;
+ return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Your email has been received. We completed the interrogation and returned our findings below.</p></div>'+docs;
 }
 function status(){
  return '<div class="panel"><div class="speaker">Investigation board</div><h2>CASE 0147</h2><p class="hint">Case progress.</p><div class="statusrow">'+
