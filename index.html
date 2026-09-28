@@ -24,26 +24,29 @@ const LEADS=[
  {n:6,answer:"2",prompt:"Eleven.\n\nI found another piece of the evidence that may help.\n\nAn unidentified wedding gift was recorded in the inventory. We never established who sent it, but the inventory gives us an approximate value.\n\nIt falls somewhere between $50 and $150.\n\nCheck that value range against the eleven remaining records.\n\nWhat count do you get?",ok:"2."},
  {n:7,answer:"49",prompt:"Only two people still fit everything we've found.\n\nI went back to the evidence recovered from the reception.\n\nThere's a torn seating marker. Most of it is missing, but one detail is still readable:\n\nTable 49.\n\nI don't have the seat number.\n\nCheck the two remaining records against Table 49.\n\nGive me the full name, table number, and seat number of the person who remains.",ok:"Seven pieces of evidence. One person left."}
 ];
-const initial={tab:"theo",lead:0,iris:false,messages:[],docs:[],facts:{},task:"",final:false,hints:{}};
+const initial={tab:"theo",lead:0,profileStage:0,pendingAccusation:"",iris:false,messages:[],docs:[],facts:{},task:"",final:false,hints:{}};
 let S=load();
 function normalizeState(input){
  var s;
  try{s=structuredClone(input||initial)}catch(e){s=structuredClone(initial)}
- s.docs=Array.isArray(s.docs)?s.docs.filter(function(d){return d&&d.id==="interrogation"}):[];
+ s.docs=Array.isArray(s.docs)?s.docs.filter(function(d){return d&&["ella","owen","interrogation"].indexOf(d.id)>=0}):[];
  s.facts=s.facts||{};
  s.hints=s.hints&&typeof s.hints==="object"?s.hints:{};
+ s.profileStage=Number.isFinite(Number(s.profileStage))?Number(s.profileStage):0;
+ s.pendingAccusation=s.pendingAccusation||"";
  var hadReport=s.docs.some(function(d){return d.id==="interrogation"});
- s.iris=!!s.iris;
- s.facts={identified:s.iris,interrogationSent:!!(s.facts.interrogationSent||hadReport)};
- if(s.facts.interrogationSent&&!hadReport){
-  s.facts.interrogationSent=true;
- }
+ if(s.iris){s.profileStage=4;s.lead=Math.max(7,Number(s.lead)||0)}
+ s.facts={identified:!!s.iris,interrogationSent:!!(s.facts.interrogationSent||hadReport)};
  if(s.final){
   s.task="CASE CLOSED";
  }else if(s.iris&&s.facts.interrogationSent){
   s.task="";
  }else if(s.iris){
   s.task="Email the Legal Team and request an interrogation of Iris.";
+ }else if(s.profileStage===1){
+  s.task="Send an accusation against Ella Taylor to the Legal Team.";
+ }else if(s.profileStage===3){
+  s.task="Send an accusation against Owen Hawthorne to the Legal Team.";
  }
  return s;
 }
@@ -102,15 +105,32 @@ function render(){
 }
 function journeyBar(){
  var steps=[
-  ["LEDGER",S.iris],
+  ["LEDGER",S.lead>=7],
+  ["SUSPECT TESTS",S.profileStage>=4],
   ["IRIS",S.iris],
   ["INTERROGATION",S.facts.interrogationSent],
   ["CLOSED",S.final]
  ];
- return '<div class="journey">'+steps.map(function(x,i){return '<div class="step '+(x[1]?"done":(i===0&&!S.iris||i===2&&S.iris&&!x[1]?"on":""))+'">'+(x[1]?"✓ ":"")+x[0]+'</div>'}).join("")+'</div>';
+ return '<div class="journey">'+steps.map(function(x,i){return '<div class="step '+(x[1]?"done":((i===0&&S.lead<7)||(i===1&&S.lead>=3&&S.profileStage<4)||(i===2&&S.iris&&!S.facts.interrogationSent)||(i===3&&S.iris&&!S.facts.interrogationSent)?"on":""))+'">'+(x[1]?"✓ ":"")+x[0]+'</div>'}).join("")+'</div>';
 }
-const HINTS={1:["Count every record whose table number is 46, 47, 48, 49, or 50."],2:["Use the first initial of the guest’s first name. Keep T, H, J, and I."],3:["Use the MEAL field. Ck means Chicken."],4:["The pink badge means the guest is on the bride’s side. Use SIDE = Br."],5:["Look at RSVP status. Early (E) and Late (L) qualify; On time (T) does not."],6:["Use the GIFT bracket, not an exact price. $ means $50–150."],7:["The torn marker gives only Table 49. Check the two remaining records and identify the person at that table."]};
-function useHint(){if(S.final||S.iris||S.lead>6)return;var n=S.lead+1;if(S.hints[n])return;S.hints[n]=true;add("theo","Hint — "+HINTS[n][0]);save();render();}
+const HINTS={
+ 1:["Count every record whose table number is 46, 47, 48, 49, or 50."],
+ 2:["Use the first initial of the guest’s first name. Keep T, H, J, and I."],
+ 3:["Use the MEAL field. Ck means Chicken."],
+ 4:["The pink guest badge points to the bride’s side. Use SIDE = Br."],
+ 5:["Use the RSVP status from Theo’s late-confirmation clue. L means Late."],
+ 6:["Use the GIFT bracket, not an exact price. $ means $50–150."],
+ 7:["The torn marker gives only Table 49. Check the two remaining records and identify the person at that table."]
+};
+function useHint(){
+ if(S.final||S.iris||S.profileStage===1||S.profileStage===3)return;
+ var n=S.lead+1;
+ if(S.hints[n])return;
+ S.hints[n]=true;
+ add("theo","Hint — "+HINTS[n][0]);
+ save();
+ render();
+}
 function theo(){
  var chat=S.messages.map(function(m){return '<div class="msg '+m.w+'"><div class="bubble"><div class="speaker">'+(m.w==="theo"?"Theo Marsh":"You")+'</div>'+esc(m.t)+'</div></div>'}).join("");
  var t=S.task?'<div class="task"><strong>Next move</strong>'+esc(S.task)+'</div>':"";
@@ -119,7 +139,13 @@ function theo(){
 }
 function legal(){
  var docs=S.docs.map(function(d){return '<div class="panel doc"><h3>'+esc(d.title)+'</h3>'+d.body+'</div>'}).join("");
- if(!S.iris)return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The Legal Team is locked until Iris is identified from the wedding ledger.</p></div>';
+ if(S.profileStage===1||S.profileStage===3){
+  var person=S.profileStage===1?"Ella Taylor":"Owen Hawthorne";
+  var title=S.profileStage===1?"Request for Ella Taylor Interrogation":"Request for Owen Hawthorne Interrogation";
+  var clue=S.profileStage===1?"We believe Ella Taylor may be relevant to the investigation.":"We believe Owen Hawthorne may be relevant to the investigation.";
+  return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\'s Legal Team</p><p><strong>Subject:</strong> '+title+'</p><p>'+clue+'</p><p>Please interrogate '+person+' and report what they know about Margery\'s movements that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendSuspectInterrogation()">SEND EMAIL</button></div></div>'+docs;
+ }
+ if(!S.iris)return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The Legal Team is locked until the investigation reaches a suspect interview.</p></div>';
  if(!S.facts.interrogationSent){
   return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\'s Legal Team</p><p><strong>Subject:</strong> Request for Iris Smith Interrogation</p><p>We have identified Iris Smith, Table 49, Seat 8.</p><p>Please interrogate Iris and find out what happened between Iris and Margery.</p><p>We need to know what happened that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendInterrogationEmail()">SEND EMAIL</button></div></div>'+docs;
  }
@@ -128,6 +154,7 @@ function legal(){
 function status(){
  return '<div class="panel"><div class="speaker">Investigation board</div><h2>CASE 0147</h2><p class="hint">Case progress.</p><div class="statusrow">'+
  '<div class="statusbox"><b>Ledger</b><span>'+(S.iris?"✓ Iris identified":"Lead "+S.lead+" of 7")+'</span></div>'+
+ '<div class="statusbox"><b>Suspect tests</b><span>'+(S.profileStage>=4?"✓ Ella & Owen cleared":S.profileStage===2?"○ Owen test next":S.profileStage===1?"○ Ella test pending":S.profileStage===3?"○ Owen test pending":"○ Not started")+'</span></div>'+
  '<div class="statusbox"><b>Legal Team</b><span>'+(S.facts.interrogationSent?"✓ Iris interrogated":"○ Awaiting request")+'</span></div>'+
  '<div class="statusbox"><b>Case</b><span>'+(S.final?"✓ Closed":"○ Open")+'</span></div>'+
  '</div><div style="margin-top:18px"><button class="btn" onclick="resetCase()">Reset case</button></div></div>';
@@ -135,6 +162,26 @@ function status(){
 function tab(t){S.tab=t;save();render()}
 function send(){var el=document.getElementById("input");if(!el||!el.value.trim())return;var q=el.value.trim();add("player",q);route(q);render();var c=document.getElementById("chat");if(c)c.scrollTop=c.scrollHeight}
 function legalSend(){return}
+function sendSuspectInterrogation(){
+ if(S.profileStage!==1&&S.profileStage!==3)return;
+ var person=S.profileStage===1?"Ella Taylor":"Owen Hawthorne";
+ var isElla=S.profileStage===1;
+ S.docs.push({id:isElla?"ella":"owen",title:person.toUpperCase()+" — INTERROGATION REPORT",body:isElla
+  ?"<p>We interviewed Ella Taylor.</p><p>Ella denied killing Margery.</p><p>During the interview, however, she admitted that she had been near the reception area when Margery left.</p><p>Ella says she saw <strong>another person moving toward the cellar</strong>.</p><p>She couldn't identify the person.</p><p>But she remembers one detail clearly:</p><p><strong>The person was wearing a pink guest badge.</strong></p><p>Ella has been cleared as the person responsible for Margery's death.</p>"
+  :"<p>We interviewed Owen Hawthorne.</p><p>Owen denied killing Margery.</p><p>He initially said he had remained near the reception area.</p><p>During the interview, however, he remembered seeing someone moving away from the reception around the time Margery left.</p><p>He could not identify the person.</p><p>What he remembers is that the person's name appeared on the <strong>late-confirmation list</strong>.</p><p>Owen has been cleared as the person responsible for Margery's death.</p>"});
+ S.profileStage=isElla?2:4;
+ S.pendingAccusation="";
+ S.tab="theo";
+ if(isElla){
+  add("theo","Ella wasn't our killer. But her statement gives us something we didn't have before.\n\nShe saw the person heading toward the cellar wearing a <strong>pink guest badge</strong>.\n\nI checked the reception records. The pink badge was assigned to the <strong>bride's side</strong>.\n\nCheck the remaining records for the bride's side.\n\nWhat count do you get?");
+  task("Check the remaining records for the bride's side. What count do you get?");
+ }else{
+  add("theo","Owen wasn't our killer either. But his statement gives us another way to test the original profile.\n\nHe remembers the person being connected to the <strong>late-confirmation list</strong>.\n\nI checked the final seating revision. It includes the guests who confirmed after the RSVP deadline.\n\nCheck the remaining records against those initials: E or L.\n\nWhat count do you get?");
+  task("Check the remaining records against the late-confirmation initials E or L. What count do you get?");
+ }
+ save();
+ render();
+}
 function sendInterrogationEmail(){
  if(!S.iris||S.facts.interrogationSent)return;
  S.facts.interrogationSent=true;
@@ -148,27 +195,53 @@ function sendInterrogationEmail(){
 }
 function route(raw){
  var n=norm(raw);
- if(!S.iris)return leadRoute(n);
  if(S.final){add("theo","CASE 0147 is closed. The investigation record is complete.");return}
- if(has(n,["email","legal team","interrogate iris","interrogation","send the request","request the interview"])){
-  S.tab="legal";task("Email the Legal Team and request an interrogation of Iris.");save();return;
+ if(S.profileStage===1){
+  if(has(n,["email","legal team","accuse ella","ella taylor","ella"])){S.tab="legal";task("Send the accusation against Ella Taylor to the Legal Team.");save();return}
+  add("theo","I want to test Ella Taylor first. Send the accusation to the Legal Team.");task("Send an accusation against Ella Taylor to the Legal Team.");return;
  }
- if(has(n,["who killed","killer","is iris the killer","did iris kill"])){
-  add("theo","Iris Smith has been identified, but I want the Legal Team to interrogate her before we close the case.");task("Email the Legal Team and request an interrogation of Iris.");return;
+ if(S.profileStage===3){
+  if(has(n,["email","legal team","accuse owen","owen hawthorne","owen"])){S.tab="legal";task("Send the accusation against Owen Hawthorne to the Legal Team.");save();return}
+  add("theo","I want to test Owen Hawthorne next. Send the accusation to the Legal Team.");task("Send an accusation against Owen Hawthorne to the Legal Team.");return;
  }
- return add("theo","Iris has been identified. The next step is to email the Legal Team and ask them to interrogate her.");
+ if(S.iris){
+  if(has(n,["email","legal team","interrogate iris","interrogation","send the request","request the interview"])){
+   S.tab="legal";task("Email the Legal Team and request an interrogation of Iris.");save();return;
+  }
+  if(has(n,["who killed","killer","is iris the killer","did iris kill"])){
+   add("theo","Iris Smith has been identified, but I want the Legal Team to interrogate her before we close the case.");task("Email the Legal Team and request an interrogation of Iris.");return;
+  }
+  return add("theo","Iris has been identified. The next step is to email the Legal Team and ask them to interrogate her.");
+ }
+ if(S.lead===3&&S.profileStage===0){
+  if(has(n,["ella","taylor"])){S.profileStage=1;S.pendingAccusation="Ella Taylor";S.tab="legal";task("Send an accusation against Ella Taylor to the Legal Team.");save();return}
+ }
+ if(S.lead===4&&S.profileStage===2){
+  if(has(n,["owen","hawthorne"])){S.profileStage=3;S.pendingAccusation="Owen Hawthorne";S.tab="legal";task("Send an accusation against Owen Hawthorne to the Legal Team.");save();return}
+ }
+ return leadRoute(n);
 }
 function leadRoute(n){
  var L=LEADS[S.lead];
  if(!L)return;
  if(n===L.answer||(L.n===7&&has(n,["iris smith","iris","49"]))){
   S.lead++;
-  if(L.n<7){
+  if(L.n===3&&S.profileStage===0){
+   add("theo",L.ok);
+   add("theo","There's another part of the original investigation I want you to see before we continue with the ledger.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us somewhere to start.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nRSVP: Confirmed after the RSVP deadline\n\nThere is one person I want to test first. Ella Taylor overlaps three of those characteristics in the ledger, although her first name falls outside the I–Q range. That makes her a useful false positive to test.\n\nSend an accusation against Ella Taylor to Jasmine's Legal Team and ask them to interrogate her.");
+   S.profileStage=1;
+   task("Send an accusation against Ella Taylor to the Legal Team.");
+  }else if(L.n===4&&S.profileStage===2){
+   add("theo",L.ok);
+   add("theo","Twenty-two.\n\nThere's another name I want to test against the original profile.\n\nOwen Hawthorne fits the four characteristics:\n\nFirst name I–Q.\nBride's side.\nOdd-numbered table.\nConfirmed after the RSVP deadline.\n\nHis account of the evening also leaves a gap.\n\nSend an accusation against Owen Hawthorne to the Legal Team.");
+   S.profileStage=3;
+   task("Send an accusation against Owen Hawthorne to the Legal Team.");
+  }else if(L.n<7){
    add("theo",L.ok);
    add("theo",LEADS[S.lead].prompt);
   }else{
    S.iris=true;S.facts.identified=true;
-   add("theo","Iris Smith. Table 49, Seat 8.\n\nThat's the identification I needed.\n\nNow I want answers about what happened between Iris and Margery.\n\nEmail Jasmine's Legal Team and ask them to interrogate Iris. Find out what happened.");
+   add("theo","Iris Smith. Table 49, Seat 8.\n\nThat's the identification I needed.\n\nShe doesn't fit the guest profile cleanly. She wasn't an ordinary guest — she was part of the wedding management team, so the late-confirmation criterion doesn't apply to her.\n\nThat doesn't clear her. It means the original profile was built around the guests, not everyone who had access to the cellar.\n\nNow I want answers about what happened between Iris and Margery.\n\nEmail Jasmine's Legal Team and ask them to interrogate Iris. Find out what happened.");
    task("Email the Legal Team and request an interrogation of Iris.");
   }
   save();
