@@ -11,7 +11,7 @@
     "createdAt": "2026-09-27T12:59:36.701Z"
   },
   "progress": {
-    "tab": "legal",
+    "tab": "theo",
     "lead": 7,
     "iris": true,
     "messages": [
@@ -186,21 +186,6 @@
     ],
     "docs": [
       {
-        "id": "background",
-        "title": "WHO IS IRIS?",
-        "body": "<p>Iris Smith works in event design and logistics. She was professionally involved in the Alder Hollow wedding and had worked with Margery on previous events.</p><p>Margery relied on Iris when event-design or production problems needed solving. Iris was not simply a wedding guest.</p>"
-      },
-      {
-        "id": "alder",
-        "title": "ALDER HOLLOW / IRIS",
-        "body": "<p>Iris was involved in the Alder Hollow wedding preparation. Margery continued to rely on Iris's work while their professional dispute remained unresolved.</p><p>The relationship deteriorated further during the final preparations.</p>"
-      },
-      {
-        "id": "interview",
-        "title": "IRIS SMITH — INTERVIEW",
-        "body": "<p>Iris initially refuses to discuss what happened after she left Table 49.</p><p>When confronted with the seating record and the timeline, she finally admits:</p><p><strong>“I went to find Margery.”</strong></p><p>Iris says she confronted Margery in the cellar about the way Margery had treated her and taken credit for her work.</p><p>They argued. Margery grabbed Iris. Iris pushed her. Margery fell down the cellar stairs.</p><p><strong>Margery was still alive after the fall.</strong></p><p>Iris admits she could have called for help.</p><p><strong>She didn't.</strong></p><p>She left the cellar and returned to the reception without telling anyone what had happened.</p>"
-      },
-      {
         "id": "interrogation",
         "title": "IRIS SMITH — INTERROGATION REPORT",
         "body": "<p>Thank you for the hard work. We were able to interrogate Iris Smith.</p><p>Iris admitted that she went to find Margery in the cellar. Their confrontation was rooted in a long-running professional conflict.</p><p>Iris worked in event design and logistics and had repeatedly helped Margery with events. Margery relied on her work but excluded her from meetings and client-facing interactions and took credit for work Iris had done. Iris had complained about this treatment, but Margery dismissed it as “how the industry works” and could affect Iris’s future recommendations and opportunities.</p><p>That conflict was still present during the Alder Hollow wedding.</p><p>Iris admitted that she confronted Margery in the cellar. They argued. Margery grabbed Iris. Iris pushed her, and Margery fell down the cellar stairs.</p><p><strong>Margery was still alive after the fall.</strong></p><p>Iris could have called for help.</p><p><strong>She didn't.</strong></p><p>She left the cellar and returned to the reception without telling anyone what had happened.</p><p>We also reviewed the evidence concerning Jasmine. Her argument with Margery was connected to Margery blackmailing her over the secret marriage to Ethan Mercer. Jasmine lied afterward because she wanted to protect her marriage.</p><p>The evidence does not place Jasmine in the cellar.</p><p><strong>Jasmine has been released.</strong></p><p><strong>Iris Smith has been arrested.</strong></p><p>We have provided the findings to the relevant authorities.</p>"
@@ -208,16 +193,10 @@
     ],
     "facts": {
       "identified": true,
-      "irisBackground": true,
-      "relationship": true,
-      "alder": true,
-      "conflict": true,
-      "irisInterview": true,
-      "truthReported": true,
       "interrogationSent": true
     },
     "task": "CASE CLOSED",
     "final": true
   },
-  "updatedAt": "2026-09-28T06:02:21.699Z"
+  "updatedAt": "2026-09-28T06:08:09.498Z"
 }
