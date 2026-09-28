@@ -12,8 +12,8 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 2,
-    "profileStage": 0,
+    "lead": 3,
+    "profileStage": 1,
     "pendingAccusation": "",
     "iris": false,
     "messages": [
@@ -60,11 +60,23 @@
       {
         "w": "theo",
         "t": "Hint — Use the MEAL field. Ck means Chicken."
+      },
+      {
+        "w": "player",
+        "t": "52"
+      },
+      {
+        "w": "theo",
+        "t": "52."
+      },
+      {
+        "w": "theo",
+        "t": "There's another part of the original investigation I want you to see before we continue with the ledger.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us somewhere to start.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nRSVP: Confirmed after the RSVP deadline\n\nThere is one person I want to test first. Ella Taylor overlaps three of those characteristics in the ledger, although her first name falls outside the I–Q range. That makes her a useful false positive to test.\n\nSend an accusation against Ella Taylor to Jasmine's Legal Team and ask them to interrogate her."
       }
     ],
     "docs": [],
     "facts": {},
-    "task": "",
+    "task": "Send an accusation against Ella Taylor to the Legal Team.",
     "final": false,
     "hints": {
       "1": true,
@@ -72,5 +84,5 @@
       "3": true
     }
   },
-  "updatedAt": "2026-09-28T09:27:56.289Z"
+  "updatedAt": "2026-09-28T09:28:09.896Z"
 }
