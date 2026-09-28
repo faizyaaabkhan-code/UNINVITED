@@ -130,6 +130,10 @@
       {
         "w": "theo",
         "t": "Did the Legal Team find out who she is and what she was doing at Alder Hollow?"
+      },
+      {
+        "w": "theo",
+        "t": "Did the Legal Team find out who she is and what she was doing at Alder Hollow?"
       }
     ],
     "docs": [
@@ -145,5 +149,5 @@
     "task": "Use the Legal Team to investigate who Iris was, how she worked with Margery, and what changed between them. Bring Theo each update as you get it.",
     "final": false
   },
-  "updatedAt": "2026-09-28T01:23:15.179Z"
+  "updatedAt": "2026-09-28T01:23:16.138Z"
 }
