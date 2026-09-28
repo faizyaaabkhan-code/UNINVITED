@@ -170,6 +170,14 @@
       {
         "w": "theo",
         "t": "Did the Legal Team find out what happened after Iris left Table 49?"
+      },
+      {
+        "w": "player",
+        "t": "IRIS SMITH — INTERVIEW Iris initially refuses to discuss what happened after she left Table 49.  When confronted with the seating record and the timeline, she finally admits:  “I went to find Margery.”  Iris says she confronted Margery in the cellar about the way Margery had treated her and taken credit for her work.  They argued. Margery grabbed Iris. Iris pushed her. Margery fell down the cellar stairs.  Margery was still alive after the fall.  Iris admits she could have called for help.  She didn't.  She left the cellar and returned to the reception without telling anyone what had happened."
+      },
+      {
+        "w": "theo",
+        "t": "I see.\n\nThat fits the pieces we've been putting together.\n\nThe ledger gave us Iris's name. Her professional history gave us the conflict. The timeline gave us the opportunity. And now Iris has told us what happened in the cellar.\n\nJasmine's argument with Margery explains why the original investigation focused on her, but the evidence does not place Jasmine in the cellar.\n\nYou found the name. I found the truth behind it.\n\nCASE 0147 — KILLER IDENTIFIED — IRIS SMITH"
       }
     ],
     "docs": [
@@ -195,10 +203,11 @@
       "relationship": true,
       "alder": true,
       "conflict": true,
-      "irisInterview": true
+      "irisInterview": true,
+      "truthReported": true
     },
-    "task": "Bring Theo the update from the Legal Team.",
-    "final": false
+    "task": "CASE CLOSED",
+    "final": true
   },
-  "updatedAt": "2026-09-28T05:45:25.394Z"
+  "updatedAt": "2026-09-28T05:45:27.843Z"
 }
