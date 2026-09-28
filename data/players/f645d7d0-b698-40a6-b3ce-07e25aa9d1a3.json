@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 4,
+    "lead": 5,
     "iris": false,
     "messages": [
       {
@@ -78,6 +78,18 @@
       {
         "w": "theo",
         "t": "That's a much smaller group.\n\nI went back through the final seating records because there's something unusual about the last revision.\n\nThe seating plan was updated after the RSVP deadline. The revision included people from the late-confirmation list.\n\nCheck the remaining records against the late-confirmation initials: E or L.\n\nWhat count do you get?"
+      },
+      {
+        "w": "player",
+        "t": "11"
+      },
+      {
+        "w": "theo",
+        "t": "11."
+      },
+      {
+        "w": "theo",
+        "t": "Eleven.\n\nI found another piece of the evidence that may help.\n\nAn unidentified wedding gift was recorded in the inventory. We never established who sent it, but the inventory gives us an approximate value.\n\nIt falls somewhere between $50 and $150.\n\nCheck that value range against the eleven remaining records.\n\nWhat count do you get?"
       }
     ],
     "docs": [],
@@ -85,5 +97,5 @@
     "task": "",
     "final": false
   },
-  "updatedAt": "2026-09-28T06:09:22.799Z"
+  "updatedAt": "2026-09-28T06:09:30.555Z"
 }
