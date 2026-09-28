@@ -138,6 +138,10 @@
       {
         "w": "theo",
         "t": "That's more significant than simply saying they didn't get along.\n\nThe documents show a repeated professional conflict between them.\n\nMargery relied on Iris when she needed something fixed, but Iris wasn't receiving the recognition or access that came with that work.\n\nAnd Margery had leverage over Iris's future opportunities.\n\nBut there's one thing I still don't know.\n\nHow did that conflict connect to Alder Hollow itself?"
+      },
+      {
+        "w": "theo",
+        "t": "Did the Legal Team find out who she is and what she was doing at Alder Hollow?"
       }
     ],
     "docs": [
@@ -162,5 +166,5 @@
     "task": "Tell Theo what the Alder Hollow material establishes, then move to the timeline.",
     "final": false
   },
-  "updatedAt": "2026-09-28T01:29:36.150Z"
+  "updatedAt": "2026-09-28T01:29:37.226Z"
 }
