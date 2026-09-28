@@ -178,6 +178,10 @@
       {
         "w": "theo",
         "t": "I see.\n\nThat fits the pieces we've been putting together.\n\nThe ledger gave us Iris's name. Her professional history gave us the conflict. The timeline gave us the opportunity. And now Iris has told us what happened in the cellar.\n\nJasmine's argument with Margery explains why the original investigation focused on her, but the evidence does not place Jasmine in the cellar.\n\nYou found the name. I found the truth behind it.\n\nCASE 0147 — KILLER IDENTIFIED — IRIS SMITH"
+      },
+      {
+        "w": "theo",
+        "t": "I got the update.\n\nJasmine has been released.\n\nIris Smith has been arrested.\n\nThat closes the case.\n\nCASE 0147 — KILLER IDENTIFIED — IRIS SMITH\n\nCASE CLOSED."
       }
     ],
     "docs": [
@@ -195,6 +199,11 @@
         "id": "interview",
         "title": "IRIS SMITH — INTERVIEW",
         "body": "<p>Iris initially refuses to discuss what happened after she left Table 49.</p><p>When confronted with the seating record and the timeline, she finally admits:</p><p><strong>“I went to find Margery.”</strong></p><p>Iris says she confronted Margery in the cellar about the way Margery had treated her and taken credit for her work.</p><p>They argued. Margery grabbed Iris. Iris pushed her. Margery fell down the cellar stairs.</p><p><strong>Margery was still alive after the fall.</strong></p><p>Iris admits she could have called for help.</p><p><strong>She didn't.</strong></p><p>She left the cellar and returned to the reception without telling anyone what had happened.</p>"
+      },
+      {
+        "id": "interrogation",
+        "title": "IRIS SMITH — INTERROGATION REPORT",
+        "body": "<p>Thank you for the hard work. We were able to interrogate Iris Smith.</p><p>Iris admitted that she went to find Margery in the cellar. Their confrontation was rooted in a long-running professional conflict.</p><p>Iris worked in event design and logistics and had repeatedly helped Margery with events. Margery relied on her work but excluded her from meetings and client-facing interactions and took credit for work Iris had done. Iris had complained about this treatment, but Margery dismissed it as “how the industry works” and could affect Iris’s future recommendations and opportunities.</p><p>That conflict was still present during the Alder Hollow wedding.</p><p>Iris admitted that she confronted Margery in the cellar. They argued. Margery grabbed Iris. Iris pushed her, and Margery fell down the cellar stairs.</p><p><strong>Margery was still alive after the fall.</strong></p><p>Iris could have called for help.</p><p><strong>She didn't.</strong></p><p>She left the cellar and returned to the reception without telling anyone what had happened.</p><p>We also reviewed the evidence concerning Jasmine. Her argument with Margery was connected to Margery blackmailing her over the secret marriage to Ethan Mercer. Jasmine lied afterward because she wanted to protect her marriage.</p><p>The evidence does not place Jasmine in the cellar.</p><p><strong>Jasmine has been released.</strong></p><p><strong>Iris Smith has been arrested.</strong></p><p>We have provided the findings to the relevant authorities.</p>"
       }
     ],
     "facts": {
@@ -204,10 +213,11 @@
       "alder": true,
       "conflict": true,
       "irisInterview": true,
-      "truthReported": true
+      "truthReported": true,
+      "interrogationSent": true
     },
     "task": "CASE CLOSED",
     "final": true
   },
-  "updatedAt": "2026-09-28T06:02:05.823Z"
+  "updatedAt": "2026-09-28T06:02:21.699Z"
 }
