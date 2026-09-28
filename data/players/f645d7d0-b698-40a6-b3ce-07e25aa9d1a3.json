@@ -11,9 +11,9 @@
     "createdAt": "2026-09-27T12:59:36.701Z"
   },
   "progress": {
-    "tab": "theo",
-    "lead": 2,
-    "profileStage": 0,
+    "tab": "legal",
+    "lead": 3,
+    "profileStage": 1,
     "pendingAccusation": "",
     "iris": false,
     "messages": [
@@ -48,6 +48,18 @@
       {
         "w": "theo",
         "t": "I also had the lab re-check something recovered from the reception.\n\nThey identified chicken gravy.\n\nIt may give us another way to narrow the same group.\n\nCheck the meal field.\n\nWhat count do you get?"
+      },
+      {
+        "w": "player",
+        "t": "52"
+      },
+      {
+        "w": "theo",
+        "t": "52."
+      },
+      {
+        "w": "theo",
+        "t": "There's another part of the original investigation I want you to see before we continue with the ledger.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us somewhere to start.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nRSVP: Confirmed after the RSVP deadline\n\nThere is one person I want to test first. Ella Taylor is one of the names I want to examine."
       }
     ],
     "docs": [],
@@ -55,9 +67,9 @@
       "identified": false,
       "interrogationSent": false
     },
-    "task": "",
+    "task": "Send an accusation against Ella Taylor to the Legal Team.",
     "final": false,
     "hints": {}
   },
-  "updatedAt": "2026-09-28T09:59:57.585Z"
+  "updatedAt": "2026-09-28T10:00:07.495Z"
 }
