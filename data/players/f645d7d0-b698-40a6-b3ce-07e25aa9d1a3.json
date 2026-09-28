@@ -76,6 +76,10 @@
       {
         "w": "theo",
         "t": "Ella wasn't our killer. But her statement gives us something we didn't have before.\n\nShe saw the person heading toward the cellar wearing a pink guest badge.\n\nI checked the reception records. The pink badge was assigned to the bride's side.\n\nCheck the remaining records for the bride's side.\n\nWhat count do you get?"
+      },
+      {
+        "w": "theo",
+        "t": "Hint — The pink guest badge points to the bride’s side. Use SIDE = Br."
       }
     ],
     "docs": [
@@ -91,8 +95,9 @@
     "hints": {
       "1": true,
       "2": true,
-      "3": true
+      "3": true,
+      "4": true
     }
   },
-  "updatedAt": "2026-09-28T13:52:01.146Z"
+  "updatedAt": "2026-09-28T13:52:29.532Z"
 }
