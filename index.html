@@ -24,13 +24,14 @@ const LEADS=[
  {n:6,answer:"2",prompt:"Eleven.\n\nI found another piece of the evidence that may help.\n\nAn unidentified wedding gift was recorded in the inventory. We never established who sent it, but the inventory gives us an approximate value.\n\nIt falls somewhere between $50 and $150.\n\nCheck that value range against the eleven remaining records.\n\nWhat count do you get?",ok:"2."},
  {n:7,answer:"49",prompt:"Only two people still fit everything we've found.\n\nI went back to the evidence recovered from the reception.\n\nThere's a torn seating marker. Most of it is missing, but one detail is still readable:\n\nTable 49.\n\nI don't have the seat number.\n\nCheck the two remaining records against Table 49.\n\nGive me the full name, table number, and seat number of the person who remains.",ok:"Seven pieces of evidence. One person left."}
 ];
-const initial={tab:"theo",lead:0,iris:false,messages:[],docs:[],facts:{},task:"",final:false};
+const initial={tab:"theo",lead:0,iris:false,messages:[],docs:[],facts:{},task:"",final:false,hints:{}};
 let S=load();
 function normalizeState(input){
  var s;
  try{s=structuredClone(input||initial)}catch(e){s=structuredClone(initial)}
  s.docs=Array.isArray(s.docs)?s.docs.filter(function(d){return d&&d.id==="interrogation"}):[];
  s.facts=s.facts||{};
+ s.hints=s.hints&&typeof s.hints==="object"?s.hints:{};
  var hadReport=s.docs.some(function(d){return d.id==="interrogation"});
  s.iris=!!s.iris;
  s.facts={identified:s.iris,interrogationSent:!!(s.facts.interrogationSent||hadReport)};
@@ -75,7 +76,7 @@ function api(path,options){
 }
 function save(){localStorage.setItem(KEY,JSON.stringify(S));var auth=getAuth();if(auth&&auth.token){clearTimeout(window.__saveTimer);window.__saveTimer=setTimeout(function(){api("/api/progress",{method:"PUT",body:JSON.stringify({progress:S})}).catch(function(){});},250);}}
 async function signInEmail(){var email=(document.getElementById("authEmail")||{}).value||"",password=(document.getElementById("authPassword")||{}).value||"";if(!email||!email.includes("@")||!password){authMessage("Enter your email and password.");return}try{var d=await api("/api/auth",{method:"POST",body:JSON.stringify({action:"login",email,password})});setAuth({token:d.token,player:d.player});S=normalizeState(d.progress||structuredClone(initial));localStorage.setItem(KEY,JSON.stringify(S));render();}catch(e){authMessage(e.message)}}
-async function signInCode(){var code=((document.getElementById("authCaseCode")||{}).value||"").trim().toUpperCase();if(!code){authMessage("Enter your case code.");return}try{var d=await api("/api/auth",{method:"POST",body:JSON.stringify({action:"codeLogin",caseCode:code})});setAuth({token:d.token,player:d.player});S=d.progress||structuredClone(initial);localStorage.setItem(KEY,JSON.stringify(S));render();}catch(e){authMessage(e.message)}}
+async function signInCode(){var code=((document.getElementById("authCaseCode")||{}).value||"").trim().toUpperCase();if(!code){authMessage("Enter your case code.");return}try{var d=await api("/api/auth",{method:"POST",body:JSON.stringify({action:"codeLogin",caseCode:code})});setAuth({token:d.token,player:d.player});S=normalizeState(d.progress||structuredClone(initial));localStorage.setItem(KEY,JSON.stringify(S));render();}catch(e){authMessage(e.message)}}
 async function createAccount(){var name=(document.getElementById("authName")||{}).value||"",email=(document.getElementById("authEmail")||{}).value||"",password=(document.getElementById("authPassword")||{}).value||"";if(!name||!email.includes("@")||password.length<8){authMessage("Enter your name, a valid email, and a password of at least 8 characters.");return}try{var d=await api("/api/auth",{method:"POST",body:JSON.stringify({action:"create",name,email,password})});setAuth({token:d.token,player:d.player});S=normalizeState(structuredClone(initial));localStorage.setItem(KEY,JSON.stringify(S));showAssignedCode(d.player);}catch(e){authMessage(e.message)}}
 function logout(){localStorage.removeItem(AUTH_KEY);localStorage.removeItem(KEY);S=structuredClone(initial);render()}
 function authTab(t){window.AUTH_TAB=t;renderAuth()}
@@ -97,7 +98,7 @@ function render(){
  var auth=getAuth();
  var account='<div class="account-bar">Case '+esc(auth.player.caseCode)+' · Signed in as '+esc(auth.player.name)+' <button class="btn" onclick="logout()">SIGN OUT</button></div>';
  var nav=account+'<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!S.iris?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+(S.iris?"🔓":"🔒")+'</button><button class="tab '+(S.tab==="status"?"active":"")+'" onclick="tab(\'status\')">CASE STATUS</button><button class="tab" onclick="resetCase()">START OVER</button></div>';
- document.getElementById("app").innerHTML=nav+journeyBar()+(S.tab==="theo"?theo():S.tab==="legal"?legal():status())+'<div class="small" style="margin-top:12px">Private case channel · V8 investigation journey · your progress is saved in this browser.</div>';
+ document.getElementById("app").innerHTML=nav+journeyBar()+(S.tab==="theo"?theo():S.tab==="legal"?legal():status())+'<div class="small" style="margin-top:12px">Private case channel · V8 investigation journey · your progress is saved to your case.</div>';
 }
 function journeyBar(){
  var steps=[
@@ -108,10 +109,13 @@ function journeyBar(){
  ];
  return '<div class="journey">'+steps.map(function(x,i){return '<div class="step '+(x[1]?"done":(i===0&&!S.iris||i===2&&S.iris&&!x[1]?"on":""))+'">'+(x[1]?"✓ ":"")+x[0]+'</div>'}).join("")+'</div>';
 }
+const HINTS={1:["Count every record whose table number is 46, 47, 48, 49, or 50."],2:["Use the first initial of the guest’s first name. Keep T, H, J, and I."],3:["Use the MEAL field. Ck means Chicken."],4:["The pink badge means the guest is on the bride’s side. Use SIDE = Br."],5:["Look at RSVP status. Early (E) and Late (L) qualify; On time (T) does not."],6:["Use the GIFT bracket, not an exact price. $ means $50–150."],7:["The torn marker gives only Table 49. Check the two remaining records and identify the person at that table."]};
+function useHint(){if(S.final||S.iris||S.lead>6)return;var n=S.lead+1;if(S.hints[n])return;S.hints[n]=true;add("theo","Hint — "+HINTS[n][0]);save();render();}
 function theo(){
  var chat=S.messages.map(function(m){return '<div class="msg '+m.w+'"><div class="bubble"><div class="speaker">'+(m.w==="theo"?"Theo Marsh":"You")+'</div>'+esc(m.t)+'</div></div>'}).join("");
  var t=S.task?'<div class="task"><strong>Next move</strong>'+esc(S.task)+'</div>':"";
- return '<div class="panel"><div class="chat" id="chat">'+chat+'</div>'+t+'<div class="composer"><input id="input" placeholder="'+(S.final?"Case closed.":"Ask Theo anything about the case…")+'" '+(S.final?"disabled":"")+' onkeydown="if(event.key===\'Enter\')send()"><button class="btn primary" onclick="send()" '+(S.final?"disabled":"")+'>Send</button></div></div>';
+ var h=(!S.final&&!S.iris&&S.lead<7)?'<div class="hint-row"><button class="btn" onclick="useHint()">'+(S.hints[S.lead+1]?"HINT USED":"NEED A HINT?")+'</button></div>':"";
+ return '<div class="panel"><div class="chat" id="chat">'+chat+'</div>'+t+h+'<div class="composer"><input id="input" placeholder="'+(S.final?"Case closed.":"Ask Theo anything about the case…")+'" '+(S.final?"disabled":"")+' onkeydown="if(event.key===\'Enter\')send()"><button class="btn primary" onclick="send()" '+(S.final?"disabled":"")+'>Send</button></div></div>';
 }
 function legal(){
  var docs=S.docs.map(function(d){return '<div class="panel doc"><h3>'+esc(d.title)+'</h3>'+d.body+'</div>'}).join("");
@@ -170,6 +174,6 @@ function leadRoute(n){
   save();
  }else add("theo","Check the evidence against the ledger again. Tell me what you find.");
 }
-function resetCase(){if(confirm("Start this investigation over? Your current conversation and progress on this device will be erased.")){localStorage.removeItem(KEY);localStorage.removeItem("UNINVITED_V6_CONVERSATION");localStorage.removeItem("UNINVITED_V5_CONVERSATION");localStorage.removeItem("UNINVITED_V4_CONVERSATION");S=structuredClone(initial);render()}}
+async function resetCase(){if(!confirm("Start this investigation over? Your current conversation and progress for this case will be erased."))return;clearTimeout(window.__saveTimer);S=structuredClone(initial);localStorage.setItem(KEY,JSON.stringify(S));render();var auth=getAuth();if(auth&&auth.token){try{await api("/api/progress",{method:"PUT",body:JSON.stringify({progress:S})});}catch(e){alert("The case was reset on this device, but the server could not be updated. Please stay signed in and try START OVER again.");}}}
 render();
 </script></body></html>
