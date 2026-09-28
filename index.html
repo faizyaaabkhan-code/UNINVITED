@@ -100,7 +100,7 @@ function render(){
  opening();
  var auth=getAuth();
  var account='<div class="account-bar">Case '+esc(auth.player.caseCode)+' · Signed in as '+esc(auth.player.name)+' <button class="btn" onclick="logout()">SIGN OUT</button></div>';
- var nav=account+'<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!S.iris&&S.profileStage!==1&&S.profileStage!==3?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+((S.iris||S.profileStage===1||S.profileStage===3)?"🔓":"🔒")+'</button><button class="tab '+(S.tab==="status"?"active":"")+'" onclick="tab(\'status\')">CASE STATUS</button><button class="tab" onclick="resetCase()">START OVER</button></div>';
+ var nav=account+'<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!(S.iris||S.profileStage===1||S.profileStage===2||S.profileStage===3||S.docs.some(function(d){return d.id==="ella"||d.id==="owen"}))?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+((S.iris||S.profileStage>=1||S.docs.some(function(d){return d.id==="ella"||d.id==="owen"}))?"🔓":"🔒")+'</button><button class="tab '+(S.tab==="status"?"active":"")+'" onclick="tab(\'status\')">CASE STATUS</button><button class="tab" onclick="resetCase()">START OVER</button></div>';
  document.getElementById("app").innerHTML=nav+journeyBar()+(S.tab==="theo"?theo():S.tab==="legal"?legal():status())+'<div class="small" style="margin-top:12px">Private case channel · V8 investigation journey · your progress is saved to your case.</div>';
 }
 function journeyBar(){
@@ -144,6 +144,9 @@ function legal(){
   var title=S.profileStage===1?"Request for Ella Taylor Interrogation":"Request for Owen Hawthorne Interrogation";
   var clue=S.profileStage===1?"We believe Ella Taylor may be relevant to the investigation.":"We believe Owen Hawthorne may be relevant to the investigation.";
   return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\'s Legal Team</p><p><strong>Subject:</strong> '+title+'</p><p>'+clue+'</p><p>Please interrogate '+person+' and report what they know about Margery\'s movements that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendSuspectInterrogation()">SEND EMAIL</button></div></div>'+docs;
+ }
+ if(S.docs.some(function(d){return d.id==="ella"||d.id==="owen"})){
+  return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The interview report is available below.</p></div>'+docs;
  }
  if(!S.iris)return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The Legal Team is locked until the investigation reaches a suspect interview.</p></div>';
  if(!S.facts.interrogationSent){
