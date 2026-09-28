@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 0,
+    "lead": 1,
     "profileStage": 0,
     "pendingAccusation": "",
     "iris": false,
@@ -28,6 +28,18 @@
       {
         "w": "theo",
         "t": "Hint — Count every record whose table number is 46, 47, 48, 49, or 50."
+      },
+      {
+        "w": "player",
+        "t": "1058"
+      },
+      {
+        "w": "theo",
+        "t": "1,058."
+      },
+      {
+        "w": "theo",
+        "t": "That's still too many people.\n\nI went back to the physical evidence.\n\nThere's a handwritten mark on one of the items recovered during the investigation. It's damaged, but I can make out what might be a first initial.\n\nT, H, J, or I.\n\nI'm not confident enough to say which one it is.\n\nSee what that does to the group.\n\nWhat count do you get?"
       }
     ],
     "docs": [],
@@ -38,5 +50,5 @@
       "1": true
     }
   },
-  "updatedAt": "2026-09-28T13:50:22.791Z"
+  "updatedAt": "2026-09-28T13:50:32.963Z"
 }
