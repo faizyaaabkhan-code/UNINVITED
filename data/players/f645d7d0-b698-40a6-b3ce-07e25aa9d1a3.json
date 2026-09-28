@@ -12,8 +12,8 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 6,
-    "iris": false,
+    "lead": 7,
+    "iris": true,
     "messages": [
       {
         "w": "theo",
@@ -102,12 +102,22 @@
       {
         "w": "theo",
         "t": "Only two people still fit everything we've found.\n\nI went back to the evidence recovered from the reception.\n\nThere's a torn seating marker. Most of it is missing, but one detail is still readable:\n\nTable 49.\n\nI don't have the seat number.\n\nCheck the two remaining records against Table 49.\n\nGive me the full name, table number, and seat number of the person who remains."
+      },
+      {
+        "w": "player",
+        "t": "Iris smith table 49 and seat 8"
+      },
+      {
+        "w": "theo",
+        "t": "Iris Smith. Table 49, Seat 8.\n\nThat's the identification I needed.\n\nNow I want answers about what happened between Iris and Margery.\n\nEmail Jasmine's Legal Team and ask them to interrogate Iris. Find out what happened."
       }
     ],
     "docs": [],
-    "facts": {},
-    "task": "",
+    "facts": {
+      "identified": true
+    },
+    "task": "Email the Legal Team and request an interrogation of Iris.",
     "final": false
   },
-  "updatedAt": "2026-09-28T06:09:44.487Z"
+  "updatedAt": "2026-09-28T06:10:13.870Z"
 }
