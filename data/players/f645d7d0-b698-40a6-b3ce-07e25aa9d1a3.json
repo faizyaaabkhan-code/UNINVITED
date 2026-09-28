@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 1,
+    "lead": 2,
     "profileStage": 0,
     "pendingAccusation": "",
     "iris": false,
@@ -44,6 +44,18 @@
       {
         "w": "theo",
         "t": "Hint — Use the first initial of the guest’s first name. Keep T, H, J, and I."
+      },
+      {
+        "w": "player",
+        "t": "162"
+      },
+      {
+        "w": "theo",
+        "t": "162."
+      },
+      {
+        "w": "theo",
+        "t": "I also had the lab re-check something recovered from the reception.\n\nThey identified chicken gravy.\n\nIt may give us another way to narrow the same group.\n\nCheck the meal field.\n\nWhat count do you get?"
       }
     ],
     "docs": [],
@@ -55,5 +67,5 @@
       "2": true
     }
   },
-  "updatedAt": "2026-09-28T13:50:34.974Z"
+  "updatedAt": "2026-09-28T13:50:48.104Z"
 }
