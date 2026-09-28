@@ -116,10 +116,17 @@ function status(){
 }
 function tab(t){S.tab=t;save();render()}
 function send(){var el=document.getElementById("input");if(!el||!el.value.trim())return;var q=el.value.trim();add("player",q);route(q);render();var c=document.getElementById("chat");if(c)c.scrollTop=c.scrollHeight}
-function legalSend(){var el=document.getElementById("legalInput");if(!el||!el.value.trim())return;var q=norm(el.value);addLegal(q);render()}
+function legalSend(){var el=document.getElementById("legalInput");if(!el||!el.value.trim())return;var q=norm(el.value);addLegal(q);S.tab="legal";save();render();setTimeout(function(){var docs=document.querySelectorAll(".doc");if(docs.length){docs[docs.length-1].scrollIntoView({behavior:"smooth",block:"start");}},50)}
 function requestLegal(kind){
  var map={background:"who is iris",relationship:"professional history",alder:"alder hollow",interview:"interview iris"};
  addLegal(map[kind]||kind);
+ S.tab="legal";
+ save();
+ render();
+ setTimeout(function(){
+  var docs=document.querySelectorAll(".doc");
+  if(docs.length){docs[docs.length-1].scrollIntoView({behavior:"smooth",block:"start"});}
+ },50);
 }
 function addLegal(q){
  if(has(q,["interview","question iris","question her","speak to iris","talk to iris","confront iris"])){
