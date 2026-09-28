@@ -11,9 +11,11 @@
     "createdAt": "2026-09-27T12:59:36.701Z"
   },
   "progress": {
-    "tab": "legal",
-    "lead": 7,
-    "iris": true,
+    "tab": "theo",
+    "lead": 0,
+    "profileStage": 0,
+    "pendingAccusation": "",
+    "iris": false,
     "messages": [
       {
         "w": "theo",
@@ -22,176 +24,13 @@
       {
         "w": "theo",
         "t": "I went back through the CCTV report.\n\nMost of the reception was covered, but there was a gap in the camera coverage. The report places the blind spot around Tables 46 through 50.\n\nThat's important, but it doesn't tell us who was there.\n\nCheck that section of the wedding ledger for me.\n\nWhat count do you get?"
-      },
-      {
-        "w": "player",
-        "t": "1058"
-      },
-      {
-        "w": "theo",
-        "t": "1,058."
-      },
-      {
-        "w": "theo",
-        "t": "That's still too many people.\n\nI went back to the physical evidence.\n\nThere's a handwritten mark on one of the items recovered during the investigation. It's damaged, but I can make out what might be a first initial.\n\nT, H, J, or I.\n\nI'm not confident enough to say which one it is.\n\nSee what that does to the group.\n\nWhat count do you get?"
-      },
-      {
-        "w": "player",
-        "t": "162"
-      },
-      {
-        "w": "theo",
-        "t": "162."
-      },
-      {
-        "w": "theo",
-        "t": "I also had the lab re-check something recovered from the reception.\n\nThey identified chicken gravy.\n\nIt may give us another way to narrow the same group.\n\nCheck the meal field.\n\nWhat count do you get?"
-      },
-      {
-        "w": "player",
-        "t": "52"
-      },
-      {
-        "w": "theo",
-        "t": "52."
-      },
-      {
-        "w": "theo",
-        "t": "Now we're starting to see a pattern.\n\nI found another detail in the evidence file.\n\nOne of the guest badges recovered from the relevant area was pink. The reception records distinguish between the bride's side and the groom's side.\n\nCheck which of the remaining records belong to the bride's side.\n\nWhat count do you get?"
-      },
-      {
-        "w": "player",
-        "t": "22"
-      },
-      {
-        "w": "theo",
-        "t": "22."
-      },
-      {
-        "w": "theo",
-        "t": "That's a much smaller group.\n\nI went back through the final seating records because there's something unusual about the last revision.\n\nThe seating plan was updated after the RSVP deadline. The revision included people from the late-confirmation list.\n\nCheck the remaining records against the late-confirmation initials: E or L.\n\nWhat count do you get?"
-      },
-      {
-        "w": "player",
-        "t": "11"
-      },
-      {
-        "w": "theo",
-        "t": "11."
-      },
-      {
-        "w": "theo",
-        "t": "Eleven.\n\nI found another piece of the evidence that may help.\n\nAn unidentified wedding gift was recorded in the inventory. We never established who sent it, but the inventory gives us an approximate value.\n\nIt falls somewhere between $50 and $150.\n\nCheck that value range against the eleven remaining records.\n\nWhat count do you get?"
-      },
-      {
-        "w": "player",
-        "t": "2"
-      },
-      {
-        "w": "theo",
-        "t": "2."
-      },
-      {
-        "w": "theo",
-        "t": "Only two people still fit everything we've found.\n\nI went back to the evidence recovered from the reception.\n\nThere's a torn seating marker. Most of it is missing, but one detail is still readable:\n\nTable 49.\n\nI don't have the seat number.\n\nCheck the two remaining records against Table 49.\n\nGive me the full name, table number, and seat number of the person who remains."
-      },
-      {
-        "w": "player",
-        "t": "Iris smith 49 table seat 8"
-      },
-      {
-        "w": "theo",
-        "t": "Iris Smith. Table 49, Seat 8.\n\nThat's the identification I needed.\n\nBut a name isn't a murder.\n\nI want to know who Iris was, what her relationship with Margery was, and what brought her into this investigation.\n\nThat's where your side of the investigation becomes important."
-      },
-      {
-        "w": "theo",
-        "t": "Did the Legal Team find out who she is and what she was doing at Alder Hollow?"
-      },
-      {
-        "w": "theo",
-        "t": "Did the Legal Team find out who she is and what she was doing at Alder Hollow?"
-      },
-      {
-        "w": "theo",
-        "t": "Did the Legal Team find out who she is and what she was doing at Alder Hollow?"
-      },
-      {
-        "w": "player",
-        "t": "Iris Smith works in event design and logistics. She was professionally involved in the Alder Hollow wedding and had worked with Margery on previous events.  Margery relied on Iris when event-design or production problems needed solving. Iris was not simply a wedding guest."
-      },
-      {
-        "w": "theo",
-        "t": "That's more significant than simply saying they didn't get along.\n\nThe file shows a repeated professional conflict: exclusion, lack of credit, and Margery retaining influence over Iris's future opportunities.\n\nBut there's one thing I still don't know.\n\nHow did that conflict connect to Alder Hollow itself?"
-      },
-      {
-        "w": "theo",
-        "t": "Did the Legal Team find out who she is and what she was doing at Alder Hollow?"
-      },
-      {
-        "w": "theo",
-        "t": "Did the Legal Team find out what was going on between Iris and Margery?"
-      },
-      {
-        "w": "player",
-        "t": "The records show a repeated pattern.  Margery relied on Iris when problems needed fixing. Iris was excluded from meetings and client-facing interactions. Iris's work was presented without proper credit. Margery continued contacting Iris when something went wrong. Iris complained about the arrangement. Margery dismissed the complaints as “how the industry works.” Margery could affect future recommendations and opportunities."
-      },
-      {
-        "w": "theo",
-        "t": "That's more significant than simply saying they didn't get along.\n\nThe documents show a repeated professional conflict between them.\n\nMargery relied on Iris when she needed something fixed, but Iris wasn't receiving the recognition or access that came with that work.\n\nAnd Margery had leverage over Iris's future opportunities.\n\nBut there's one thing I still don't know.\n\nHow did that conflict connect to Alder Hollow itself?"
-      },
-      {
-        "w": "theo",
-        "t": "Did the Legal Team find out who she is and what she was doing at Alder Hollow?"
-      },
-      {
-        "w": "theo",
-        "t": "Did the Legal Team find out what Iris's connection to the Alder Hollow wedding was?"
-      },
-      {
-        "w": "player",
-        "t": "ALDER HOLLOW / IRIS Iris was involved in the Alder Hollow wedding preparation. Margery continued to rely on Iris's work while their professional dispute remained unresolved.  The relationship deteriorated further during the final preparations."
-      },
-      {
-        "w": "theo",
-        "t": "The professional-history document describes repeated reliance on Iris's work, exclusion from meetings and client interactions, and lack of credit. Bring that back to me in your own words."
-      },
-      {
-        "w": "player",
-        "t": "IRIS / MARGERY PROFESSIONAL HISTORY The records show a repeated pattern.  Margery relied on Iris when problems needed fixing. Iris was excluded from meetings and client-facing interactions. Iris's work was presented without proper credit. Margery continued contacting Iris when something went wrong. Iris complained about the arrangement. Margery dismissed the complaints as “how the industry works.” Margery could affect future recommendations and opportunities."
-      },
-      {
-        "w": "theo",
-        "t": "That's more significant than simply saying they didn't get along.\n\nThe documents show a repeated professional conflict between them.\n\nMargery relied on Iris when she needed something fixed, but Iris wasn't receiving the recognition or access that came with that work.\n\nAnd Margery had leverage over Iris's future opportunities.\n\nBut there's one thing I still don't know.\n\nHow did that conflict connect to Alder Hollow itself?"
-      },
-      {
-        "w": "player",
-        "t": "ALDER HOLLOW / IRIS Iris was involved in the Alder Hollow wedding preparation. Margery continued to rely on Iris's work while their professional dispute remained unresolved.  The relationship deteriorated further during the final preparations."
-      },
-      {
-        "w": "theo",
-        "t": "The professional-history document describes repeated reliance on Iris's work, exclusion from meetings and client interactions, and lack of credit. Bring that back to me in your own words."
-      },
-      {
-        "w": "theo",
-        "t": "I got the update.\n\nJasmine has been released.\n\nIris Smith has been arrested.\n\nThat closes the case.\n\nCASE 0147 — KILLER IDENTIFIED — IRIS SMITH\n\nCASE CLOSED."
       }
     ],
-    "docs": [
-      {
-        "id": "interrogation",
-        "title": "IRIS SMITH — INTERROGATION REPORT",
-        "body": "<p>Thank you for the hard work. We were able to interrogate Iris Smith.</p><p>Iris admitted that she went to find Margery in the cellar. Their confrontation was rooted in a long-running professional conflict.</p><p>Iris worked in event design and logistics and had repeatedly helped Margery with events. Margery relied on her work but excluded her from meetings and client-facing interactions and took credit for work Iris had done. Iris had complained about this treatment, but Margery dismissed it as “how the industry works” and could affect Iris’s future recommendations and opportunities.</p><p>That conflict was still present during the Alder Hollow wedding.</p><p>Iris admitted that she confronted Margery in the cellar. They argued. Margery grabbed Iris. Iris pushed her, and Margery fell down the cellar stairs.</p><p><strong>Margery was still alive after the fall.</strong></p><p>Iris could have called for help.</p><p><strong>She didn't.</strong></p><p>She left the cellar and returned to the reception without telling anyone what had happened.</p><p>We also reviewed the evidence concerning Jasmine. Her argument with Margery was connected to Margery blackmailing her over the secret marriage to Ethan Mercer. Jasmine lied afterward because she wanted to protect her marriage.</p><p>The evidence does not place Jasmine in the cellar.</p><p><strong>Jasmine has been released.</strong></p><p><strong>Iris Smith has been arrested.</strong></p><p>We have provided the findings to the relevant authorities.</p>"
-      }
-    ],
-    "facts": {
-      "identified": true,
-      "interrogationSent": true
-    },
-    "task": "CASE CLOSED",
-    "final": true,
-    "hints": {},
-    "profileStage": 4,
-    "pendingAccusation": ""
+    "docs": [],
+    "facts": {},
+    "task": "",
+    "final": false,
+    "hints": {}
   },
-  "updatedAt": "2026-09-28T13:50:14.742Z"
+  "updatedAt": "2026-09-28T13:50:19.934Z"
 }
