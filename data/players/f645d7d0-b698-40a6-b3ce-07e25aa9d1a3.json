@@ -24,13 +24,19 @@
       {
         "w": "theo",
         "t": "I went back through the CCTV report.\n\nMost of the reception was covered, but there was a gap in the camera coverage. The report places the blind spot around Tables 46 through 50.\n\nThat's important, but it doesn't tell us who was there.\n\nCheck that section of the wedding ledger for me.\n\nWhat count do you get?"
+      },
+      {
+        "w": "theo",
+        "t": "Hint — Count every record whose table number is 46, 47, 48, 49, or 50."
       }
     ],
     "docs": [],
     "facts": {},
     "task": "",
     "final": false,
-    "hints": {}
+    "hints": {
+      "1": true
+    }
   },
-  "updatedAt": "2026-09-28T09:27:30.348Z"
+  "updatedAt": "2026-09-28T09:27:32.251Z"
 }
