@@ -116,7 +116,7 @@ function status(){
 }
 function tab(t){S.tab=t;save();render()}
 function send(){var el=document.getElementById("input");if(!el||!el.value.trim())return;var q=el.value.trim();add("player",q);route(q);render();var c=document.getElementById("chat");if(c)c.scrollTop=c.scrollHeight}
-function legalSend(){var el=document.getElementById("legalInput");if(!el||!el.value.trim())return;var q=norm(el.value);addLegal(q);S.tab="legal";save();render();setTimeout(function(){var docs=document.querySelectorAll(".doc");if(docs.length){docs[docs.length-1].scrollIntoView({behavior:"smooth",block:"start");}},50)}
+function legalSend(){var el=document.getElementById("legalInput");if(!el||!el.value.trim())return;var q=norm(el.value);addLegal(q);S.tab="legal";save();render();setTimeout(function(){var docs=document.querySelectorAll(".doc");if(docs.length){docs[docs.length-1].scrollIntoView({behavior:"smooth",block:"start"});}},50)}
 function requestLegal(kind){
  var docs={
   background:{id:"background",title:"WHO IS IRIS?",body:"<p>Iris Smith works in event design and logistics. She was professionally involved in the Alder Hollow wedding and had worked with Margery on previous events.</p><p>Margery relied on Iris when event-design or production problems needed solving. Iris was not simply a wedding guest.</p>"},
