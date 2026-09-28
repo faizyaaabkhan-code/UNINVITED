@@ -12,8 +12,8 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 3,
-    "profileStage": 2,
+    "lead": 0,
+    "profileStage": 0,
     "pendingAccusation": "",
     "iris": false,
     "messages": [
@@ -24,59 +24,13 @@
       {
         "w": "theo",
         "t": "I went back through the CCTV report.\n\nMost of the reception was covered, but there was a gap in the camera coverage. The report places the blind spot around Tables 46 through 50.\n\nThat's important, but it doesn't tell us who was there.\n\nCheck that section of the wedding ledger for me.\n\nWhat count do you get?"
-      },
-      {
-        "w": "player",
-        "t": "1058"
-      },
-      {
-        "w": "theo",
-        "t": "1,058."
-      },
-      {
-        "w": "theo",
-        "t": "That's still too many people.\n\nI went back to the physical evidence.\n\nThere's a handwritten mark on one of the items recovered during the investigation. It's damaged, but I can make out what might be a first initial.\n\nT, H, J, or I.\n\nI'm not confident enough to say which one it is.\n\nSee what that does to the group.\n\nWhat count do you get?"
-      },
-      {
-        "w": "player",
-        "t": "162"
-      },
-      {
-        "w": "theo",
-        "t": "162."
-      },
-      {
-        "w": "theo",
-        "t": "I also had the lab re-check something recovered from the reception.\n\nThey identified chicken gravy.\n\nIt may give us another way to narrow the same group.\n\nCheck the meal field.\n\nWhat count do you get?"
-      },
-      {
-        "w": "player",
-        "t": "52"
-      },
-      {
-        "w": "theo",
-        "t": "52."
-      },
-      {
-        "w": "theo",
-        "t": "There's another part of the original investigation I want you to see before we continue with the ledger.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us somewhere to start.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nRSVP: Confirmed after the RSVP deadline\n\nThere is one person I want to test first. Ella Taylor overlaps three of those characteristics in the ledger."
-      },
-      {
-        "w": "theo",
-        "t": "Ella wasn't our killer. But her statement gives us something we didn't have before.\n\nShe saw the person heading toward the cellar wearing a pink guest badge.\n\nI checked the reception records. The pink badge was assigned to the bride's side.\n\nCheck the remaining records for the bride's side.\n\nWhat count do you get?"
       }
     ],
-    "docs": [
-      {
-        "id": "ella",
-        "title": "ELLA TAYLOR — INTERROGATION REPORT",
-        "body": "<p>We interviewed Ella Taylor.</p><p>Ella denied killing Margery.</p><p>During the interview, however, she admitted that she had been near the reception area when Margery left.</p><p>Ella says she saw <strong>another person moving toward the cellar</strong>.</p><p>She couldn't identify the person.</p><p>But she remembers one detail clearly:</p><p><strong>The person was wearing a pink guest badge.</strong></p><p>Ella has been cleared as the person responsible for Margery's death.</p>"
-      }
-    ],
+    "docs": [],
     "facts": {},
-    "task": "Check the remaining records for the bride's side. What count do you get?",
+    "task": "",
     "final": false,
     "hints": {}
   },
-  "updatedAt": "2026-09-28T09:39:31.969Z"
+  "updatedAt": "2026-09-28T09:39:46.985Z"
 }
