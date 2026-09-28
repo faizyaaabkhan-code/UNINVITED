@@ -11,7 +11,7 @@
     "createdAt": "2026-09-27T12:59:36.701Z"
   },
   "progress": {
-    "tab": "theo",
+    "tab": "legal",
     "lead": 7,
     "iris": true,
     "messages": [
@@ -119,5 +119,5 @@
     "task": "Email the Legal Team and request an interrogation of Iris.",
     "final": false
   },
-  "updatedAt": "2026-09-28T06:10:39.011Z"
+  "updatedAt": "2026-09-28T06:10:58.696Z"
 }
