@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 2,
+    "lead": 3,
     "iris": false,
     "messages": [
       {
@@ -46,6 +46,18 @@
       {
         "w": "theo",
         "t": "I also had the lab re-check something recovered from the reception.\n\nThey identified chicken gravy.\n\nIt may give us another way to narrow the same group.\n\nCheck the meal field.\n\nWhat count do you get?"
+      },
+      {
+        "w": "player",
+        "t": "52"
+      },
+      {
+        "w": "theo",
+        "t": "52."
+      },
+      {
+        "w": "theo",
+        "t": "Now we're starting to see a pattern.\n\nI found another detail in the evidence file.\n\nOne of the guest badges recovered from the relevant area was pink. The reception records distinguish between the bride's side and the groom's side.\n\nCheck which of the remaining records belong to the bride's side.\n\nWhat count do you get?"
       }
     ],
     "docs": [],
@@ -53,5 +65,5 @@
     "task": "",
     "final": false
   },
-  "updatedAt": "2026-09-28T01:26:51.086Z"
+  "updatedAt": "2026-09-28T01:26:54.333Z"
 }
