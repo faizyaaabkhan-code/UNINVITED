@@ -11,7 +11,7 @@
     "createdAt": "2026-09-27T12:59:36.701Z"
   },
   "progress": {
-    "tab": "legal",
+    "tab": "theo",
     "lead": 3,
     "profileStage": 2,
     "pendingAccusation": "",
@@ -78,5 +78,5 @@
     "final": false,
     "hints": {}
   },
-  "updatedAt": "2026-09-28T10:18:34.842Z"
+  "updatedAt": "2026-09-28T10:18:37.360Z"
 }
