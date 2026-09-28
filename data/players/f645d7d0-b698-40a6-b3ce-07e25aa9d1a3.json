@@ -11,9 +11,9 @@
     "createdAt": "2026-09-27T12:59:36.701Z"
   },
   "progress": {
-    "tab": "legal",
+    "tab": "theo",
     "lead": 3,
-    "profileStage": 1,
+    "profileStage": 2,
     "pendingAccusation": "",
     "iris": false,
     "messages": [
@@ -60,13 +60,23 @@
       {
         "w": "theo",
         "t": "There's another part of the original investigation I want you to see before we continue with the ledger.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us somewhere to start.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nRSVP: Confirmed after the RSVP deadline\n\nThere is one person I want to test first. Ella Taylor overlaps three of those characteristics in the ledger."
+      },
+      {
+        "w": "theo",
+        "t": "Ella wasn't our killer. But her statement gives us something we didn't have before.\n\nShe saw the person heading toward the cellar wearing a pink guest badge.\n\nI checked the reception records. The pink badge was assigned to the bride's side.\n\nCheck the remaining records for the bride's side.\n\nWhat count do you get?"
       }
     ],
-    "docs": [],
+    "docs": [
+      {
+        "id": "ella",
+        "title": "ELLA TAYLOR — INTERROGATION REPORT",
+        "body": "<p>We interviewed Ella Taylor.</p><p>Ella denied killing Margery.</p><p>During the interview, however, she admitted that she had been near the reception area when Margery left.</p><p>Ella says she saw <strong>another person moving toward the cellar</strong>.</p><p>She couldn't identify the person.</p><p>But she remembers one detail clearly:</p><p><strong>The person was wearing a pink guest badge.</strong></p><p>Ella has been cleared as the person responsible for Margery's death.</p>"
+      }
+    ],
     "facts": {},
-    "task": "Send an accusation against Ella Taylor to the Legal Team.",
+    "task": "Check the remaining records for the bride's side. What count do you get?",
     "final": false,
     "hints": {}
   },
-  "updatedAt": "2026-09-28T09:39:29.833Z"
+  "updatedAt": "2026-09-28T09:39:31.969Z"
 }
