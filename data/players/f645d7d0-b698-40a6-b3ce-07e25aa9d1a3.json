@@ -162,6 +162,14 @@
       {
         "w": "theo",
         "t": "That's more significant than simply saying they didn't get along.\n\nThe documents show a repeated professional conflict between them.\n\nMargery relied on Iris when she needed something fixed, but Iris wasn't receiving the recognition or access that came with that work.\n\nAnd Margery had leverage over Iris's future opportunities.\n\nBut there's one thing I still don't know.\n\nHow did that conflict connect to Alder Hollow itself?"
+      },
+      {
+        "w": "player",
+        "t": "ALDER HOLLOW / IRIS Iris was involved in the Alder Hollow wedding preparation. Margery continued to rely on Iris's work while their professional dispute remained unresolved.  The relationship deteriorated further during the final preparations."
+      },
+      {
+        "w": "theo",
+        "t": "The professional-history document describes repeated reliance on Iris's work, exclusion from meetings and client interactions, and lack of credit. Bring that back to me in your own words."
       }
     ],
     "docs": [
@@ -188,8 +196,8 @@
       "alder": true,
       "conflict": true
     },
-    "task": "Tell Theo what the Alder Hollow material establishes, then move to the timeline.",
+    "task": "Explain Iris and Margery's professional relationship to Theo.",
     "final": false
   },
-  "updatedAt": "2026-09-28T01:30:53.858Z"
+  "updatedAt": "2026-09-28T01:31:28.454Z"
 }
