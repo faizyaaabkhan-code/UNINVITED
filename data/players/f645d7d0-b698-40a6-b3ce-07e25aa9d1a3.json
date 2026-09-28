@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 4,
+    "lead": 5,
     "profileStage": 4,
     "pendingAccusation": "",
     "iris": false,
@@ -80,6 +80,18 @@
       {
         "w": "theo",
         "t": "Owen wasn't our killer either. But his statement gives us another way to test the original profile.\n\nHe remembers the person being connected to the late-confirmation list.\n\nI checked the final seating revision. It includes the guests who confirmed after the RSVP deadline.\n\nCheck the remaining records against those initials: E or L.\n\nWhat count do you get?"
+      },
+      {
+        "w": "player",
+        "t": "11"
+      },
+      {
+        "w": "theo",
+        "t": "11."
+      },
+      {
+        "w": "theo",
+        "t": "Eleven.\n\nI found another piece of the evidence that may help.\n\nAn unidentified wedding gift was recorded in the inventory. We never established who sent it, but the inventory gives us an approximate value.\n\nIt falls somewhere between $50 and $150.\n\nCheck that value range against the eleven remaining records.\n\nWhat count do you get?"
       }
     ],
     "docs": [
@@ -102,5 +114,5 @@
     "final": false,
     "hints": {}
   },
-  "updatedAt": "2026-09-28T10:01:08.516Z"
+  "updatedAt": "2026-09-28T10:01:14.554Z"
 }
