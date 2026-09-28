@@ -145,20 +145,20 @@ function legal(){
  var docs=S.docs.map(function(d){return '<div class="panel doc"><h3>'+esc(d.title)+'</h3>'+d.body+'</div>'}).join("");
  if(S.iris){
   if(!S.facts.interrogationSent){
-   return '<div class="panel"><div class="speaker">Jasmine\\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\\'s Legal Team</p><p><strong>Subject:</strong> Request for Iris Smith Interrogation</p><p>We have identified Iris Smith, Table 49, Seat 8.</p><p>Please interrogate Iris and find out what happened between Iris and Margery.</p><p>We need to know what happened that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendInterrogationEmail()">SEND EMAIL</button></div></div>'+docs;
+   return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\'s Legal Team</p><p><strong>Subject:</strong> Request for Iris Smith Interrogation</p><p>We have identified Iris Smith, Table 49, Seat 8.</p><p>Please interrogate Iris and find out what happened between Iris and Margery.</p><p>We need to know what happened that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendInterrogationEmail()">SEND EMAIL</button></div></div>'+docs;
   }
-  return '<div class="panel"><div class="speaker">Jasmine\\'s Legal Team</div><p class="legal-intro">Your email has been received. We completed the interrogation and returned our findings below.</p></div>'+docs;
+  return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Your email has been received. We completed the interrogation and returned our findings below.</p></div>'+docs;
  }
  if(S.profileStage===1||S.profileStage===3){
   var person=S.profileStage===1?"Ella Taylor":"Owen Hawthorne";
   var title=S.profileStage===1?"Request for Ella Taylor Interrogation":"Request for Owen Hawthorne Interrogation";
   var clue=S.profileStage===1?"We believe Ella Taylor may be relevant to the investigation.":"We believe Owen Hawthorne may be relevant to the investigation.";
-  return '<div class="panel"><div class="speaker">Jasmine\\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\\'s Legal Team</p><p><strong>Subject:</strong> '+title+'</p><p>'+clue+'</p><p>Please interrogate '+person+' and report what they know about Margery\\'s movements that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendSuspectInterrogation()">SEND EMAIL</button></div></div>'+docs;
+  return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\'s Legal Team</p><p><strong>Subject:</strong> '+title+'</p><p>'+clue+'</p><p>Please interrogate '+person+' and report what they know about Margery\\'s movements that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendSuspectInterrogation()">SEND EMAIL</button></div></div>'+docs;
  }
  if(S.docs.some(function(d){return d.id==="ella"||d.id==="owen"})){
-  return '<div class="panel"><div class="speaker">Jasmine\\'s Legal Team</div><p class="legal-intro">The interview report is available below.</p></div>'+docs;
+  return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The interview report is available below.</p></div>'+docs;
  }
- return '<div class="panel"><div class="speaker">Jasmine\\'s Legal Team</div><p class="legal-intro">The Legal Team is locked until the investigation reaches a suspect interview.</p></div>';
+ return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The Legal Team is locked until the investigation reaches a suspect interview.</p></div>';
 }
 function status(){
  return '<div class="panel"><div class="speaker">Investigation board</div><h2>CASE 0147</h2><p class="hint">Case progress.</p><div class="statusrow">'+
@@ -207,16 +207,16 @@ function route(raw){
  var n=norm(raw);
  if(S.final){add("theo","CASE 0147 is closed. The investigation record is complete.");return}
  if(S.profileStage===1){
-  if(has(n,["email","legal team","accuse ella","ella taylor","ella"])){S.tab="legal";task("Send the accusation against Ella Taylor to the Legal Team.");save();return}
+  if(has(n,["email","legal team","accuse ella","ella taylor","ella"])){task("Send the accusation against Ella Taylor to the Legal Team.");save();return}
   add("theo","I want to test Ella Taylor first. Send the accusation to the Legal Team.");task("Send an accusation against Ella Taylor to the Legal Team.");return;
  }
  if(S.profileStage===3){
-  if(has(n,["email","legal team","accuse owen","owen hawthorne","owen"])){S.tab="legal";task("Send the accusation against Owen Hawthorne to the Legal Team.");save();return}
+  if(has(n,["email","legal team","accuse owen","owen hawthorne","owen"])){task("Send the accusation against Owen Hawthorne to the Legal Team.");save();return}
   add("theo","I want to test Owen Hawthorne next. Send the accusation to the Legal Team.");task("Send an accusation against Owen Hawthorne to the Legal Team.");return;
  }
  if(S.iris){
   if(has(n,["email","legal team","interrogate iris","interrogation","send the request","request the interview"])){
-   S.tab="legal";task("Email the Legal Team and request an interrogation of Iris.");save();return;
+   task("Email the Legal Team and request an interrogation of Iris.");save();return;
   }
   if(has(n,["who killed","killer","is iris the killer","did iris kill"])){
    add("theo","Iris Smith has been identified, but I want the Legal Team to interrogate her before we close the case.");task("Email the Legal Team and request an interrogation of Iris.");return;
@@ -224,10 +224,10 @@ function route(raw){
   return add("theo","Iris has been identified. The next step is to email the Legal Team and ask them to interrogate her.");
  }
  if(S.lead===3&&S.profileStage===0){
-  if(has(n,["ella","taylor"])){S.profileStage=1;S.pendingAccusation="Ella Taylor";S.tab="legal";task("Send an accusation against Ella Taylor to the Legal Team.");save();return}
+  if(has(n,["ella","taylor"])){S.profileStage=1;S.pendingAccusation="Ella Taylor";task("Send an accusation against Ella Taylor to the Legal Team.");save();return}
  }
  if(S.lead===4&&S.profileStage===2){
-  if(has(n,["owen","hawthorne"])){S.profileStage=3;S.pendingAccusation="Owen Hawthorne";S.tab="legal";task("Send an accusation against Owen Hawthorne to the Legal Team.");save();return}
+  if(has(n,["owen","hawthorne"])){S.profileStage=3;S.pendingAccusation="Owen Hawthorne";task("Send an accusation against Owen Hawthorne to the Legal Team.");save();return}
  }
  return leadRoute(n);
 }
