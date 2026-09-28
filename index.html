@@ -153,7 +153,7 @@ function legal(){
   var person=S.profileStage===1?"Ella Taylor":"Owen Hawthorne";
   var title=S.profileStage===1?"Request for Ella Taylor Interrogation":"Request for Owen Hawthorne Interrogation";
   var clue=S.profileStage===1?"We believe Ella Taylor may be relevant to the investigation.":"We believe Owen Hawthorne may be relevant to the investigation.";
-  return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\'s Legal Team</p><p><strong>Subject:</strong> '+title+'</p><p>'+clue+'</p><p>Please interrogate '+person+' and report what they know about Margery\\'s movements that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendSuspectInterrogation()">SEND EMAIL</button></div></div>'+docs;
+  return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\'s Legal Team</p><p><strong>Subject:</strong> '+title+'</p><p>'+clue+'</p><p>Please interrogate '+person+' and report what they know about Margery\'s movements that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendSuspectInterrogation()">SEND EMAIL</button></div></div>'+docs;
  }
  if(S.docs.some(function(d){return d.id==="ella"||d.id==="owen"})){
   return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The interview report is available below.</p></div>'+docs;
