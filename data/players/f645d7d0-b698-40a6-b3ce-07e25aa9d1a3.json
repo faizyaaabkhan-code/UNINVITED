@@ -12,8 +12,8 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 3,
-    "profileStage": 2,
+    "lead": 4,
+    "profileStage": 3,
     "pendingAccusation": "",
     "iris": false,
     "messages": [
@@ -64,6 +64,18 @@
       {
         "w": "theo",
         "t": "Ella wasn't our killer. But her statement gives us something we didn't have before.\n\nShe saw the person heading toward the cellar wearing a pink guest badge.\n\nI checked the reception records. The pink badge was assigned to the bride's side.\n\nCheck the remaining records for the bride's side.\n\nWhat count do you get?"
+      },
+      {
+        "w": "player",
+        "t": "22"
+      },
+      {
+        "w": "theo",
+        "t": "22."
+      },
+      {
+        "w": "theo",
+        "t": "Twenty-two.\n\nThere's another name I want to test against the original profile.\n\nOwen Hawthorne fits the four characteristics:\n\nFirst name I–Q.\nBride's side.\nOdd-numbered table.\nConfirmed after the RSVP deadline.\n\nHis account of the evening also leaves a gap.\n\nSend an accusation against Owen Hawthorne to the Legal Team."
       }
     ],
     "docs": [
@@ -77,7 +89,7 @@
       "identified": false,
       "interrogationSent": false
     },
-    "task": "Check the remaining records for the bride's side. What count do you get?",
+    "task": "Send an accusation against Owen Hawthorne to the Legal Team.",
     "final": false,
     "hints": {
       "1": true,
@@ -85,5 +97,5 @@
       "4": true
     }
   },
-  "updatedAt": "2026-09-29T09:13:00.992Z"
+  "updatedAt": "2026-09-29T09:13:12.189Z"
 }
