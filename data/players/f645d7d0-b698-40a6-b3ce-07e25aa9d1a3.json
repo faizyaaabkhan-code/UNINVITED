@@ -32,6 +32,10 @@
       {
         "w": "player",
         "t": "who is jamine?"
+      },
+      {
+        "w": "theo",
+        "t": "Check the evidence against the ledger again. Tell me what you find."
       }
     ],
     "docs": [],
@@ -48,5 +52,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T10:17:53.074Z"
+  "updatedAt": "2026-09-29T10:17:55.348Z"
 }
