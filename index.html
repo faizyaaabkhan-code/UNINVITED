@@ -107,25 +107,7 @@ function render(){
  var nav=account+'<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!(S.iris||S.profileStage===1||S.profileStage===2||S.profileStage===3||S.docs.some(function(d){return d.id==="ella"||d.id==="owen"}))?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+((S.iris||S.profileStage>=1||S.docs.some(function(d){return d.id==="ella"||d.id==="owen"}))?"🔓":"🔒")+'</button><button class="tab '+(S.tab==="status"?"active":"")+'" onclick="tab(\'status\')">CASE STATUS</button><button class="tab" onclick="resetCase()">START OVER</button></div>';
  document.getElementById("app").innerHTML=nav+journeyBar()+(S.tab==="theo"?theo():S.tab==="legal"?legal():status())+'<div class="small" style="margin-top:12px">Private case channel · V8 investigation journey · your progress is saved to your case.</div>';
 }
-function journeyBar(){
- var steps=[
-  ["LEDGER",S.lead>=7],
-  ["SUSPECT TESTS",S.profileStage>=4],
-  ["IRIS",S.iris],
-  ["INTERROGATION",S.facts.interrogationSent],
-  ["CLOSED",S.final]
- ];
- return '<div class="journey">'+steps.map(function(x,i){return '<div class="step '+(x[1]?"done":((i===0&&S.lead<7)||(i===1&&S.lead>=3&&S.profileStage<4)||(i===2&&S.iris&&!S.facts.interrogationSent)||(i===3&&S.iris&&!S.facts.interrogationSent)?"on":""))+'">'+(x[1]?"✓ ":"")+x[0]+'</div>'}).join("")+'</div>';
-}
-const HINTS={
- 1:["Count every record whose table number is 46, 47, 48, 49, or 50."],
- 2:["Use the first initial of the guest’s first name. Keep T, H, J, and I."],
- 3:["Use the MEAL field. Ck means Chicken."],
- 4:["The pink guest badge points to the bride’s side. Use SIDE = Br."],
- 5:["Use the RSVP status from Theo’s late-confirmation clue. L means Late."],
- 6:["Use the GIFT bracket, not an exact price. $ means $50–150."],
- 7:["The torn marker gives only Table 49. Check the two remaining records and identify the person at that table."]
-};
+function journeyBar(){ return ""; }
 function useHint(){
  if(S.final||S.iris||S.profileStage===1||S.profileStage===3)return;
  var n=S.lead+1;
