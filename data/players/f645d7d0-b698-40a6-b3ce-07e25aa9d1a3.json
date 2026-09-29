@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 5,
+    "lead": 6,
     "profileStage": 4,
     "pendingAccusation": "",
     "iris": false,
@@ -96,6 +96,10 @@
       {
         "w": "theo",
         "t": "Eleven.\n\nI found another piece of the evidence that may help.\n\nAn unidentified wedding gift was recorded in the inventory. We never established who sent it, but the inventory gives us an approximate value.\n\nIt falls somewhere between $50 and $150.\n\nCheck that value range against the eleven remaining records.\n\nWhat count do you get?"
+      },
+      {
+        "w": "player",
+        "t": "2"
       }
     ],
     "docs": [
@@ -120,5 +124,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T11:14:35.618Z"
+  "updatedAt": "2026-09-29T11:14:41.132Z"
 }
