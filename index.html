@@ -246,7 +246,7 @@ function answerCaseQuestion(n){
   }
   return true;
  }
- if(has(n,["who is jasmine","who's jasmine","tell me about jasmine","what is jasmine"])){
+ if(has(n,["who is jasmine","who's jasmine","who jasmine","tell me about jasmine","what is jasmine","jasmine"])){
   add("theo","Jasmine Rivers is the bride. She was arrested after investigators connected her to the argument with Margery, the money dispute over Margery's knowledge of Jasmine's secret marriage to Ethan Mercer, and Jasmine's later lie about the argument. The original case treated those facts as strong evidence against her. We still need to test what actually happened after Margery left the reception.");
   return true;
  }
@@ -254,7 +254,7 @@ function answerCaseQuestion(n){
   add("theo","The original case against Jasmine centered on three things: her argument with Margery around 8:05 PM, Margery's demand for money after discovering Jasmine's secret marriage to Ethan Mercer, and Jasmine's lie about the argument afterward. Investigators treated those facts as evidence that Jasmine had a motive and was hiding something. The ledger and the cellar evidence are what we're testing now.");
   return true;
  }
- if(has(n,["who is margery","who's margery","tell me about margery"])){
+ if(has(n,["who is margery","who's margery","who margery","who is magery","who magery","tell me about margery"])){
   add("theo","Margery Voss was the wedding coordinator at Alder Hollow Estate. She was found at the bottom of the cellar stairs after leaving the reception to get another case of champagne.");
   return true;
  }
@@ -302,6 +302,7 @@ function answerCaseQuestion(n){
   if(has(n,["email","legal team","accuse owen","owen hawthorne","owen"])){task("Send the accusation against Owen Hawthorne to the Legal Team.");save();return}
   add("theo","I want to test Owen Hawthorne next. Send the accusation to the Legal Team.");task("Send an accusation against Owen Hawthorne to the Legal Team.");return;
  }
+ if(answerCaseQuestion(n))return;
  if(S.iris){
   if(has(n,["email","legal team","interrogate iris","interrogation","send the request","request the interview"])){
    task("Email the Legal Team and request an interrogation of Iris.");save();return;
@@ -311,7 +312,6 @@ function answerCaseQuestion(n){
   }
   return add("theo","Iris has been identified. The next step is to email the Legal Team and ask them to interrogate her.");
  }
- if(answerCaseQuestion(n))return;
  if(S.lead===3&&S.profileStage===0){
   if(has(n,["ella","taylor"])){S.profileStage=1;S.pendingAccusation="Ella Taylor";task("Send an accusation against Ella Taylor to the Legal Team.");save();return}
  }
