@@ -1,11 +1,15 @@
-function cors(res){
- res.setHeader("Access-Control-Allow-Origin","https://faizyaaabkhan-code.github.io");
+function cors(res,req){
+ const configured=String(process.env.FRONTEND_ORIGIN||"https://faizyaaabkhan-code.github.io").split(",").map(function(x){return x.trim()}).filter(Boolean);
+ const origin=req.headers.origin;
+ if(origin&&configured.indexOf(origin)>=0)res.setHeader("Access-Control-Allow-Origin",origin);
+ else res.setHeader("Access-Control-Allow-Origin",configured[0]);
+ res.setHeader("Vary","Origin");
  res.setHeader("Access-Control-Allow-Headers","Content-Type, Authorization");
  res.setHeader("Access-Control-Allow-Methods","POST,OPTIONS");
 }
 const {getFile,putFile}=require("../lib/github");
 const {hashPassword,verifyPassword,sign,id,caseCode}=require("../lib/auth");
-module.exports=async(req,res)=>{ cors(res); if(req.method==="OPTIONS")return res.status(204).end();
+module.exports=async(req,res)=>{ cors(res,req); if(req.method==="OPTIONS")return res.status(204).end();
  try{
   if(req.method!=="POST")return res.status(405).json({error:"Method not allowed"});
   const body=req.body&&typeof req.body==="string"?JSON.parse(req.body):(req.body||{}); const {action}=body;
