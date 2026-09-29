@@ -12,182 +12,21 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 6,
-    "profileStage": 4,
+    "lead": 0,
+    "profileStage": 0,
     "pendingAccusation": "",
     "iris": false,
-    "messages": [
-      {
-        "w": "player",
-        "t": "hi"
-      },
-      {
-        "w": "theo",
-        "t": "I'm Detective Theo Marsh. I have parts of the investigation file. What I don't have is the complete wedding ledger. You do.\n\nI've been going back through the evidence the original investigation used against Jasmine.\n\nThere's something bothering me about it.\n\nThe case against her is built around what she did before Margery died.\n\nI'm interested in what happened after Margery left the reception.\n\nLet's start with the evidence I can recover."
-      },
-      {
-        "w": "theo",
-        "t": "I went back through the CCTV report.\n\nMost of the reception was covered, but there was a gap in the camera coverage. The report places the blind spot around Tables 46 through 50.\n\nThat's important, but it doesn't tell us who was there.\n\nCheck that section of the wedding ledger for me.\n\nWhat count do you get?"
-      },
-      {
-        "w": "player",
-        "t": "1000"
-      },
-      {
-        "w": "theo",
-        "t": "Check the evidence against the ledger again. Tell me what you find."
-      },
-      {
-        "w": "theo",
-        "t": "Hint — Count every record whose table number is 46, 47, 48, 49, or 50."
-      },
-      {
-        "w": "player",
-        "t": "1058"
-      },
-      {
-        "w": "theo",
-        "t": "1,058."
-      },
-      {
-        "w": "theo",
-        "t": "That's still too many people.\n\nI went back to the physical evidence.\n\nThere's a handwritten mark on one of the items recovered during the investigation. It's damaged, but I can make out what might be a first initial.\n\nT, H, J, or I.\n\nI'm not confident enough to say which one it is.\n\nSee what that does to the group.\n\nWhat count do you get?"
-      },
-      {
-        "w": "player",
-        "t": "why the police assert jasmine"
-      },
-      {
-        "w": "theo",
-        "t": "Jasmine Rivers is the bride. She was arrested after the original investigation connected her to her argument with Margery, the money dispute over Margery's knowledge of Jasmine's secret marriage to Ethan Mercer, and Jasmine's later lie about the argument. Those facts are already part of the case record. What we still need to establish is what happened after Margery left the reception."
-      },
-      {
-        "w": "player",
-        "t": "who is iris"
-      },
-      {
-        "w": "theo",
-        "t": "I don't have Iris Smith established in the working evidence yet. I'm not going to speculate about someone we haven't identified through the investigation. Let's follow the evidence and see where the ledger takes us."
-      },
-      {
-        "w": "player",
-        "t": "what the next clue"
-      },
-      {
-        "w": "theo",
-        "t": "Check the evidence against the ledger again. Tell me what you find."
-      },
-      {
-        "w": "player",
-        "t": "162"
-      },
-      {
-        "w": "theo",
-        "t": "162."
-      },
-      {
-        "w": "theo",
-        "t": "I also had the lab re-check something recovered from the reception.\n\nThey identified chicken gravy.\n\nIt may give us another way to narrow the same group.\n\nCheck the meal field.\n\nWhat count do you get?"
-      },
-      {
-        "w": "player",
-        "t": "52"
-      },
-      {
-        "w": "theo",
-        "t": "52."
-      },
-      {
-        "w": "theo",
-        "t": "There's another part of the original investigation I want you to see before we continue with the ledger.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us somewhere to start.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nRSVP: Confirmed after the RSVP deadline\n\nElla Taylor matches three of the four characteristics: bride’s side, odd-numbered table, and confirmed after the RSVP deadline. Her first name falls outside the I–Q range.\n\nThere is one person I want to test first. Ella Taylor is one of the names I want to examine."
-      },
-      {
-        "w": "theo",
-        "t": "I got the email from the Legal Team.\n\nElla wasn't our killer. But her statement gives us something we didn't have before.\n\nShe saw the person heading toward the cellar wearing a pink guest badge.\n\nI checked the reception records. The pink badge was assigned to the bride's side.\n\nCheck the remaining records for the bride's side.\n\nWhat count do you get?"
-      },
-      {
-        "w": "player",
-        "t": "22"
-      },
-      {
-        "w": "theo",
-        "t": "22."
-      },
-      {
-        "w": "theo",
-        "t": "Twenty-two.\n\nThere's another name I want to test against the original profile.\n\nOwen Hawthorne fits the four characteristics:\n\nFirst name I–Q.\nBride's side.\nOdd-numbered table.\nConfirmed after the RSVP deadline.\n\nHis account of the evening also leaves a gap.\n\nSend an accusation against Owen Hawthorne to the Legal Team."
-      },
-      {
-        "w": "theo",
-        "t": "I got the email from the Legal Team.\n\nOwen wasn't our killer either. But his statement gives us another way to test the original profile.\n\nHe remembers the person being connected to the late-confirmation list.\n\nI checked the final seating revision. It includes the guests who confirmed after the RSVP deadline.\n\nCheck the remaining records against those initials: E or L.\n\nWhat count do you get?"
-      },
-      {
-        "w": "player",
-        "t": "11"
-      },
-      {
-        "w": "theo",
-        "t": "11."
-      },
-      {
-        "w": "theo",
-        "t": "Eleven.\n\nI found another piece of the evidence that may help.\n\nAn unidentified wedding gift was recorded in the inventory. We never established who sent it, but the inventory gives us an approximate value.\n\nIt falls somewhere between $50 and $150.\n\nCheck that value range against the eleven remaining records.\n\nWhat count do you get?"
-      },
-      {
-        "w": "player",
-        "t": "2"
-      },
-      {
-        "w": "theo",
-        "t": "2."
-      },
-      {
-        "w": "theo",
-        "t": "Only two people still fit everything we've found.\n\nI went back to the evidence recovered from the reception.\n\nThere's a torn seating marker. Most of it is missing, but one detail is still readable:\n\nTable 49.\n\nI don't have the seat number.\n\nCheck the two remaining records against Table 49.\n\nGive me the full name, table number, and seat number of the person who remains."
-      },
-      {
-        "w": "player",
-        "t": "iris smith, table 49 seat 8"
-      },
-      {
-        "w": "theo",
-        "t": "I don't have enough established evidence to answer that yet. Keep working through the investigation. I'll give you what I can confirm as we unlock it."
-      },
-      {
-        "w": "player",
-        "t": "who is ella"
-      },
-      {
-        "w": "theo",
-        "t": "Ella Taylor is one of the people tested against the original suspect profile. She matches three of its four guest characteristics: bride's side, odd-numbered table, and confirmed after the RSVP deadline. Her first name falls outside the I–Q range. The Legal Team later clears her."
-      }
-    ],
-    "docs": [
-      {
-        "id": "ella",
-        "title": "ELLA TAYLOR — INTERROGATION REPORT",
-        "body": "<p>We interviewed Ella Taylor.</p><p>Ella denied killing Margery.</p><p>During the interview, however, she admitted that she had been near the reception area when Margery left.</p><p>Ella says she saw <strong>another person moving toward the cellar</strong>.</p><p>She couldn't identify the person.</p><p>But she remembers one detail clearly:</p><p><strong>The person was wearing a pink guest badge.</strong></p><p>Ella has been cleared as the person responsible for Margery's death.</p>"
-      },
-      {
-        "id": "owen",
-        "title": "OWEN HAWTHORNE — INTERROGATION REPORT",
-        "body": "<p>We interviewed Owen Hawthorne.</p><p>Owen denied killing Margery.</p><p>He initially said he had remained near the reception area.</p><p>During the interview, however, he remembered seeing someone moving away from the reception around the time Margery left.</p><p>He could not identify the person.</p><p>What he remembers is that the person's name appeared on the late-confirmation list.</p><p>Owen has been cleared as the person responsible for Margery's death.</p>"
-      }
-    ],
-    "facts": {
-      "identified": false,
-      "interrogationSent": false
-    },
-    "task": "Check the remaining records against the late-confirmation initials E or L. What count do you get?",
+    "messages": [],
+    "docs": [],
+    "facts": {},
+    "task": "",
     "final": false,
-    "hints": {
-      "1": true
-    },
+    "hints": {},
     "hintAvailable": false,
     "notice": {
       "theo": false,
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T11:10:17.468Z"
+  "updatedAt": "2026-09-29T11:10:33.390Z"
 }
