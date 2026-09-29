@@ -9,6 +9,26 @@ function cors(res,req){
 }
 const {getFile,putFile}=require("../lib/github");
 const {hashPassword,verifyPassword,sign,id,caseCode}=require("../lib/auth");
+function validProgress(p){
+ if(!p||typeof p!=="object")return false;
+ var lead=Number(p.lead),profile=Number(p.profileStage);
+ if(!Number.isInteger(lead)||lead<0||lead>7)return false;
+ if(!Number.isInteger(profile)||profile<0||profile>4)return false;
+ var docs=Array.isArray(p.docs)?p.docs:[];
+ var ids=docs.map(function(d){return d&&d.id}).filter(Boolean);
+ if(ids.some(function(id){return ["ella","owen","interrogation"].indexOf(id)<0}))return false;
+ var hasElla=ids.indexOf("ella")>=0,hasOwen=ids.indexOf("owen")>=0,hasInterrogation=ids.indexOf("interrogation")>=0;
+ if(profile>=2&&!hasElla)return false;
+ if(profile>=4&&!hasOwen)return false;
+ if(lead>=4&&profile<1)return false;
+ if(lead>=5&&profile<3)return false;
+ if(lead>=7&&!p.iris)return false;
+ if(p.iris&&lead<7)return false;
+ if(p.final&&(!p.iris||!hasInterrogation||!(p.facts&&p.facts.interrogationSent)))return false;
+ if(p.final&&p.task!=="CASE CLOSED")return false;
+ if(p.facts&&p.facts.interrogationSent&&!hasInterrogation)return false;
+ return true;
+}
 module.exports=async(req,res)=>{ cors(res,req); if(req.method==="OPTIONS")return res.status(204).end();
  try{
   if(req.method!=="POST")return res.status(405).json({error:"Method not allowed"});
@@ -18,7 +38,9 @@ module.exports=async(req,res)=>{ cors(res,req); if(req.method==="OPTIONS")return
   const idx=idxFile?JSON.parse(idxFile.content):{players:{},codes:{}};
   if(action==="create"){
     const {name,email,password}=body;
+    const initialProgress=body.progress||null;
     if(!name||!email||!password||password.length<8)return res.status(400).json({error:"Name, email, and password (8+ characters) are required."});
+    if(initialProgress&&!validProgress(initialProgress))return res.status(400).json({error:"Invalid case progress."});
     let code=caseCode();
     while(idx.codes[code]) code=caseCode();
     const emailKey=email.trim().toLowerCase();
@@ -29,9 +51,9 @@ module.exports=async(req,res)=>{ cors(res,req); if(req.method==="OPTIONS")return
     idx.players[playerId]={id:playerId,name:player.name,email:player.email,caseCode:code};
     idx.codes[code]={code,status:"active",playerId,createdAt:new Date().toISOString()};
     await putFile("data/index.json",JSON.stringify(idx,null,2),"Register player "+playerId,idxFile&&idxFile.sha);
-    await putFile(`data/players/${playerId}.json`,JSON.stringify({player,progress:null},null,2),"Create player "+playerId);
+    await putFile(`data/players/${playerId}.json`,JSON.stringify({player,progress:initialProgress},null,2),"Create player "+playerId);
     const token=sign({sub:playerId,caseCode:code,exp:Date.now()+1000*60*60*24*30});
-    return res.json({token,player:{id:playerId,name:player.name,email:player.email,caseCode:code}});
+    return res.json({token,player:{id:playerId,name:player.name,email:player.email,caseCode:code},progress:initialProgress});
   }
   if(action==="login"){
     const {email,password}=body;
