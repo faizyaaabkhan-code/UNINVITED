@@ -303,6 +303,9 @@ function answerCaseQuestion(n){
 
 function route(raw){
  var n=norm(raw);
+ var currentLead=LEADS[S.lead];
+ var advancesCurrentLead=currentLead&&(n===currentLead.answer||(currentLead.n===7&&has(n,["49"])));
+ if(advancesCurrentLead){leadRoute(n);return}
  if(answerCaseQuestion(n))return;
  if(S.final){add("theo","CASE 0147 is closed. The investigation record is complete.");return}
  if(S.profileStage===1){
