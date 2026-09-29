@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 0,
+    "lead": 1,
     "profileStage": 0,
     "pendingAccusation": "",
     "iris": false,
@@ -28,6 +28,10 @@
       {
         "w": "theo",
         "t": "I went back through the CCTV report.\n\nMost of the reception was covered, but there was a gap in the camera coverage. The report places the blind spot around Tables 46 through 50.\n\nThat's important, but it doesn't tell us who was there.\n\nCheck that section of the wedding ledger for me.\n\nWhat count do you get?"
+      },
+      {
+        "w": "player",
+        "t": "1058"
       }
     ],
     "docs": [],
@@ -41,5 +45,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T11:11:14.639Z"
+  "updatedAt": "2026-09-29T11:11:24.230Z"
 }
