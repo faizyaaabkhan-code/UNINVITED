@@ -235,71 +235,59 @@ function sendInterrogationEmail(){
  save();
  render();
 }
+const CASE_KNOWLEDGE=[
+ {keys:["who is jasmine","who's jasmine","who jasmine","who is jamine","who jamine","tell me about jasmine","tell me about jamine","what is jasmine","what is jamine","jasmine"],minLead:0,text:"Jasmine Rivers is the bride. The original investigation arrested her two days after Margery's death. Jasmine and Ethan Mercer had secretly married about six weeks before the public wedding. Margery discovered the marriage, demanded $5,000 for silence and later another $15,000, which Jasmine refused. Around 8:05 PM Jasmine and Margery argued. Jasmine returned to the reception and did not follow Margery to the cellar. Jasmine later lied to police about the subject of the argument because she wanted to protect her marriage and keep the secret from Ethan's family."},
+ {keys:["why did jasmine get arrested","why was jasmine arrested","why jasmine arrested","what got jasmine arrested","what did jasmine do","why jasmine suspect","why is jasmine a suspect","what evidence against jasmine"],minLead:0,text:"The original case against Jasmine was built around her argument with Margery, the secret marriage, Margery's money demands, and Jasmine's later lie to police. Those facts made her look suspicious, but they do not establish that she went to the cellar. The investigation is testing what happened after Margery left the reception."},
+ {keys:["who is margery","who's margery","who margery","who is magery","who magery","tell me about margery"],minLead:0,text:"Margery Voss was the wedding coordinator at Alder Hollow Estate. She left the reception to get a second case of champagne and was later found at the bottom of the cellar stairs."},
+ {keys:["who is ethan","who's ethan","tell me about ethan","who is ethan mercer"],minLead:0,text:"Ethan Mercer is the groom. He secretly married Jasmine about six weeks before the public wedding. His family's strong disapproval of the secret marriage was one reason Jasmine wanted to keep it private."},
+ {keys:["where was margery found","what happened to margery","what happened in the cellar","how did margery die","where is the cellar"],minLead:0,text:"Margery was found at the bottom of the cellar stairs after leaving the reception for another case of champagne. At this point in the investigation, we know the location and circumstances of the discovery, but we do not yet know who followed her or exactly what happened there."},
+ {keys:["what is the case about","what are we investigating","what are we looking for","what are we trying to find"],minLead:0,text:"We're testing the original case against Jasmine. You have the complete wedding ledger; I have the police investigation evidence. We are working out who was connected to Margery's movements and the cellar, one evidence lead at a time."},
+ {keys:["what is the ledger","what is in the ledger","what fields are in the ledger","what does the ledger contain"],minLead:0,text:"The wedding ledger contains the master guest records and investigation fields: Name, Table, Seat, RSVP status, RSVP method, Gift value, Family side, and Entrée choice. The coded fields include E/T/L for RSVP timing, M/W/P for RSVP method, $, $$, $$$ for gift value, Br/Gr/+1 for side, and Bf/Ck/Fh/Vg for meal."},
+ {keys:["what is the first clue","what is lead 1","what is the blind spot","what tables are in the blind spot","why tables 46 50"],minLead:0,text:"Lead 1 concerns the CCTV blind spot. Tables 46 through 50 are inside the camera gap. The blind spot defines the area to search; it does not prove the killer sat there."},
+ {keys:["what is the second clue","what is lead 2","what is the mark","what does the mark mean","what initials"],minLead:1,text:"Lead 2 concerns a damaged handwritten mark recovered during the investigation. The original report called it a J, but the mark is incomplete. Theo's working possibilities are T, H, J, or I."},
+ {keys:["what is the third clue","what is lead 3","what is the gravy","what meal","what is ck","what does ck mean"],minLead:2,text:"Lead 3 concerns a dried residue identified by catering as the gravy served with the chicken entrée. The relevant ledger field is Meal, where Ck means Chicken. It does not by itself prove who ate it."},
+ {keys:["what is the fourth clue","what is lead 4","what is the pink badge","what does pink mean","what side is pink"],minLead:3,text:"Lead 4 concerns a damaged guest badge. In the wedding's identification system, pink means the bride's side. The relevant ledger field is Side = Br."},
+ {keys:["what is the fifth clue","what is lead 5","what is the rsvp clue","what is late confirmation","what does e mean","what does l mean","what does t mean"],minLead:4,text:"Lead 5 uses the final seating revision, which incorporated the late-confirmation list. For this clue, 'not confirmed by the original deadline' means RSVP status E or L, while T is excluded. E means Early, T means On time, and L means Late."},
+ {keys:["what is the sixth clue","what is lead 6","what is the gift clue","what does $$ mean","what is the gift range","how much was the gift"],minLead:5,text:"Lead 6 uses an unidentified wedding gift whose approximate value falls between $50 and $150. The ledger code for that bracket is $$."},
+ {keys:["what is the seventh clue","what is lead 7","what is the torn marker","what number is on the marker","what table is on the marker"],minLead:6,text:"Lead 7 uses a torn seating marker. The seat number is destroyed, but Table 49 remains readable. The final filter is Table 49, not Seat 8."},
+ {keys:["who is ella","who's ella","who is ella taylor","tell me about ella"],minProfile:1,text:"Ella Taylor is one of the people tested against the original suspect profile. She matches three of its four guest characteristics: bride's side, odd-numbered table, and confirmed after the RSVP deadline. Her first name falls outside the I–Q range. The Legal Team later clears her."},
+ {keys:["who is owen","who's owen","who is owen hawthorne","tell me about owen"],minProfile:3,text:"Owen Hawthorne is another person tested against the original suspect profile. He fits the four guest characteristics: first name I–Q, bride's side, odd-numbered table, and confirmed after the RSVP deadline. The Legal Team later clears him."},
+ {keys:["what is the suspect profile","what are the four characteristics","what profile are we using"],minProfile:0,text:"The original detective's working guest profile has four characteristics: first name I–Q, bride's side, odd-numbered table, and confirmed after the RSVP deadline. It is a working profile for guests, not a complete definition of the killer."},
+ {keys:["who is iris","who's iris","tell me about iris","what is iris","who is iris smith","iris"],minIris:true,text:"Iris Smith is the person identified by the ledger investigation: Table 49, Seat 8. She was part of the wedding management team in event design and logistics rather than an ordinary guest, so the late-confirmation guest criterion does not apply to her."},
+ {keys:["why iris","why is iris a suspect","what is iris motive","why would iris kill margery"],minInterrogation:true,text:"Iris had a long-running professional conflict with Margery. Margery repeatedly relied on Iris's event design and logistics work while excluding her from important meetings and client interactions and taking credit for Iris's work. Margery dismissed Iris's complaints as 'how the industry works' and threatened to stop recommending her."},
+ {keys:["what happened to iris","what did iris do","what happened in the cellar with iris","did iris push margery","why didn't iris call for help"],minInterrogation:true,text:"Iris confronted Margery in the cellar. The confrontation became physical. Margery grabbed Iris, Iris pushed her, and Margery fell backward down the cellar stairs. Margery was still alive after the fall. Iris could have called for help but chose not to, then returned to the reception without telling anyone."},
+ {keys:["who killed margery","who is the killer","who killed","is iris the killer","did iris kill"],minIris:true,text:"Iris Smith is the person identified by the ledger investigation, Table 49, Seat 8. I want the Legal Team's interrogation before we close the case."},
+ {keys:["who killed margery","who is the killer","who killed","is iris the killer","did iris kill"],minFinal:true,text:"The case is closed. Iris Smith has been arrested for Margery's death."},
+ {keys:["why was jasmine innocent","why didn't jasmine kill margery","did jasmine kill margery"],minLead:7,text:"The ledger investigation identifies Iris Smith rather than Jasmine. The later investigation establishes that Jasmine argued with Margery but did not follow her to the cellar. Jasmine's later lie was about protecting her marriage, not admitting to the killing."}
+];
+
+function knowledgeUnlocked(k){
+ if(k.minFinal)return !!S.final;
+ if(k.minInterrogation)return !!S.facts.interrogationSent;
+ if(k.minIris)return !!S.iris;
+ if(k.minProfile!==undefined)return S.profileStage>=k.minProfile;
+ return S.lead>=(k.minLead||0);
+}
 function answerCaseQuestion(n){
- if(has(n,["who is iris","who's iris","tell me about iris","what is iris","iris smith"])){
-  if(!S.iris){
-   add("theo","I don't have Iris Smith established in the working evidence yet. I'm not going to speculate about someone we haven't identified through the investigation. Let's follow the evidence and see where the ledger takes us.");
-  }else if(!S.facts.interrogationSent){
-   add("theo","Iris Smith is the person who remains after the ledger investigation: Table 49, Seat 8. That's all we've established so far. I want the Legal Team to interrogate her before we draw conclusions about what happened between her and Margery.");
-  }else{
-   add("theo","Iris Smith was part of the wedding management team, working in event design and logistics. She had a long-running professional conflict with Margery, who repeatedly relied on Iris's work while excluding her from meetings and taking credit for it. The Legal Team's interrogation established what happened in the cellar and why Iris left without calling for help.");
-  }
-  return true;
+ var matches=[];
+ for(var i=0;i<CASE_KNOWLEDGE.length;i++){
+  var k=CASE_KNOWLEDGE[i];
+  if(has(n,k.keys))matches.push(k);
  }
- if(has(n,["who is jasmine","who's jasmine","who jasmine","who is jamine","who jamine","tell me about jasmine","tell me about jamine","what is jasmine","what is jamine","jasmine","jamine"])){
-  add("theo","Jasmine Rivers is the bride. She was arrested after the original investigation connected her to her argument with Margery, the money dispute over Margery's knowledge of Jasmine's secret marriage to Ethan Mercer, and Jasmine's later lie about the argument. Those facts are already part of the case record. What we still need to establish is what happened after Margery left the reception.");
-  return true;
+ if(!matches.length)return false;
+ var unlocked=null;
+ for(var j=0;j<matches.length;j++){
+  if(knowledgeUnlocked(matches[j])){unlocked=matches[j];break}
  }
- if(has(n,["why did jasmine get arrested","why was jasmine arrested","why jasmine arrested","what got jasmine arrested","what did jasmine do"])){
-  add("theo","The original case against Jasmine centered on three things: her argument with Margery around 8:05 PM, Margery's demand for money after discovering Jasmine's secret marriage to Ethan Mercer, and Jasmine's lie about the argument afterward. Investigators treated those facts as evidence that Jasmine had a motive and was hiding something. The ledger and the cellar evidence are what we're testing now.");
-  return true;
+ if(unlocked){
+  add("theo",unlocked.text);
+ }else{
+  add("theo","I don't have enough established evidence to answer that yet. Keep working through the investigation. I'll give you what I can confirm as we unlock it.");
  }
- if(has(n,["who is margery","who's margery","who margery","who is magery","who magery","tell me about margery"])){
-  add("theo","Margery Voss was the wedding coordinator at Alder Hollow Estate. She was found at the bottom of the cellar stairs after leaving the reception to get another case of champagne.");
-  return true;
- }
- if(has(n,["who is ella","who's ella","who is ella taylor","tell me about ella"])){
-  add("theo","Ella Taylor is one of the people we're testing against the original suspect profile. I don't want to draw conclusions about her until the Legal Team interview gives us something concrete.");
-  return true;
- }
- if(has(n,["who is owen","who's owen","who is owen hawthorne","tell me about owen"])){
-  add("theo","Owen Hawthorne is another person we're testing against the original suspect profile. His role in the investigation will be clearer once we test his account through the Legal Team.");
-  return true;
- }
- if(has(n,["who is ethan","who's ethan","tell me about ethan"])){
-  add("theo","Ethan Mercer is the groom. Jasmine and Ethan had secretly married about six weeks before the public wedding. Margery discovered the marriage and used it to pressure Jasmine for money.");
-  return true;
- }
- if(has(n,["what happened in the cellar","what happened to margery","how did margery die","where was margery found"])){
-  if(!S.iris){
-   add("theo","Margery was found at the bottom of the cellar stairs after she left the reception to get another case of champagne. We don't yet know who followed her or what happened there. That's one of the things we're investigating.");
-  }else if(!S.facts.interrogationSent){
-   add("theo","We know Margery was found at the bottom of the cellar stairs. We've now identified Iris Smith as the person who remains in the ledger investigation, but I want the Legal Team to interrogate her before we establish what happened in the cellar.");
-  }else{
-   add("theo","The Legal Team established that Margery confronted Iris in the cellar. Their confrontation became physical, Iris pushed Margery, and Margery fell down the stairs. Margery was still alive afterward, and Iris left without calling for help.");
-  }
-  return true;
- }
- if(has(n,["why is jasmine a suspect","why jasmine suspect","what evidence against jasmine"])){
-  add("theo","Jasmine became the main suspect because of her argument with Margery, the money dispute over Margery's knowledge of Jasmine's secret marriage, and Jasmine's lie to police afterward. Those facts explain the original arrest, but they don't by themselves establish what happened in the cellar.");
-  return true;
- }
- if(has(n,["who killed margery","who is the killer","who killed","is iris the killer","did iris kill"])){
-  if(S.final){
-   add("theo","The case is closed. Iris Smith has been arrested for Margery's death.");
-  }else if(S.iris){
-   add("theo","Iris Smith is the person identified by the ledger investigation, Table 49, Seat 8. I still want the Legal Team's interrogation before we close the case.");
-  }else{
-   add("theo","We haven't identified the person responsible yet. I'm not going to name someone before the evidence gets us there.");
-  }
-  return true;
- }
- if(has(n,["what is the case about","what are we investigating","what are we looking for","what are we trying to find"])){
-  add("theo","We're testing the original case against Jasmine. I have parts of the police evidence, while you have the complete wedding ledger. The goal is to determine who could actually have been connected to Margery's movements and the cellar.");
-  return true;
- }
- return false;
-}function route(raw){
+ return true;
+}
+
+function route(raw){
  var n=norm(raw);
  if(S.final){add("theo","CASE 0147 is closed. The investigation record is complete.");return}
  if(answerCaseQuestion(n))return;
