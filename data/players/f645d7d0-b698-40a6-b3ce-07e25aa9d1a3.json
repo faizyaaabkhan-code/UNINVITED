@@ -40,6 +40,10 @@
       {
         "w": "player",
         "t": "why did she get arrest?"
+      },
+      {
+        "w": "theo",
+        "t": "Check the evidence against the ledger again. Tell me what you find."
       }
     ],
     "docs": [],
@@ -53,5 +57,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T09:54:51.572Z"
+  "updatedAt": "2026-09-29T09:54:53.487Z"
 }
