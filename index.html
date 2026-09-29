@@ -111,7 +111,7 @@ function authTab(t){window.AUTH_TAB=t;renderAuth()}
 function authMessage(msg){var e=document.getElementById("authError");if(e){e.textContent=msg;e.style.display="block"}}
 function showAssignedCode(player){
  var code=player&&player.caseCode?player.caseCode:"";
- document.getElementById("app").innerHTML='<div class="auth-shell"><div class="auth-card"><div class="auth-success">ACCOUNT CREATED</div><h2 class="auth-title">Your case has been assigned</h2><p class="auth-copy">Your UNINVITED investigation has been created. This unique case code belongs to you.</p><div class="case-code-display">'+esc(code)+'</div><p class="auth-copy"><strong>Save this code.</strong> You can use it to return to your investigation whenever you come back.</p><div class="auth-actions"><button class="btn primary" onclick="S=structuredClone(initial);render()">ENTER CASE ROOM</button></div></div></div>';
+ document.getElementById("app").innerHTML='<div class="auth-shell"><div class="auth-card"><div class="auth-success">CASE SAVED</div><h2 class="auth-title">Your case has been assigned</h2><p class="auth-copy">Your current investigation is now linked to your account.</p><div class="case-code-display">'+esc(code)+'</div><p class="auth-copy"><strong>Save this code.</strong> It identifies this investigation if you need to return by code.</p><div class="auth-actions"><button class="btn primary" onclick="render()">ENTER CASE ROOM</button></div></div></div>';
 }
 function renderAuth(){
  var t=window.AUTH_TAB||"create";
@@ -349,10 +349,10 @@ function route(raw){
   return add("theo","Iris has been identified. The next step is to email the Legal Team and ask them to interrogate her.");
  }
  if(S.lead===3&&S.profileStage===0){
-  if(has(n,["ella","taylor"])){S.profileStage=1;S.pendingAccusation="Ella Taylor";task("Send an accusation against Ella Taylor to the Legal Team.");save();return}
+  if(has(n,["ella","taylor"])){S.profileStage=1;S.pendingAccusation="Ella Taylor";task("Send Ella Taylor to the Legal Team for interview.");save();return}
  }
  if(S.lead===4&&S.profileStage===2){
-  if(has(n,["owen","hawthorne"])){S.profileStage=3;S.pendingAccusation="Owen Hawthorne";task("Send an accusation against Owen Hawthorne to the Legal Team.");save();return}
+  if(has(n,["owen","hawthorne"])){S.profileStage=3;S.pendingAccusation="Owen Hawthorne";task("Send Owen Hawthorne to the Legal Team for interview.");save();return}
  }
  return leadRoute(n);
 }
@@ -390,7 +390,7 @@ function leadRoute(n){
   save();
  }
 }
-async function resetCase(){if(!confirm("Start this investigation over? Your current conversation and progress for this case will be erased."))return;window.__typing=false;clearTimeout(window.__saveTimer);S=structuredClone(initial);localStorage.setItem(KEY,JSON.stringify(S));render();var auth=getAuth();if(auth&&auth.token){try{await api("/api/progress",{method:"PUT",body:JSON.stringify({progress:S})});}catch(e){alert("The case was reset on this device, but the server could not be updated. Please stay signed in and try START OVER again.");}}}
+async function resetCase(){if(!confirm("Start this investigation over? Your current conversation and progress for this case will be erased."))return;window.__typing=false;clearTimeout(window.__saveTimer);S=structuredClone(initial);localStorage.setItem(KEY,JSON.stringify(S));window.__saveState=getAuth()?"saving":"local";render();save();}
 window.addEventListener("beforeunload",function(e){if(GUEST_ACTIVE&&!S.final){e.preventDefault();e.returnValue="Your investigation is saved on this device. Create an account if you want to keep it beyond this browser.";}});
 render();
 </script></body></html>
