@@ -236,6 +236,16 @@ function sendInterrogationEmail(){
  render();
 }
 function answerCaseQuestion(n){
+ if(has(n,["who is iris","who's iris","tell me about iris","what is iris","iris smith"])){
+  if(!S.iris){
+   add("theo","I don't have Iris Smith established in the working evidence yet. I'm not going to speculate about someone we haven't identified through the investigation. Let's follow the evidence and see where the ledger takes us.");
+  }else if(!S.facts.interrogationSent){
+   add("theo","Iris Smith is the person who remains after the ledger investigation: Table 49, Seat 8. That's all we've established so far. I want the Legal Team to interrogate her before we draw conclusions about what happened between her and Margery.");
+  }else{
+   add("theo","Iris Smith was part of the wedding management team, working in event design and logistics. She had a long-running professional conflict with Margery, who repeatedly relied on Iris's work while excluding her from meetings and taking credit for it. The Legal Team's interrogation established what happened in the cellar and why Iris left without calling for help.");
+  }
+  return true;
+ }
  if(has(n,["who is jasmine","who's jasmine","tell me about jasmine","what is jasmine"])){
   add("theo","Jasmine Rivers is the bride. She was arrested after investigators connected her to the argument with Margery, the money dispute over Margery's knowledge of Jasmine's secret marriage to Ethan Mercer, and Jasmine's later lie about the argument. The original case treated those facts as strong evidence against her. We still need to test what actually happened after Margery left the reception.");
   return true;
@@ -252,16 +262,28 @@ function answerCaseQuestion(n){
   add("theo","Ethan Mercer is the groom. Jasmine and Ethan had secretly married about six weeks before the public wedding. Margery discovered the marriage and used it to pressure Jasmine for money.");
   return true;
  }
- if(has(n,["who is iris","who's iris","tell me about iris"])){
-  add("theo","Iris Smith worked in event design and logistics. She had a long-running professional conflict with Margery, who repeatedly relied on Iris's work while excluding her from meetings and taking credit for it. We need the Legal Team's interrogation before closing the case.");
-  return true;
- }
  if(has(n,["what happened in the cellar","what happened to margery","how did margery die","where was margery found"])){
-  add("theo","Margery was found at the bottom of the cellar stairs. The investigation established that she had gone to the cellar after leaving the reception. The question we're working through is who followed her and what happened there.");
+  if(!S.iris){
+   add("theo","Margery was found at the bottom of the cellar stairs after she left the reception to get another case of champagne. We don't yet know who followed her or what happened there. That's one of the things we're investigating.");
+  }else if(!S.facts.interrogationSent){
+   add("theo","We know Margery was found at the bottom of the cellar stairs. We've now identified Iris Smith as the person who remains in the ledger investigation, but I want the Legal Team to interrogate her before we establish what happened in the cellar.");
+  }else{
+   add("theo","The Legal Team established that Margery confronted Iris in the cellar. Their confrontation became physical, Iris pushed Margery, and Margery fell down the stairs. Margery was still alive afterward, and Iris left without calling for help.");
+  }
   return true;
  }
  if(has(n,["why is jasmine a suspect","why jasmine suspect","what evidence against jasmine"])){
   add("theo","Jasmine became the main suspect because of her argument with Margery, the money dispute over Margery's knowledge of Jasmine's secret marriage, and Jasmine's lie to police afterward. Those facts explain the original arrest, but they don't by themselves establish what happened in the cellar.");
+  return true;
+ }
+ if(has(n,["who killed margery","who is the killer","who killed","is iris the killer","did iris kill"])){
+  if(S.final){
+   add("theo","The case is closed. Iris Smith has been arrested for Margery's death.");
+  }else if(S.iris){
+   add("theo","Iris Smith is the person identified by the ledger investigation, Table 49, Seat 8. I still want the Legal Team's interrogation before we close the case.");
+  }else{
+   add("theo","We haven't identified the person responsible yet. I'm not going to name someone before the evidence gets us there.");
+  }
   return true;
  }
  if(has(n,["what is the case about","what are we investigating","what are we looking for","what are we trying to find"])){
@@ -269,8 +291,7 @@ function answerCaseQuestion(n){
   return true;
  }
  return false;
-}
-function route(raw){
+}function route(raw){
  var n=norm(raw);
  if(S.final){add("theo","CASE 0147 is closed. The investigation record is complete.");return}
  if(S.profileStage===1){
