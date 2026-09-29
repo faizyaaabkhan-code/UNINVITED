@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 5,
+    "lead": 6,
     "profileStage": 4,
     "pendingAccusation": "",
     "iris": false,
@@ -132,6 +132,10 @@
       {
         "w": "theo",
         "t": "Eleven.\n\nI found another piece of the evidence that may help.\n\nAn unidentified wedding gift was recorded in the inventory. We never established who sent it, but the inventory gives us an approximate value.\n\nIt falls somewhere between $50 and $150.\n\nCheck that value range against the eleven remaining records.\n\nWhat count do you get?"
+      },
+      {
+        "w": "player",
+        "t": "2"
       }
     ],
     "docs": [
@@ -146,7 +150,10 @@
         "body": "<p>We interviewed Owen Hawthorne.</p><p>Owen denied killing Margery.</p><p>He initially said he had remained near the reception area.</p><p>During the interview, however, he remembered seeing someone moving away from the reception around the time Margery left.</p><p>He could not identify the person.</p><p>What he remembers is that the person's name appeared on the late-confirmation list.</p><p>Owen has been cleared as the person responsible for Margery's death.</p>"
       }
     ],
-    "facts": {},
+    "facts": {
+      "identified": false,
+      "interrogationSent": false
+    },
     "task": "Check the remaining records against the late-confirmation initials E or L. What count do you get?",
     "final": false,
     "hints": {
@@ -158,5 +165,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T10:39:32.562Z"
+  "updatedAt": "2026-09-29T11:08:46.169Z"
 }
