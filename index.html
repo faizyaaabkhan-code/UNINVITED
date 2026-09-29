@@ -118,7 +118,7 @@ function useHint(){
  save();
  playMessageSound();
  render();
- var chat=document.getElementById("chat");if(chat)chat.scrollTop=chat.scrollHeight;
+ scrollChatToBottom();
 }
 function playMessageSound(){
  try{
@@ -166,7 +166,7 @@ function status(){
  '<div class="statusbox"><b>Case</b><span>'+(S.final?"✓ Closed":"○ Open")+'</span></div>'+
  '</div><div style="margin-top:18px"><button class="btn" onclick="resetCase()">Reset case</button></div></div>';
 }
-function tab(t){S.tab=t;if(S.notice&&S.notice[t]!==undefined)S.notice[t]=false;save();render();var chat=document.getElementById("chat");if(chat)requestAnimationFrame(function(){chat.scrollTop=chat.scrollHeight})}
+function tab(t){S.tab=t;if(S.notice&&S.notice[t]!==undefined)S.notice[t]=false;save();render();scrollChatToBottom()}
 async function send(){
  if(window.__typing)return;
  var el=document.getElementById("input");if(!el||!el.value.trim())return;
@@ -184,10 +184,17 @@ async function send(){
   var delay=Math.max(900,Math.min(5200,Math.round(replies[i].t.length*34)));
   await new Promise(function(resolve){setTimeout(resolve,delay)});
   S.messages.push(replies[i]);save();render();playMessageSound();
-  var liveChat=document.getElementById("chat");if(liveChat)liveChat.scrollTop=liveChat.scrollHeight;
+  scrollChatToBottom();
  }
  window.__typing=false;render();
- var chat=document.getElementById("chat");if(chat)chat.scrollTop=chat.scrollHeight;
+ scrollChatToBottom();
+}
+function scrollChatToBottom(){
+ var chat=document.getElementById("chat");
+ if(!chat)return;
+ var go=function(){chat.scrollTop=chat.scrollHeight;};
+ go();
+ requestAnimationFrame(function(){go();requestAnimationFrame(go);});
 }
 function legalSend(){return}
 function legalSend(){return}
@@ -228,6 +235,41 @@ function sendInterrogationEmail(){
  save();
  render();
 }
+function answerCaseQuestion(n){
+ if(has(n,["who is jasmine","who's jasmine","tell me about jasmine","what is jasmine"])){
+  add("theo","Jasmine Rivers is the bride. She was arrested after investigators connected her to the argument with Margery, the money dispute over Margery's knowledge of Jasmine's secret marriage to Ethan Mercer, and Jasmine's later lie about the argument. The original case treated those facts as strong evidence against her. We still need to test what actually happened after Margery left the reception.");
+  return true;
+ }
+ if(has(n,["why did jasmine get arrested","why was jasmine arrested","why jasmine arrested","what got jasmine arrested","what did jasmine do"])){
+  add("theo","The original case against Jasmine centered on three things: her argument with Margery around 8:05 PM, Margery's demand for money after discovering Jasmine's secret marriage to Ethan Mercer, and Jasmine's lie about the argument afterward. Investigators treated those facts as evidence that Jasmine had a motive and was hiding something. The ledger and the cellar evidence are what we're testing now.");
+  return true;
+ }
+ if(has(n,["who is margery","who's margery","tell me about margery"])){
+  add("theo","Margery Voss was the wedding coordinator at Alder Hollow Estate. She was found at the bottom of the cellar stairs after leaving the reception to get another case of champagne.");
+  return true;
+ }
+ if(has(n,["who is ethan","who's ethan","tell me about ethan"])){
+  add("theo","Ethan Mercer is the groom. Jasmine and Ethan had secretly married about six weeks before the public wedding. Margery discovered the marriage and used it to pressure Jasmine for money.");
+  return true;
+ }
+ if(has(n,["who is iris","who's iris","tell me about iris"])){
+  add("theo","Iris Smith worked in event design and logistics. She had a long-running professional conflict with Margery, who repeatedly relied on Iris's work while excluding her from meetings and taking credit for it. We need the Legal Team's interrogation before closing the case.");
+  return true;
+ }
+ if(has(n,["what happened in the cellar","what happened to margery","how did margery die","where was margery found"])){
+  add("theo","Margery was found at the bottom of the cellar stairs. The investigation established that she had gone to the cellar after leaving the reception. The question we're working through is who followed her and what happened there.");
+  return true;
+ }
+ if(has(n,["why is jasmine a suspect","why jasmine suspect","what evidence against jasmine"])){
+  add("theo","Jasmine became the main suspect because of her argument with Margery, the money dispute over Margery's knowledge of Jasmine's secret marriage, and Jasmine's lie to police afterward. Those facts explain the original arrest, but they don't by themselves establish what happened in the cellar.");
+  return true;
+ }
+ if(has(n,["what is the case about","what are we investigating","what are we looking for","what are we trying to find"])){
+  add("theo","We're testing the original case against Jasmine. I have parts of the police evidence, while you have the complete wedding ledger. The goal is to determine who could actually have been connected to Margery's movements and the cellar.");
+  return true;
+ }
+ return false;
+}
 function route(raw){
  var n=norm(raw);
  if(S.final){add("theo","CASE 0147 is closed. The investigation record is complete.");return}
@@ -248,6 +290,7 @@ function route(raw){
   }
   return add("theo","Iris has been identified. The next step is to email the Legal Team and ask them to interrogate her.");
  }
+ if(answerCaseQuestion(n))return;
  if(S.lead===3&&S.profileStage===0){
   if(has(n,["ella","taylor"])){S.profileStage=1;S.pendingAccusation="Ella Taylor";task("Send an accusation against Ella Taylor to the Legal Team.");save();return}
  }
