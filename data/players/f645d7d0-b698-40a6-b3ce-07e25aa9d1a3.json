@@ -48,18 +48,24 @@
       {
         "w": "theo",
         "t": "Check the evidence against the ledger again. Tell me what you find."
+      },
+      {
+        "w": "theo",
+        "t": "Hint — Use the first initial of the guest’s first name. Keep T, H, J, and I."
       }
     ],
     "docs": [],
     "facts": {},
     "task": "",
     "final": false,
-    "hints": {},
-    "hintAvailable": true,
+    "hints": {
+      "2": true
+    },
+    "hintAvailable": false,
     "notice": {
       "theo": false,
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T10:14:03.612Z"
+  "updatedAt": "2026-09-29T10:14:05.866Z"
 }
