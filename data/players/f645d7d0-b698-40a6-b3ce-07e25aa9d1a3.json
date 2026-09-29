@@ -36,18 +36,24 @@
       {
         "w": "theo",
         "t": "Check the evidence against the ledger again. Tell me what you find."
+      },
+      {
+        "w": "theo",
+        "t": "Hint — Count every record whose table number is 46, 47, 48, 49, or 50."
       }
     ],
     "docs": [],
     "facts": {},
     "task": "",
     "final": false,
-    "hints": {},
-    "hintAvailable": true,
+    "hints": {
+      "1": true
+    },
+    "hintAvailable": false,
     "notice": {
       "theo": false,
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T10:06:39.876Z"
+  "updatedAt": "2026-09-29T10:06:45.145Z"
 }
