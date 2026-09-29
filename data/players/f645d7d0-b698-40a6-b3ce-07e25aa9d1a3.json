@@ -20,6 +20,10 @@
       {
         "w": "player",
         "t": "hi"
+      },
+      {
+        "w": "theo",
+        "t": "I'm Detective Theo Marsh. I have parts of the investigation file. What I don't have is the complete wedding ledger. You do.\n\nI've been going back through the evidence the original investigation used against Jasmine.\n\nThere's something bothering me about it.\n\nThe case against her is built around what she did before Margery died.\n\nI'm interested in what happened after Margery left the reception.\n\nLet's start with the evidence I can recover."
       }
     ],
     "docs": [],
@@ -33,5 +37,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T10:13:07.603Z"
+  "updatedAt": "2026-09-29T10:13:12.830Z"
 }
