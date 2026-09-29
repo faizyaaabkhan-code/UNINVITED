@@ -64,6 +64,10 @@
       {
         "w": "theo",
         "t": "I also had the lab re-check something recovered from the reception.\n\nThey identified chicken gravy.\n\nIt may give us another way to narrow the same group.\n\nCheck the meal field.\n\nWhat count do you get?"
+      },
+      {
+        "w": "player",
+        "t": "who jasmine?"
       }
     ],
     "docs": [],
@@ -73,11 +77,11 @@
     "hints": {
       "2": true
     },
-    "hintAvailable": false,
+    "hintAvailable": true,
     "notice": {
       "theo": false,
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T10:14:17.563Z"
+  "updatedAt": "2026-09-29T10:14:26.309Z"
 }
