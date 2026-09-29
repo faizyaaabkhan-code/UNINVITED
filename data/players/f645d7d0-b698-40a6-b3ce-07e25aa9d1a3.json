@@ -156,6 +156,10 @@
       {
         "w": "player",
         "t": "who is ella"
+      },
+      {
+        "w": "theo",
+        "t": "Ella Taylor is one of the people tested against the original suspect profile. She matches three of its four guest characteristics: bride's side, odd-numbered table, and confirmed after the RSVP deadline. Her first name falls outside the I–Q range. The Legal Team later clears her."
       }
     ],
     "docs": [
@@ -185,5 +189,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T11:10:12.751Z"
+  "updatedAt": "2026-09-29T11:10:17.468Z"
 }
