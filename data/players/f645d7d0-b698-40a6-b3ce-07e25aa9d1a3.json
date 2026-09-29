@@ -64,6 +64,10 @@
       {
         "w": "player",
         "t": "who is iris"
+      },
+      {
+        "w": "theo",
+        "t": "I don't have Iris Smith established in the working evidence yet. I'm not going to speculate about someone we haven't identified through the investigation. Let's follow the evidence and see where the ledger takes us."
       }
     ],
     "docs": [],
@@ -79,5 +83,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T10:37:31.311Z"
+  "updatedAt": "2026-09-29T10:37:36.713Z"
 }
