@@ -34,6 +34,7 @@ function normalizeState(input){
  s.hints=s.hints&&typeof s.hints==="object"?s.hints:{};
  s.profileStage=Number.isFinite(Number(s.profileStage))?Number(s.profileStage):0;
  s.pendingAccusation=s.pendingAccusation||"";
+ if(s.tab==="status")s.tab="theo";
  var msgText=(s.messages||[]).map(function(m){return String(m&&m.t||"")}).join(" ").toLowerCase();
  if(s.profileStage===0&&msgText.indexOf("ella taylor")>=0){s.profileStage=1;s.pendingAccusation="Ella Taylor";}
  if(s.profileStage===2&&msgText.indexOf("owen hawthorne")>=0&&msgText.indexOf("send an accusation against owen")>=0){s.profileStage=3;s.pendingAccusation="Owen Hawthorne";}
