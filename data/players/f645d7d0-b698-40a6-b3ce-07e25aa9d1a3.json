@@ -12,8 +12,8 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 2,
-    "profileStage": 0,
+    "lead": 3,
+    "profileStage": 1,
     "pendingAccusation": "",
     "iris": false,
     "messages": [
@@ -60,18 +60,22 @@
       {
         "w": "theo",
         "t": "I also had the lab re-check something recovered from the reception.\n\nThey identified chicken gravy.\n\nIt may give us another way to narrow the same group.\n\nCheck the meal field.\n\nWhat count do you get?"
+      },
+      {
+        "w": "player",
+        "t": "52"
       }
     ],
     "docs": [],
     "facts": {},
-    "task": "",
+    "task": "Send an accusation against Ella Taylor to the Legal Team.",
     "final": false,
     "hints": {},
     "hintAvailable": false,
     "notice": {
       "theo": false,
-      "legal": false
+      "legal": true
     }
   },
-  "updatedAt": "2026-09-29T10:32:26.748Z"
+  "updatedAt": "2026-09-29T10:32:32.498Z"
 }
