@@ -64,6 +64,14 @@
       {
         "w": "player",
         "t": "52"
+      },
+      {
+        "w": "theo",
+        "t": "52."
+      },
+      {
+        "w": "theo",
+        "t": "There's another part of the original investigation I want you to see before we continue with the ledger.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us somewhere to start.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nRSVP: Confirmed after the RSVP deadline\n\nElla Taylor matches three of the four characteristics: bride’s side, odd-numbered table, and confirmed after the RSVP deadline. Her first name falls outside the I–Q range.\n\nThere is one person I want to test first. Ella Taylor is one of the names I want to examine."
       }
     ],
     "docs": [],
@@ -75,5 +83,5 @@
       "3": true
     }
   },
-  "updatedAt": "2026-09-29T09:27:39.504Z"
+  "updatedAt": "2026-09-29T09:27:40.635Z"
 }
