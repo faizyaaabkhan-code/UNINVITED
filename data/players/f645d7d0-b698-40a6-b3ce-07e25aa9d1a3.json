@@ -60,6 +60,10 @@
       {
         "w": "theo",
         "t": "Jasmine Rivers is the bride. She was arrested after the original investigation connected her to her argument with Margery, the money dispute over Margery's knowledge of Jasmine's secret marriage to Ethan Mercer, and Jasmine's later lie about the argument. Those facts are already part of the case record. What we still need to establish is what happened after Margery left the reception."
+      },
+      {
+        "w": "player",
+        "t": "who is iris"
       }
     ],
     "docs": [],
@@ -75,5 +79,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T10:37:17.004Z"
+  "updatedAt": "2026-09-29T10:37:31.311Z"
 }
