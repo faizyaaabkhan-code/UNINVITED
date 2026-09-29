@@ -100,6 +100,14 @@
       {
         "w": "player",
         "t": "2"
+      },
+      {
+        "w": "theo",
+        "t": "2."
+      },
+      {
+        "w": "theo",
+        "t": "Only two people still fit everything we've found.\n\nI went back to the evidence recovered from the reception.\n\nThere's a torn seating marker. Most of it is missing, but one detail is still readable:\n\nTable 49.\n\nI don't have the seat number.\n\nCheck the two remaining records against Table 49.\n\nGive me the full name, table number, and seat number of the person who remains."
       }
     ],
     "docs": [
@@ -124,5 +132,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T11:14:41.132Z"
+  "updatedAt": "2026-09-29T11:14:47.245Z"
 }
