@@ -152,6 +152,10 @@
       {
         "w": "theo",
         "t": "I don't have enough established evidence to answer that yet. Keep working through the investigation. I'll give you what I can confirm as we unlock it."
+      },
+      {
+        "w": "player",
+        "t": "who is ella"
       }
     ],
     "docs": [
@@ -181,5 +185,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T11:09:10.490Z"
+  "updatedAt": "2026-09-29T11:10:12.751Z"
 }
