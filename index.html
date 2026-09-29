@@ -134,7 +134,7 @@ function playMessageSound(){
 function typingBubble(){return '<div class="msg theo"><div class="bubble typing-bubble"><div class="speaker">Theo Marsh</div><span class="typing-dots"><i></i><i></i><i></i></span><span class="typing-label">Theo is typing…</span></div></div>';}
 function theo(){
  var chat=S.messages.map(function(m){return '<div class="msg '+m.w+'"><div class="bubble"><div class="speaker">'+(m.w==="theo"?"Theo Marsh":"You")+'</div>'+esc(m.t)+'</div></div>'}).join("");
- var t=S.task?'<div class="task"><strong>Next move</strong>'+esc(S.task)+'</div>':"";
+ var t=(S.task&&!window.__typing)?'<div class="task"><strong>Next move</strong>'+esc(S.task)+'</div>':"";
  var h=(!S.final&&!S.iris&&!window.__typing&&S.lead<7&&S.hintAvailable)?'<div class="hint-row"><button class="btn hint-btn" '+(S.hints[S.lead+1]?"disabled ":"")+'onclick="useHint()">'+(S.hints[S.lead+1]?"HINT USED":"NEED A HINT?")+'</button></div>':"";
  if(window.__typing)chat+=typingBubble();
  return '<div class="panel"><div class="chat" id="chat">'+chat+'</div>'+t+h+'<div class="composer"><input id="input" placeholder="'+(S.final?"Case closed.":"Ask Theo anything about the case…")+'" '+(S.final?"disabled":"")+' onkeydown="if(event.key===\'Enter\')send()"><button class="btn primary" onclick="send()" '+(S.final?"disabled":"")+'>Send</button></div></div>';
