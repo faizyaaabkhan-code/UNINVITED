@@ -72,6 +72,10 @@
       {
         "w": "theo",
         "t": "Check the evidence against the ledger again. Tell me what you find."
+      },
+      {
+        "w": "player",
+        "t": "who is magery?"
       }
     ],
     "docs": [],
@@ -87,5 +91,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T10:14:28.601Z"
+  "updatedAt": "2026-09-29T10:14:44.970Z"
 }
