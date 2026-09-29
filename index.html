@@ -333,7 +333,7 @@ function route(raw){
 function leadRoute(n){
  var L=LEADS[S.lead];
  if(!L)return;
- if(n===L.answer||(L.n===7&&has(n,["iris smith","iris","49"]))){
+ if(n===L.answer||(L.n===7&&has(n,["49"]))){
   S.lead++;
   S.hintAvailable=false;
   if(L.n===3&&S.profileStage===0){
