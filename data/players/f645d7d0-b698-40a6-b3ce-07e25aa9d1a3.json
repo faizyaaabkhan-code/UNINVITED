@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 1,
+    "lead": 2,
     "profileStage": 0,
     "pendingAccusation": "",
     "iris": false,
@@ -76,6 +76,10 @@
       {
         "w": "theo",
         "t": "Check the evidence against the ledger again. Tell me what you find."
+      },
+      {
+        "w": "player",
+        "t": "162"
       }
     ],
     "docs": [],
@@ -85,11 +89,11 @@
     "hints": {
       "1": true
     },
-    "hintAvailable": true,
+    "hintAvailable": false,
     "notice": {
       "theo": false,
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T10:38:04.155Z"
+  "updatedAt": "2026-09-29T10:38:12.689Z"
 }
