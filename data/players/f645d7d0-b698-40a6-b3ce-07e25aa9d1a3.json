@@ -100,6 +100,10 @@
       {
         "w": "theo",
         "t": "11."
+      },
+      {
+        "w": "theo",
+        "t": "Eleven.\n\nI found another piece of the evidence that may help.\n\nAn unidentified wedding gift was recorded in the inventory. We never established who sent it, but the inventory gives us an approximate value.\n\nIt falls somewhere between $50 and $150.\n\nCheck that value range against the eleven remaining records.\n\nWhat count do you get?"
       }
     ],
     "docs": [
@@ -124,5 +128,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T10:34:00.993Z"
+  "updatedAt": "2026-09-29T10:34:06.224Z"
 }
