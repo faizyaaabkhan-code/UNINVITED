@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 1,
+    "lead": 2,
     "profileStage": 0,
     "pendingAccusation": "",
     "iris": false,
@@ -52,6 +52,10 @@
       {
         "w": "theo",
         "t": "Hint — Use the first initial of the guest’s first name. Keep T, H, J, and I."
+      },
+      {
+        "w": "player",
+        "t": "162"
       }
     ],
     "docs": [],
@@ -67,5 +71,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T10:14:05.866Z"
+  "updatedAt": "2026-09-29T10:14:11.551Z"
 }
