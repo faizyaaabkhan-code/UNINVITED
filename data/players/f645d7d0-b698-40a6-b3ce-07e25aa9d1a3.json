@@ -44,6 +44,10 @@
       {
         "w": "player",
         "t": "160"
+      },
+      {
+        "w": "theo",
+        "t": "Check the evidence against the ledger again. Tell me what you find."
       }
     ],
     "docs": [],
@@ -57,5 +61,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T10:14:01.314Z"
+  "updatedAt": "2026-09-29T10:14:03.612Z"
 }
