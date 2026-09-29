@@ -246,8 +246,8 @@ function answerCaseQuestion(n){
   }
   return true;
  }
- if(has(n,["who is jasmine","who's jasmine","who jasmine","tell me about jasmine","what is jasmine","jasmine"])){
-  add("theo","Jasmine Rivers is the bride. She was arrested after investigators connected her to the argument with Margery, the money dispute over Margery's knowledge of Jasmine's secret marriage to Ethan Mercer, and Jasmine's later lie about the argument. The original case treated those facts as strong evidence against her. We still need to test what actually happened after Margery left the reception.");
+ if(has(n,["who is jasmine","who's jasmine","who jasmine","who is jamine","who jamine","tell me about jasmine","tell me about jamine","what is jasmine","what is jamine","jasmine","jamine"])){
+  add("theo","Jasmine Rivers is the bride. She was arrested after the original investigation connected her to her argument with Margery, the money dispute over Margery's knowledge of Jasmine's secret marriage to Ethan Mercer, and Jasmine's later lie about the argument. Those facts are already part of the case record. What we still need to establish is what happened after Margery left the reception.");
   return true;
  }
  if(has(n,["why did jasmine get arrested","why was jasmine arrested","why jasmine arrested","what got jasmine arrested","what did jasmine do"])){
@@ -256,6 +256,14 @@ function answerCaseQuestion(n){
  }
  if(has(n,["who is margery","who's margery","who margery","who is magery","who magery","tell me about margery"])){
   add("theo","Margery Voss was the wedding coordinator at Alder Hollow Estate. She was found at the bottom of the cellar stairs after leaving the reception to get another case of champagne.");
+  return true;
+ }
+ if(has(n,["who is ella","who's ella","who is ella taylor","tell me about ella"])){
+  add("theo","Ella Taylor is one of the people we're testing against the original suspect profile. I don't want to draw conclusions about her until the Legal Team interview gives us something concrete.");
+  return true;
+ }
+ if(has(n,["who is owen","who's owen","who is owen hawthorne","tell me about owen"])){
+  add("theo","Owen Hawthorne is another person we're testing against the original suspect profile. His role in the investigation will be clearer once we test his account through the Legal Team.");
   return true;
  }
  if(has(n,["who is ethan","who's ethan","tell me about ethan"])){
@@ -294,6 +302,7 @@ function answerCaseQuestion(n){
 }function route(raw){
  var n=norm(raw);
  if(S.final){add("theo","CASE 0147 is closed. The investigation record is complete.");return}
+ if(answerCaseQuestion(n))return;
  if(S.profileStage===1){
   if(has(n,["email","legal team","accuse ella","ella taylor","ella"])){task("Send the accusation against Ella Taylor to the Legal Team.");save();return}
   add("theo","I want to test Ella Taylor first. Send the accusation to the Legal Team.");task("Send an accusation against Ella Taylor to the Legal Team.");return;
@@ -302,7 +311,6 @@ function answerCaseQuestion(n){
   if(has(n,["email","legal team","accuse owen","owen hawthorne","owen"])){task("Send the accusation against Owen Hawthorne to the Legal Team.");save();return}
   add("theo","I want to test Owen Hawthorne next. Send the accusation to the Legal Team.");task("Send an accusation against Owen Hawthorne to the Legal Team.");return;
  }
- if(answerCaseQuestion(n))return;
  if(S.iris){
   if(has(n,["email","legal team","interrogate iris","interrogation","send the request","request the interview"])){
    task("Email the Legal Team and request an interrogation of Iris.");save();return;
