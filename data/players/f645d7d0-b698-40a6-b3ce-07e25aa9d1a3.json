@@ -12,8 +12,8 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 3,
-    "profileStage": 2,
+    "lead": 4,
+    "profileStage": 3,
     "pendingAccusation": "",
     "iris": false,
     "messages": [
@@ -76,6 +76,10 @@
       {
         "w": "theo",
         "t": "I got the email from the Legal Team.\n\nElla wasn't our killer. But her statement gives us something we didn't have before.\n\nShe saw the person heading toward the cellar wearing a pink guest badge.\n\nI checked the reception records. The pink badge was assigned to the bride's side.\n\nCheck the remaining records for the bride's side.\n\nWhat count do you get?"
+      },
+      {
+        "w": "player",
+        "t": "22"
       }
     ],
     "docs": [
@@ -86,14 +90,14 @@
       }
     ],
     "facts": {},
-    "task": "Check the remaining records for the bride's side. What count do you get?",
+    "task": "Send an accusation against Owen Hawthorne to the Legal Team.",
     "final": false,
     "hints": {},
     "hintAvailable": false,
     "notice": {
       "theo": false,
-      "legal": false
+      "legal": true
     }
   },
-  "updatedAt": "2026-09-29T10:32:58.343Z"
+  "updatedAt": "2026-09-29T10:33:21.936Z"
 }
