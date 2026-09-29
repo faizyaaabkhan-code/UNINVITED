@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 0,
+    "lead": 1,
     "profileStage": 0,
     "pendingAccusation": "",
     "iris": false,
@@ -32,6 +32,10 @@
       {
         "w": "theo",
         "t": "Hint — Count every record whose table number is 46, 47, 48, 49, or 50."
+      },
+      {
+        "w": "player",
+        "t": "1058"
       }
     ],
     "docs": [],
@@ -42,5 +46,5 @@
       "1": true
     }
   },
-  "updatedAt": "2026-09-29T09:26:26.989Z"
+  "updatedAt": "2026-09-29T09:26:48.728Z"
 }
