@@ -25,14 +25,14 @@ const LEADS=[
  {n:7,answer:"49",prompt:"Only two people still fit everything we've found.\n\nI went back to the evidence recovered from the reception.\n\nThere's a torn seating marker. Most of it is missing, but one detail is still readable:\n\nTable 49.\n\nI don't have the seat number.\n\nCheck the two remaining records against Table 49.\n\nGive me the full name, table number, and seat number of the person who remains.",ok:"Seven pieces of evidence. One person left."}
 ];
 const HINTS={1:["Count every record whose table number is 46, 47, 48, 49, or 50."],2:["Use the first initial of the guest’s first name. Keep T, H, J, and I."],3:["Use the MEAL field. Ck means Chicken."],4:["The pink guest badge points to the bride’s side. Use SIDE = Br."],5:["Use the RSVP status from Theo’s late-confirmation clue. Keep E or L."],6:["Use the GIFT bracket, not an exact price. $$ means $50–150."],7:["The torn marker gives only Table 49. Check the two remaining records and identify the person at that table."]};
-const initial={tab:"theo",lead:0,profileStage:0,pendingAccusation:"",iris:false,messages:[],docs:[],facts:{},task:"",final:false,hints:{},notice:{theo:false,legal:false}};
+const initial={tab:"theo",lead:0,profileStage:0,pendingAccusation:"",iris:false,messages:[],docs:[],facts:{},task:"",final:false,hints:{},hintAvailable:false,notice:{theo:false,legal:false}};
 let S=load();
 function normalizeState(input){
  var s;
  try{s=structuredClone(input||initial)}catch(e){s=structuredClone(initial)}
  s.docs=Array.isArray(s.docs)?s.docs.filter(function(d){return d&&["ella","owen","interrogation"].indexOf(d.id)>=0}):[];
  s.facts=s.facts||{};
- s.hints=s.hints&&typeof s.hints==="object"?s.hints:{};
+ s.hints=s.hints&&typeof s.hints==="object"?s.hints:{};s.hintAvailable=!!s.hintAvailable;
  s.profileStage=Number.isFinite(Number(s.profileStage))?Number(s.profileStage):0;
  s.pendingAccusation=s.pendingAccusation||"";
  s.notice=s.notice&&typeof s.notice==="object"?s.notice:{theo:false,legal:false};
@@ -109,10 +109,11 @@ function render(){
 function journeyBar(){ return ""; }
 function useHint(){
  if(window.__typing)return;
- if(S.final||S.iris||S.profileStage===1||S.profileStage===3)return;
+ if(S.final||S.iris||S.profileStage===1||S.profileStage===3||!S.hintAvailable)return;
  var n=S.lead+1;
  if(S.hints[n])return;
  S.hints[n]=true;
+ S.hintAvailable=false;
  add("theo","Hint — "+HINTS[n][0]);
  save();
  playMessageSound();
@@ -134,7 +135,7 @@ function typingBubble(){return '<div class="msg theo"><div class="bubble typing-
 function theo(){
  var chat=S.messages.map(function(m){return '<div class="msg '+m.w+'"><div class="bubble"><div class="speaker">'+(m.w==="theo"?"Theo Marsh":"You")+'</div>'+esc(m.t)+'</div></div>'}).join("");
  var t=S.task?'<div class="task"><strong>Next move</strong>'+esc(S.task)+'</div>':"";
- var h=(!S.final&&!S.iris&&!window.__typing&&S.lead<7)?'<div class="hint-row"><button class="btn hint-btn" '+(S.hints[S.lead+1]?"disabled ":"")+'onclick="useHint()">'+(S.hints[S.lead+1]?"HINT USED":"NEED A HINT?")+'</button></div>':"";
+ var h=(!S.final&&!S.iris&&!window.__typing&&S.lead<7&&S.hintAvailable)?'<div class="hint-row"><button class="btn hint-btn" '+(S.hints[S.lead+1]?"disabled ":"")+'onclick="useHint()">'+(S.hints[S.lead+1]?"HINT USED":"NEED A HINT?")+'</button></div>':"";
  if(window.__typing)chat+=typingBubble();
  return '<div class="panel"><div class="chat" id="chat">'+chat+'</div>'+t+h+'<div class="composer"><input id="input" placeholder="'+(S.final?"Case closed.":"Ask Theo anything about the case…")+'" '+(S.final?"disabled":"")+' onkeydown="if(event.key===\'Enter\')send()"><button class="btn primary" onclick="send()" '+(S.final?"disabled":"")+'>Send</button></div></div>';
 }
@@ -260,6 +261,7 @@ function leadRoute(n){
  if(!L)return;
  if(n===L.answer||(L.n===7&&has(n,["iris smith","iris","49"]))){
   S.lead++;
+  S.hintAvailable=false;
   if(L.n===3&&S.profileStage===0){
    add("theo",L.ok);
    add("theo","There's another part of the original investigation I want you to see before we continue with the ledger.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us somewhere to start.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nRSVP: Confirmed after the RSVP deadline\n\nElla Taylor matches three of the four characteristics: bride’s side, odd-numbered table, and confirmed after the RSVP deadline. Her first name falls outside the I–Q range.\n\nThere is one person I want to test first. Ella Taylor is one of the names I want to examine.");
@@ -282,7 +284,11 @@ function leadRoute(n){
    task("Email the Legal Team and request an interrogation of Iris.");
   }
   save();
- }else add("theo","Check the evidence against the ledger again. Tell me what you find.");
+ }else {
+  S.hintAvailable=true;
+  add("theo","Check the evidence against the ledger again. Tell me what you find.");
+  save();
+ }
 }
 async function resetCase(){if(!confirm("Start this investigation over? Your current conversation and progress for this case will be erased."))return;window.__typing=false;clearTimeout(window.__saveTimer);S=structuredClone(initial);localStorage.setItem(KEY,JSON.stringify(S));render();var auth=getAuth();if(auth&&auth.token){try{await api("/api/progress",{method:"PUT",body:JSON.stringify({progress:S})});}catch(e){alert("The case was reset on this device, but the server could not be updated. Please stay signed in and try START OVER again.");}}}
 render();
