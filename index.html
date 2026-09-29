@@ -35,7 +35,7 @@ function normalizeState(input){
  s.hints=s.hints&&typeof s.hints==="object"?s.hints:{};s.hintAvailable=!!s.hintAvailable;
  s.profileStage=Number.isFinite(Number(s.profileStage))?Number(s.profileStage):0;
  s.pendingAccusation=s.pendingAccusation||"";
- s.notice=s.notice&&typeof s.notice==="object"?s.notice:{theo:false,legal:false};
+ s.notice=s.notice&&typeof s.notice==="object"?s.notice:{theo:false,legal:false};s.notice.theo=!!s.notice.theo;s.notice.legal=!!s.notice.legal;
  if(s.tab==="status")s.tab="theo";
  var msgText=(s.messages||[]).map(function(m){return String(m&&m.t||"")}).join(" ").toLowerCase();
  if(s.profileStage===0&&msgText.indexOf("ella taylor")>=0){s.profileStage=1;s.pendingAccusation="Ella Taylor";}
@@ -80,7 +80,7 @@ function api(path,options){
  else {options.headers["Content-Type"]="application/json";}
  return fetch(API_BASE+path,options).then(async function(r){var d={};try{d=await r.json()}catch(e){}if(!r.ok)throw new Error(d.error||"Connection error.");return d;});
 }
-function save(){localStorage.setItem(KEY,JSON.stringify(S));var auth=getAuth();if(auth&&auth.token){clearTimeout(window.__saveTimer);window.__saveTimer=setTimeout(function(){api("/api/progress",{method:"PUT",body:JSON.stringify({progress:S})}).catch(function(){});},250);}}
+
 async function signInEmail(){var email=(document.getElementById("authEmail")||{}).value||"",password=(document.getElementById("authPassword")||{}).value||"";if(!email||!email.includes("@")||!password){authMessage("Enter your email and password.");return}try{var d=await api("/api/auth",{method:"POST",body:JSON.stringify({action:"login",email,password})});setAuth({token:d.token,player:d.player});S=normalizeState(d.progress||structuredClone(initial));localStorage.setItem(KEY,JSON.stringify(S));render();}catch(e){authMessage(e.message)}}
 async function signInCode(){var code=((document.getElementById("authCaseCode")||{}).value||"").trim().toUpperCase();if(!code){authMessage("Enter your case code.");return}try{var d=await api("/api/auth",{method:"POST",body:JSON.stringify({action:"codeLogin",caseCode:code})});setAuth({token:d.token,player:d.player});S=normalizeState(d.progress||structuredClone(initial));localStorage.setItem(KEY,JSON.stringify(S));render();}catch(e){authMessage(e.message)}}
 async function createAccount(){var name=(document.getElementById("authName")||{}).value||"",email=(document.getElementById("authEmail")||{}).value||"",password=(document.getElementById("authPassword")||{}).value||"";if(!name||!email.includes("@")||password.length<8){authMessage("Enter your name, a valid email, and a password of at least 8 characters.");return}try{var d=await api("/api/auth",{method:"POST",body:JSON.stringify({action:"create",name,email,password})});setAuth({token:d.token,player:d.player});S=normalizeState(structuredClone(initial));localStorage.setItem(KEY,JSON.stringify(S));showAssignedCode(d.player);}catch(e){authMessage(e.message)}}
@@ -174,6 +174,7 @@ async function send(){
  add("player",q);
  if(before===0){
   add("theo","I'm Detective Theo Marsh. I have parts of the investigation file. What I don't have is the complete wedding ledger. You do.\n\nI've been going back through the evidence the original investigation used against Jasmine.\n\nThere's something bothering me about it.\n\nThe case against her is built around what she did before Margery died.\n\nI'm interested in what happened after Margery left the reception.\n\nLet's start with the evidence I can recover.");
+  answerCaseQuestion(norm(q));
   add("theo",LEADS[0].prompt);
  }else{route(q)}
  var replies=S.messages.splice(before+1);
@@ -250,7 +251,7 @@ const CASE_KNOWLEDGE=[
  {keys:["what is the fifth clue","what is lead 5","what is the rsvp clue","what is late confirmation","what does e mean","what does l mean","what does t mean"],minLead:4,text:"Lead 5 uses the final seating revision, which incorporated the late-confirmation list. For this clue, 'not confirmed by the original deadline' means RSVP status E or L, while T is excluded. E means Early, T means On time, and L means Late."},
  {keys:["what is the sixth clue","what is lead 6","what is the gift clue","what does $$ mean","what is the gift range","how much was the gift"],minLead:5,text:"Lead 6 uses an unidentified wedding gift whose approximate value falls between $50 and $150. The ledger code for that bracket is $$."},
  {keys:["what is the seventh clue","what is lead 7","what is the torn marker","what number is on the marker","what table is on the marker"],minLead:6,text:"Lead 7 uses a torn seating marker. The seat number is destroyed, but Table 49 remains readable. The final filter is Table 49, not Seat 8."},
- {keys:["what is the count","how many","what number did we get","what was the count"],minLead:1,text:"The latest verified count is 1,058 after the Tables 46–50 blind-spot filter. Ask about the next lead only after Theo has unlocked it."},
+
  {keys:["who are the two","what are the final two","who remains","who are the remaining two"],minLead:6,text:"The two remaining records are June Ruiz — Table 47, Seat 3, and Iris Smith — Table 49, Seat 8."},
  {keys:["who is june","who's june","who is june ruiz","tell me about june"],minLead:6,text:"June Ruiz is one of the two records remaining after the gift-value filter. Her record is Table 47, Seat 3. Table 49 is the final filter that eliminates her."},
  {keys:["what is iris row","what are iris records","what is iris table","what is iris seat"],minIris:true,text:"The identified ledger record is Iris Smith — Table 49, Seat 8 — L/M — $ — Br — Ck."},
@@ -276,6 +277,12 @@ function knowledgeUnlocked(k){
  return S.lead>=(k.minLead||0);
 }
 function answerCaseQuestion(n){
+ if(has(n,["what is the count","how many","what number did we get","what was the count"])){
+  var counts=[28412,1058,162,52,22,11,2,1];
+  var idx=Math.max(0,Math.min(7,Number(S.lead)||0));
+  add("theo","The latest verified count is "+counts[idx].toLocaleString()+".");
+  return true;
+ }
  var matches=[];
  for(var i=0;i<CASE_KNOWLEDGE.length;i++){
   var k=CASE_KNOWLEDGE[i];
