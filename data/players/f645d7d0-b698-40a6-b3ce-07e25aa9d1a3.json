@@ -13,7 +13,7 @@
   "progress": {
     "tab": "legal",
     "lead": 4,
-    "profileStage": 3,
+    "profileStage": 4,
     "pendingAccusation": "",
     "iris": false,
     "messages": [
@@ -80,6 +80,10 @@
       {
         "w": "theo",
         "t": "Twenty-two.\n\nThere's another name I want to test against the original profile.\n\nOwen Hawthorne fits the four characteristics:\n\nFirst name I–Q.\nBride's side.\nOdd-numbered table.\nConfirmed after the RSVP deadline.\n\nHis account of the evening also leaves a gap.\n\nSend an accusation against Owen Hawthorne to the Legal Team."
+      },
+      {
+        "w": "theo",
+        "t": "I got the email from the Legal Team.\n\nOwen wasn't our killer either. But his statement gives us another way to test the original profile.\n\nHe remembers the person being connected to the late-confirmation list.\n\nI checked the final seating revision. It includes the guests who confirmed after the RSVP deadline.\n\nCheck the remaining records against those initials: E or L.\n\nWhat count do you get?"
       }
     ],
     "docs": [
@@ -87,17 +91,22 @@
         "id": "ella",
         "title": "ELLA TAYLOR — INTERROGATION REPORT",
         "body": "<p>We interviewed Ella Taylor.</p><p>Ella denied killing Margery.</p><p>During the interview, however, she admitted that she had been near the reception area when Margery left.</p><p>Ella says she saw <strong>another person moving toward the cellar</strong>.</p><p>She couldn't identify the person.</p><p>But she remembers one detail clearly:</p><p><strong>The person was wearing a pink guest badge.</strong></p><p>Ella has been cleared as the person responsible for Margery's death.</p>"
+      },
+      {
+        "id": "owen",
+        "title": "OWEN HAWTHORNE — INTERROGATION REPORT",
+        "body": "<p>We interviewed Owen Hawthorne.</p><p>Owen denied killing Margery.</p><p>He initially said he had remained near the reception area.</p><p>During the interview, however, he remembered seeing someone moving away from the reception around the time Margery left.</p><p>He could not identify the person.</p><p>What he remembers is that the person's name appeared on the late-confirmation list.</p><p>Owen has been cleared as the person responsible for Margery's death.</p>"
       }
     ],
     "facts": {},
-    "task": "Send an accusation against Owen Hawthorne to the Legal Team.",
+    "task": "Check the remaining records against the late-confirmation initials E or L. What count do you get?",
     "final": false,
     "hints": {},
     "hintAvailable": false,
     "notice": {
-      "theo": false,
+      "theo": true,
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T11:14:17.207Z"
+  "updatedAt": "2026-09-29T11:14:18.490Z"
 }
