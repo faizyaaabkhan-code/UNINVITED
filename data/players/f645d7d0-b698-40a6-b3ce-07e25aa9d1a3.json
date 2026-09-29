@@ -12,8 +12,8 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 2,
-    "profileStage": 0,
+    "lead": 3,
+    "profileStage": 1,
     "pendingAccusation": "",
     "iris": false,
     "messages": [
@@ -60,16 +60,20 @@
       {
         "w": "theo",
         "t": "Hint — Use the MEAL field. Ck means Chicken."
+      },
+      {
+        "w": "player",
+        "t": "52"
       }
     ],
     "docs": [],
     "facts": {},
-    "task": "",
+    "task": "Send an accusation against Ella Taylor to the Legal Team.",
     "final": false,
     "hints": {
       "1": true,
       "3": true
     }
   },
-  "updatedAt": "2026-09-29T09:27:32.751Z"
+  "updatedAt": "2026-09-29T09:27:39.504Z"
 }
