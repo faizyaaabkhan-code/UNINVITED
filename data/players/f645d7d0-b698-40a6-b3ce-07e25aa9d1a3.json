@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 4,
+    "lead": 5,
     "profileStage": 4,
     "pendingAccusation": "",
     "iris": false,
@@ -84,6 +84,10 @@
       {
         "w": "theo",
         "t": "I got the email from the Legal Team.\n\nOwen wasn't our killer either. But his statement gives us another way to test the original profile.\n\nHe remembers the person being connected to the late-confirmation list.\n\nI checked the final seating revision. It includes the guests who confirmed after the RSVP deadline.\n\nCheck the remaining records against those initials: E or L.\n\nWhat count do you get?"
+      },
+      {
+        "w": "player",
+        "t": "11"
       }
     ],
     "docs": [
@@ -108,5 +112,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T11:14:21.822Z"
+  "updatedAt": "2026-09-29T11:14:29.522Z"
 }
