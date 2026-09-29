@@ -12,10 +12,10 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 6,
+    "lead": 7,
     "profileStage": 4,
     "pendingAccusation": "",
-    "iris": false,
+    "iris": true,
     "messages": [
       {
         "w": "player",
@@ -116,6 +116,10 @@
       {
         "w": "theo",
         "t": "Only two people still fit everything we've found.\n\nI went back to the evidence recovered from the reception.\n\nThere's a torn seating marker. Most of it is missing, but one detail is still readable:\n\nTable 49.\n\nI don't have the seat number.\n\nCheck the two remaining records against Table 49.\n\nGive me the full name, table number, and seat number of the person who remains."
+      },
+      {
+        "w": "player",
+        "t": "iris smith, table 49 seat 8"
       }
     ],
     "docs": [
@@ -130,15 +134,17 @@
         "body": "<p>We interviewed Owen Hawthorne.</p><p>Owen denied killing Margery.</p><p>He initially said he had remained near the reception area.</p><p>During the interview, however, he remembered seeing someone moving away from the reception around the time Margery left.</p><p>He could not identify the person.</p><p>What he remembers is that the person's name appeared on the late-confirmation list.</p><p>Owen has been cleared as the person responsible for Margery's death.</p>"
       }
     ],
-    "facts": {},
-    "task": "Check the remaining records against the late-confirmation initials E or L. What count do you get?",
+    "facts": {
+      "identified": true
+    },
+    "task": "Email the Legal Team and request an interrogation of Iris.",
     "final": false,
     "hints": {},
     "hintAvailable": false,
     "notice": {
       "theo": false,
-      "legal": false
+      "legal": true
     }
   },
-  "updatedAt": "2026-09-29T10:34:18.104Z"
+  "updatedAt": "2026-09-29T10:34:32.965Z"
 }
