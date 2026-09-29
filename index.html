@@ -105,7 +105,7 @@ function render(){
  var auth=getAuth();
  var account='<div class="account-bar">Case '+esc(auth.player.caseCode)+' · Signed in as '+esc(auth.player.name)+' <button class="btn" onclick="logout()">SIGN OUT</button></div>';
  var nav=account+'<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!(S.iris||S.profileStage===1||S.profileStage===2||S.profileStage===3||S.docs.some(function(d){return d.id==="ella"||d.id==="owen"}))?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+((S.iris||S.profileStage>=1||S.docs.some(function(d){return d.id==="ella"||d.id==="owen"}))?"🔓":"🔒")+'</button><button class="tab '+(S.tab==="status"?"active":"")+'" onclick="tab(\'status\')">CASE STATUS</button><button class="tab" onclick="resetCase()">START OVER</button></div>';
- document.getElementById("app").innerHTML=nav+journeyBar()+(S.tab==="theo"?theo():S.tab==="legal"?legal():status())+'<div class="small" style="margin-top:12px">Private case channel · V8 investigation journey · your progress is saved to your case.</div>';
+ document.getElementById("app").innerHTML=nav+(S.tab==="theo"?theo():S.tab==="legal"?legal():status())+'<div class="small" style="margin-top:12px">Private case channel · V8 investigation journey · your progress is saved to your case.</div>';
 }
 function journeyBar(){ return ""; }
 function useHint(){
