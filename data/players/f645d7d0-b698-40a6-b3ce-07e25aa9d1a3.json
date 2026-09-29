@@ -112,6 +112,10 @@
       {
         "w": "player",
         "t": "iris smith, table 49 seat 8"
+      },
+      {
+        "w": "theo",
+        "t": "I don't have enough established evidence to answer that yet. Keep working through the investigation. I'll give you what I can confirm as we unlock it."
       }
     ],
     "docs": [
@@ -136,5 +140,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-29T11:14:59.167Z"
+  "updatedAt": "2026-09-29T11:15:04.232Z"
 }
