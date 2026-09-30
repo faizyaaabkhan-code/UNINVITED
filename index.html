@@ -330,7 +330,7 @@ function knowledgeUnlocked(k){
 }
 function answerCaseQuestion(n){
  if(has(n,["what is the count","how many","what number did we get","what was the count"])){
-  var counts=[28412,1058,162,52,22,11,2,1];
+  var counts=[10000,1058,162,52,22,11,2,1];
   var idx=Math.max(0,Math.min(7,Number(S.lead)||0));
   add("theo","The latest verified count is "+counts[idx].toLocaleString()+".");
   return true;
