@@ -353,6 +353,7 @@ function route(raw){
  }
  if(S.lead===4&&S.profileStage===2){
   if(has(n,["owen","hawthorne"])){S.profileStage=3;S.pendingAccusation="Owen Hawthorne";task("Send Owen Hawthorne to the Legal Team for interview.");save();return}
+  add("theo","That's not the person I'm looking for. Check the four characteristics against the remaining records again.");task("Find the person who matches all four profile characteristics.");return
  }
  return leadRoute(n);
 }
@@ -364,13 +365,13 @@ function leadRoute(n){
   S.hintAvailable=false;
   if(L.n===3&&S.profileStage===0){
    add("theo",L.ok);
-   add("theo","There's another part of the original investigation I want you to see before we continue with the ledger.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us somewhere to start.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nRSVP: Not on time (E or L)\n\nElla Taylor matches three of the four characteristics: bride’s side, odd-numbered table, and not marked T (E or L). Her first name falls outside the I–Q range.\n\nThere is one person I want to test first. Ella Taylor is one of the names I want to examine.");
+   add("theo","There's another part of the original investigation I want you to see before we continue with the ledger.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us somewhere to start.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nRSVP: Not on time (E or L)\n\nThis is a working profile, not proof of guilt. Test it against the remaining records.\n\nFind a person who matches three of the four characteristics. Give me the name.");
    S.profileStage=1;
    S.notice.legal=true;
    task("Send an accusation against Ella Taylor to the Legal Team.");
   }else if(L.n===4&&S.profileStage===2){
    add("theo",L.ok);
-   add("theo","Twenty-two.\n\nThere's another name I want to test against the original profile.\n\nOwen Hawthorne fits the four characteristics:\n\nFirst name I–Q.\nBride's side.\nOdd-numbered table.\nConfirmed after the RSVP deadline.\n\nHis account of the evening also leaves a gap.\n\nSend an accusation against Owen Hawthorne to the Legal Team.");
+   add("theo","Twenty-two.\n\nThe working profile gives us another test.\n\nFind the remaining person who matches all four characteristics:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nRSVP: Not on time (E or L)\n\nGive me the name you find. Then we'll decide whether the Legal Team should interview them.");
    S.profileStage=3;
    S.notice.legal=true;
    task("Send an accusation against Owen Hawthorne to the Legal Team.");
