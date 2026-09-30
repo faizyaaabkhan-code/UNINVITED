@@ -332,12 +332,12 @@ function route(raw){
  if(answerCaseQuestion(n))return;
  if(S.final){add("theo","CASE 0147 is closed. The investigation record is complete.");return}
  if(S.profileStage===1){
-  if(has(n,["email","legal team","accuse ella","ella taylor","ella"])){task("Send the accusation against Ella Taylor to the Legal Team.");save();return}
-  add("theo","I want to test Ella Taylor first. Send the accusation to the Legal Team.");task("Choose a suspect to test against the original profile.");return;
+  if(has(n,["email","legal team","accuse ella","ella taylor","ella"])){task("Send Ella Taylor to the Legal Team for interview.");save();return}
+  add("theo","I want to test Ella Taylor first. Send her to the Legal Team for interview.");task("Send Ella Taylor to the Legal Team for interview.");return;
  }
  if(S.profileStage===3){
-  if(has(n,["email","legal team","accuse owen","owen hawthorne","owen"])){task("Send the accusation against Owen Hawthorne to the Legal Team.");save();return}
-  add("theo","I want to test Owen Hawthorne next. Send the accusation to the Legal Team.");task("Choose Owen Hawthorne to test against the original profile.");return;
+  if(has(n,["email","legal team","accuse owen","owen hawthorne","owen"])){task("Send Owen Hawthorne to the Legal Team for interview.");save();return}
+  add("theo","I want to test Owen Hawthorne next. Send him to the Legal Team for interview.");task("Send Owen Hawthorne to the Legal Team for interview.");return;
  }
  if(S.iris){
   if(has(n,["email","legal team","interrogate iris","interrogation","send the request","request the interview"])){
