@@ -16,7 +16,7 @@ function validProgress(p){
  if(!Number.isInteger(profile)||profile<0||profile>4)return false;
  var docs=Array.isArray(p.docs)?p.docs:[];
  var ids=docs.map(function(d){return d&&d.id}).filter(Boolean);
- if(ids.some(function(id){return ["ella","owen","interrogation"].indexOf(id)<0}))return false;
+ if(ids.some(function(id){return ["ella","owen","interrogation","reconstruction"].indexOf(id)<0}))return false;
  var hasElla=ids.indexOf("ella")>=0,hasOwen=ids.indexOf("owen")>=0,hasInterrogation=ids.indexOf("interrogation")>=0;
  if(profile>=2&&!hasElla)return false;
  if(profile>=4&&!hasOwen)return false;
@@ -24,9 +24,11 @@ function validProgress(p){
  if(lead>=5&&profile<3)return false;
  if(lead>=7&&!p.iris)return false;
  if(p.iris&&lead<7)return false;
- if(p.final&&(!p.iris||!hasInterrogation||!(p.facts&&p.facts.interrogationSent)))return false;
+ if(p.facts&&p.facts.reconstructionConfirmed&&(!p.iris||!hasInterrogation||Number(p.lead)!==7))return false;
+ if(p.final&&(!p.iris||!hasInterrogation||!(p.facts&&p.facts.interrogationSent)||!(p.facts&&p.facts.reconstructionConfirmed)))return false;
  if(p.final&&p.task!=="CASE CLOSED")return false;
  if(p.facts&&p.facts.interrogationSent&&!hasInterrogation)return false;
+ if(p.facts&&p.facts.reconstructionConfirmed&&!(p.docs||[]).some(function(d){return d&&d.id==="reconstruction"}))return false;
  return true;
 }
 module.exports=async(req,res)=>{ cors(res,req); if(req.method==="OPTIONS")return res.status(204).end();
