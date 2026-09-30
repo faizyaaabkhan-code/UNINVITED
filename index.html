@@ -170,15 +170,15 @@ function legal(){
  var docs=S.docs.map(function(d){return '<div class="panel doc"><h3>'+esc(d.title)+'</h3>'+d.body+'</div>'}).join("");
  if(S.iris){
   if(!S.facts.interrogationSent){
-   return '<div class="panel"><div class="speaker">Jasmine\\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\\'s Legal Team</p><p><strong>Subject:</strong> Request for Iris Smith Interrogation</p><p>We have identified Iris Smith, Table 49, Seat 8.</p><p>Please interrogate Iris and find out what happened between Iris and Margery.</p><p>We need to know what happened that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendInterrogationEmail()">SEND EMAIL</button></div></div>'+docs;
+   return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\'s Legal Team</p><p><strong>Subject:</strong> Request for Iris Smith Interrogation</p><p>We have identified Iris Smith, Table 49, Seat 8.</p><p>Please interrogate Iris and find out what happened between Iris and Margery.</p><p>We need to know what happened that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendInterrogationEmail()">SEND EMAIL</button></div></div>'+docs;
   }
   if(!S.facts.reconstructionConfirmed){
-   return '<div class="panel"><div class="speaker">Jasmine\\'s Legal Team</div><p class="legal-intro">The interrogation is complete. Before we close the case, reconstruct the sequence in the cellar.</p><div class="legal-choices"><button class="btn primary" onclick="reconstructCellar()">RECONSTRUCT THE CELLAR</button></div></div>'+docs;
+   return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The interrogation is complete. Before we close the case, reconstruct the sequence in the cellar.</p><div class="legal-choices"><button class="btn primary" onclick="reconstructCellar()">RECONSTRUCT THE CELLAR</button></div></div>'+docs;
   }
   if(!S.final){
-   return '<div class="panel"><div class="speaker">Jasmine\\'s Legal Team</div><p class="legal-intro">The cellar reconstruction has been recorded. Theo has reinterpreted the evidence concerning Jasmine.</p><div class="legal-choices"><button class="btn primary" onclick="closeCase()">CONFIRM CASE CLOSURE</button></div></div>'+docs;
+   return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The cellar reconstruction has been recorded. Theo has reinterpreted the evidence concerning Jasmine.</p><div class="legal-choices"><button class="btn primary" onclick="closeCase()">CONFIRM CASE CLOSURE</button></div></div>'+docs;
   }
-  return '<div class="panel"><div class="speaker">Jasmine\\'s Legal Team</div><p class="legal-intro">The investigation record is complete.</p></div>'+docs;
+  return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The investigation record is complete.</p></div>'+docs;
  }
  if(S.profileStage===1||S.profileStage===3){
   var person=S.profileStage===1?"Ella Taylor":"Owen Hawthorne";
