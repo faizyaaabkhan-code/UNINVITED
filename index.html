@@ -33,7 +33,7 @@ let S=load();
 function normalizeState(input){
  var s;
  try{s=structuredClone(input||initial)}catch(e){s=structuredClone(initial)}
- s.docs=Array.isArray(s.docs)?s.docs.filter(function(d){return d&&["ella","owen","interrogation"].indexOf(d.id)>=0}):[];
+ s.docs=Array.isArray(s.docs)?s.docs.filter(function(d){return d&&["ella","owen","interrogation","reconstruction"].indexOf(d.id)>=0}):[];
  s.facts=s.facts||{};
  s.hints=s.hints&&typeof s.hints==="object"?s.hints:{};s.hintAvailable=!!s.hintAvailable;
  s.profileStage=Number.isFinite(Number(s.profileStage))?Number(s.profileStage):0;
