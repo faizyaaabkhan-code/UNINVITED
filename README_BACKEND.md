@@ -24,7 +24,7 @@ The API endpoints are:
 
 The server validates the saved case state and only permits valid monotonic transitions through the investigation:
 
-`0 → 1 → 2 → 3 → Ella → 4 → Owen → 5 → 6 → 7 → Iris → interrogation → closed`
+`0 → 1 → 2 → 3 → Ella → 4 → Owen → 5 → 6 → 7 → Iris → interrogation → reconstruction → closed`
 
 A deliberate START OVER reset is allowed. Arbitrary client-side jumps to a completed case are rejected.
 
