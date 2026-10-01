@@ -527,21 +527,21 @@ function scrollChatToBottom(){
 function legalSend(){return}
 function sendSuspectInterrogation(){
  if(S.profileStage!==1&&S.profileStage!==3)return;
- var person=S.profileStage===1?"Ella Taylor":"Owen Hawthorne";
- var isElla=S.profileStage===1;
- S.docs.push({id:isElla?"ella":"owen",title:person.toUpperCase()+" — INTERROGATION REPORT",body:isElla
-  ?"<p>We interviewed Ella Taylor.</p><p>Ella denied killing Margery.</p><p>During the interview, however, she admitted that she had been near the reception area when Margery left.</p><p>Ella says she saw <strong>another person moving toward the cellar</strong>.</p><p>She couldn't identify the person.</p><p>But she remembers one detail clearly:</p><p><strong>The person was wearing a pink guest badge.</strong></p><p>Ella has been cleared as the person responsible for Margery's death.</p>"
-  :"<p>We interviewed Owen Hawthorne.</p><p>Owen denied killing Margery.</p><p>He initially said he had remained near the reception area.</p><p>During the interview, however, he remembered seeing someone moving away from the reception around the time Margery left.</p><p>He could not identify the person.</p><p>What he remembers is that the person's name appeared on the late-confirmation list.</p><p>Owen has been cleared as the person responsible for Margery's death.</p>"});
- S.profileStage=isElla?2:4;
+ var person=S.profileStage===1?"Gray, Jack":"Price, Julian";
+ var isJack=S.profileStage===1;
+ S.docs.push({id:isJack?"jack":"julian",title:person.toUpperCase()+" — INTERROGATION REPORT",body:isJack
+  ?"<p>We interviewed Gray, Jack.</p><p>Jack denied killing Margery.</p><p>During the interview, he remembered seeing a pink guest badge near the reception area.</p><p>He could not identify who was wearing it.</p><p>But he remembers one detail clearly:</p><p><strong>The person was wearing a pink guest badge.</strong></p><p>Jack has been cleared as the person responsible for Margery's death.</p>"
+  :"<p>We interviewed Price, Julian.</p><p>Julian denied killing Margery.</p><p>During the interview, Julian remembered seeing someone moving away from the reception around the time Margery left.</p><p>Julian could not identify the person.</p><p>What Julian remembers is that the person was not marked T on the RSVP record. It was either E or L.</p><p>Julian has been cleared as the person responsible for Margery's death.</p>"});
+ S.profileStage=isJack?2:4;
  S.pendingAccusation="";
  S.notice.theo=true;
  playMessageSound();
- if(isElla){
-  add("theo","I got the email from the Legal Team.\n\nElla wasn't our killer. But her statement gives us something we didn't have before.\n\nShe saw the person heading toward the cellar wearing a pink guest badge.\n\nI checked the reception records. The pink badge was assigned to the bride's side.\n\nCheck the remaining records for the bride's side.\n\nWhat count do you get?");
+ if(isJack){
+  add("theo","I got the email from the Legal Team.\n\nJack wasn't our killer. But his statement gives us something we didn't have before.\n\nHe remembers the person wearing a pink guest badge.\n\nI checked the reception records. The pink badge was assigned to the bride's side.\n\nCheck the remaining records for the bride's side.\n\nWhat count do you get?");
   task("Check the remaining records for the bride's side. What count do you get?");
  }else{
-  add("theo","I got the email from the Legal Team.\n\nOwen wasn't our killer either. But his statement gives us another way to test the original profile.\n\nHe remembers the person being connected to the late-confirmation list.\n\nI checked the final seating revision. It includes the guests who not marked T (E or L).\n\nCheck the remaining records against those initials: E or L.\n\nWhat count do you get?");
-  task("Check the remaining records against the late-confirmation initials E or L. What count do you get?");
+  add("theo","I got the email from the Legal Team.\n\nJulian wasn't our killer either. But his statement gives us another way to test the remaining records.\n\nHe remembers that the person was not marked T on the RSVP record. It was either E or L.\n\nCheck the remaining records against those RSVP initials: E or L.\n\nWhat count do you get?");
+  task("Check the remaining records against the RSVP initials E or L. What count do you get?");
  }
  save();
  render();
@@ -652,15 +652,21 @@ function route(raw){
  var currentLead=LEADS[S.lead];
  var advancesCurrentLead=currentLead&&(currentLead.n===7 ? (has(n,["iris","smith"])&&has(n,["49"])&&has(n,["8"])) : n===currentLead.answer);
  if(advancesCurrentLead){leadRoute(n);return}
+ if(S.lead===4&&S.profileStage===2&&has(n,["iris"])){
+  add("theo","I checked the investigation records again. Iris Smith was part of the wedding-management team.\n\nWe don't have anything comparable on Julian. She matches the original profile and survived the earlier filters. She's looking very suspicious.\n\nLet's interrogate Julian. Find out what she remembers.");
+  task("Send Price, Julian to the Legal Team for interview.");
+  save();
+  return;
+ }
  if(answerCaseQuestion(n))return;
  if(S.final){add("theo","CASE 0147 is closed. The investigation record is complete.");return}
  if(S.profileStage===1){
-  if(has(n,["email","legal team","accuse ella","ella taylor","ella"])){task("Send Ella Taylor to the Legal Team for interview.");save();return}
-  add("theo","I want to test Ella Taylor first. Send her to the Legal Team for interview.");task("Send Ella Taylor to the Legal Team for interview.");return;
+  if(has(n,["email","legal team","gray jack","jack"])){task("Send Gray, Jack to the Legal Team for interview.");save();return}
+  add("theo","I want to test Jack first. Send him to the Legal Team for interview.");task("Send Gray, Jack to the Legal Team for interview.");return;
  }
  if(S.profileStage===3){
-  if(has(n,["email","legal team","accuse owen","owen hawthorne","owen"])){task("Send Owen Hawthorne to the Legal Team for interview.");save();return}
-  add("theo","I want to test Owen Hawthorne next. Send him to the Legal Team for interview.");task("Send Owen Hawthorne to the Legal Team for interview.");return;
+  if(has(n,["email","legal team","price julian","julian"])){task("Send Price, Julian to the Legal Team for interview.");save();return}
+  add("theo","I want to test Julian next. Send her to the Legal Team for interview.");task("Send Price, Julian to the Legal Team for interview.");return;
  }
  if(S.iris){
   if(has(n,["email","legal team","interrogate iris","interrogation","send the request","request the interview"])){
@@ -672,11 +678,11 @@ function route(raw){
   return add("theo","Iris has been identified. The next step is to email the Legal Team and ask them to interrogate her.");
  }
  if(S.lead===3&&S.profileStage===0){
-  if(has(n,["ella","taylor"])){S.profileStage=1;S.pendingAccusation="Ella Taylor";task("Send Ella Taylor to the Legal Team for interview.");save();return}
+  if(has(n,["gray jack","jack"])){S.profileStage=1;S.pendingAccusation="Gray, Jack";task("Send Gray, Jack to the Legal Team for interview.");save();return}
  }
  if(S.lead===4&&S.profileStage===2){
-  if(has(n,["owen","hawthorne"])){S.profileStage=3;S.pendingAccusation="Owen Hawthorne";task("Send Owen Hawthorne to the Legal Team for interview.");save();return}
-  add("theo","That's not the person I'm looking for. Check the four characteristics against the remaining records again.");task("Find the person who matches all four profile characteristics.");return
+  if(has(n,["price julian","julian"])){S.profileStage=3;S.pendingAccusation="Price, Julian";task("Send Price, Julian to the Legal Team for interview.");save();return}
+  add("theo","That's not the person I'm looking for. Check the four characteristics against the remaining records again.");task("Find the person who matches three of the four profile characteristics.");return
  }
  return leadRoute(n);
 }
