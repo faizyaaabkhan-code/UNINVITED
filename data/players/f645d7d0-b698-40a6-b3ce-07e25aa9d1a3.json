@@ -12,7 +12,7 @@
   },
   "progress": {
     "tab": "theo",
-    "lead": 1,
+    "lead": 2,
     "profileStage": 0,
     "pendingAccusation": "",
     "iris": false,
@@ -40,6 +40,10 @@
       {
         "w": "theo",
         "t": "That's still too many people.\n\nI went back to the physical evidence.\n\nThere's a handwritten mark on one of the items recovered during the investigation. It's damaged, but I can make out what might be a first initial.\n\nT, H, J, or I.\n\nI'm not confident enough to say which one it is.\n\nSee what that does to the group.\n\nWhat count do you get?"
+      },
+      {
+        "w": "player",
+        "t": "162"
       }
     ],
     "docs": [],
@@ -58,5 +62,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-10-01T11:19:10.624Z"
+  "updatedAt": "2026-10-01T11:19:22.880Z"
 }
