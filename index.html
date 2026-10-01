@@ -306,7 +306,7 @@ header:after{
 </head>
 <body><div class="wrap"><header><div class="kicker">Private Investigation Channel</div><div class="title">UNINVITED</div><div class="sub">CASE 0147 · Detective Theo Marsh</div></header><div id="app"></div></div>
 <script>
-const KEY="UNINVITED_V7_CONVERSATION";
+const KEY="UNINVITED_V8_CONVERSATION";
 const AUTH_KEY="UNINVITED_AUTH_V2";
 const GUEST_KEY="UNINVITED_GUEST_CASE_V1";
 let GUEST_ACTIVE=localStorage.getItem(GUEST_KEY)==="1";
@@ -327,11 +327,11 @@ let S=load();
 function normalizeState(input){
  var s;
  try{s=structuredClone(input||initial)}catch(e){s=structuredClone(initial)}
- s.docs=Array.isArray(s.docs)?s.docs.filter(function(d){return d&&["ella","owen","interrogation","reconstruction"].indexOf(d.id)>=0}):[];
+ s.docs=Array.isArray(s.docs)?s.docs.map(function(d){if(!d)return d;if(d.id==="ella"){d.id="jack";d.title="GRAY, JACK — INTERROGATION REPORT";d.body="<p>We interviewed Gray, Jack.</p><p>Jack denied killing Margery.</p><p>During the interview, he remembered seeing a pink guest badge near the reception area.</p><p>He could not identify who was wearing it.</p><p>But he remembers one detail clearly:</p><p><strong>The person was wearing a pink guest badge.</strong></p><p>Jack has been cleared as the person responsible for Margery's death.</p>";}if(d.id==="owen"){d.id="julian";d.title="PRICE, JULIAN — INTERROGATION REPORT";d.body="<p>We interviewed Price, Julian.</p><p>Julian denied killing Margery.</p><p>During the interview, Julian remembered seeing someone moving away from the reception around the time Margery left.</p><p>Julian could not identify the person.</p><p>What Julian remembers is that the person was not marked T on the RSVP record. It was either E or L.</p><p>Julian has been cleared as the person responsible for Margery's death.</p>";}return d;}).filter(function(d){return d&&["jack","julian","interrogation","reconstruction"].indexOf(d.id)>=0}):[];
  s.facts=s.facts||{};
  s.hints=s.hints&&typeof s.hints==="object"?s.hints:{};s.hintAvailable=!!s.hintAvailable;
  s.profileStage=Number.isFinite(Number(s.profileStage))?Number(s.profileStage):0;
- s.pendingAccusation=s.pendingAccusation||"";
+ s.pendingAccusation=s.pendingAccusation==="Ella Taylor"?"Gray, Jack":s.pendingAccusation==="Owen Hawthorne"?"Price, Julian":(s.pendingAccusation||"");
  s.notice=s.notice&&typeof s.notice==="object"?s.notice:{theo:false,legal:false};s.notice.theo=!!s.notice.theo;s.notice.legal=!!s.notice.legal;
  if(s.tab==="status")s.tab="theo";
  var msgText=(s.messages||[]).map(function(m){return String(m&&m.t||"")}).join(" ").toLowerCase();
@@ -351,9 +351,9 @@ function normalizeState(input){
  }else if(s.iris){
   s.task="Email the Legal Team and request an interrogation of Iris.";
  }else if(s.profileStage===1){
-  s.task="Send an accusation against Ella Taylor to the Legal Team.";
+  s.task="Send Gray, Jack to the Legal Team for interview.";
  }else if(s.profileStage===3){
-  s.task="Send an accusation against Owen Hawthorne to the Legal Team.";
+  s.task="Send Price, Julian to the Legal Team for interview.";
  }
  return s;
 }
@@ -424,7 +424,7 @@ function render(){
  var account=auth
   ? '<div class="account-bar">Case '+esc(auth.player.caseCode)+' · Signed in as '+esc(auth.player.name)+' · <span id="saveState">'+saveStateLabel()+'</span> <button class="btn" onclick="logout()">SIGN OUT</button></div>'
   : '<div class="account-bar">Guest case · <span id="saveState">'+saveStateLabel()+'</span> · <button class="btn" onclick="exitGuestCase()">SAVE & EXIT</button></div>';
- var nav=account+'<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH'+(S.notice.theo?'<span class="notice-dot"></span>':"")+'</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!(S.iris||S.profileStage===1||S.profileStage===2||S.profileStage===3||S.docs.some(function(d){return d.id==="ella"||d.id==="owen"}))?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+((S.iris||S.profileStage>=1||S.docs.some(function(d){return d.id==="ella"||d.id==="owen"}))?"🔓":"🔒")+(S.notice.legal?'<span class="notice-dot"></span>':"")+'</button><button class="tab" onclick="resetCase()">START OVER</button></div>';
+ var nav=account+'<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH'+(S.notice.theo?'<span class="notice-dot"></span>':"")+'</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!(S.iris||S.profileStage===1||S.profileStage===2||S.profileStage===3||S.docs.some(function(d){return d.id==="jack"||d.id==="julian"}))?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+((S.iris||S.profileStage>=1||S.docs.some(function(d){return d.id==="ella"||d.id==="owen"}))?"🔓":"🔒")+(S.notice.legal?'<span class="notice-dot"></span>':"")+'</button><button class="tab" onclick="resetCase()">START OVER</button></div>';
  document.getElementById("app").innerHTML=nav+(S.tab==="theo"?theo():S.tab==="legal"?legal():status())+'<div class="small" style="margin-top:12px">Private case channel · Your investigation is saved to your case.</div>';updateSaveIndicator();
 }
 function journeyBar(){ return ""; }
@@ -475,9 +475,9 @@ function legal(){
   return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The investigation record is complete.</p></div>'+docs;
  }
  if(S.profileStage===1||S.profileStage===3){
-  var person=S.profileStage===1?"Ella Taylor":"Owen Hawthorne";
-  var title=S.profileStage===1?"Request for Ella Taylor Interrogation":"Request for Owen Hawthorne Interrogation";
-  var clue=S.profileStage===1?"We believe Ella Taylor may be relevant to the investigation.":"We believe Owen Hawthorne may be relevant to the investigation.";
+  var person=S.profileStage===1?"Gray, Jack":"Price, Julian";
+  var title=S.profileStage===1?"Request for Gray, Jack Interrogation":"Request for Price, Julian Interrogation";
+  var clue=S.profileStage===1?"We believe Gray, Jack may be relevant to the investigation.":"We believe Price, Julian may be relevant to the investigation.";
   return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\'s Legal Team</p><p><strong>Subject:</strong> '+title+'</p><p>'+clue+'</p><p>Please interrogate '+person+' and report what they know about Margery\'s movements that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendSuspectInterrogation()">SEND EMAIL</button></div></div>'+docs;
  }
  if(S.docs.some(function(d){return d.id==="ella"||d.id==="owen"})){
@@ -488,7 +488,7 @@ function legal(){
 function status(){
  return '<div class="panel"><div class="speaker">Investigation board</div><h2>CASE 0147</h2><p class="hint">Case progress.</p><div class="statusrow">'+
  '<div class="statusbox"><b>Ledger</b><span>'+(S.iris?"✓ Iris identified":"Lead "+S.lead+" of 7")+'</span></div>'+
- '<div class="statusbox"><b>Suspect tests</b><span>'+(S.profileStage>=4?"✓ Ella & Owen cleared":S.profileStage===2?"○ Owen test next":S.profileStage===1?"○ Ella test pending":S.profileStage===3?"○ Owen test pending":"○ Not started")+'</span></div>'+
+ '<div class="statusbox"><b>Suspect tests</b><span>'+(S.profileStage>=4?"✓ Jack & Julian cleared":S.profileStage===2?"○ Julian test next":S.profileStage===1?"○ Jack test pending":S.profileStage===3?"○ Julian test pending":"○ Not started")+'</span></div>'+
  '<div class="statusbox"><b>Legal Team</b><span>'+(S.facts.interrogationSent?"✓ Iris interrogated":"○ Awaiting request")+'</span></div>'+
  '<div class="statusbox"><b>Case</b><span>'+(S.final?"✓ Closed":"○ Open")+'</span></div>'+
  '</div><div style="margin-top:18px"><button class="btn" onclick="resetCase()">Reset case</button></div></div>';
@@ -500,7 +500,7 @@ async function send(){
  var q=el.value.trim(),before=S.messages.length;
  add("player",q);
  if(before===0){
-  add("theo","I'm Detective Theo Marsh. I have parts of the investigation file. What I don't have is the complete wedding ledger. You do.\n\nI've been going back through the evidence the original investigation used against Jasmine.\n\nThere's something bothering me about it.\n\nThe case against her is built around what she did before Margery died.\n\nI'm interested in what happened after Margery left the reception.\n\nLet's start with the evidence I can recover.");
+  add("theo","You must be the private detective Jasmine's legal team hired.\n\nI'm Detective Theo Marsh. I've been handling the police investigation into Margery Voss's death.\n\nJasmine's legal team gave you access to the complete wedding ledger. I'll work from the investigation records while you work through the ledger.\n\nI'll give you the leads as we uncover them. You'll need to test each one against the ledger and report back the number of records that remain.\n\nLet's get started.");
   answerCaseQuestion(norm(q));
   add("theo",LEADS[0].prompt);
  }else{route(q)}
@@ -691,13 +691,13 @@ function leadRoute(n){
    add("theo","There's another part of the original investigation I want you to see before we continue with the ledger.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us somewhere to start.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nRSVP: Not on time (E or L)\n\nThis is a working profile, not proof of guilt. Test it against the remaining records.\n\nFind a person who matches three of the four characteristics. Give me the name.");
    S.profileStage=1;
    S.notice.legal=true;
-   task("Send an accusation against Ella Taylor to the Legal Team.");
+   task("Send Gray, Jack to the Legal Team for interview.");
   }else if(L.n===4&&S.profileStage===2){
    add("theo",L.ok);
    add("theo","Twenty-two.\n\nThe working profile gives us another test.\n\nFind the remaining person who matches all four characteristics:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nRSVP: Not on time (E or L)\n\nGive me the name you find. Then we'll decide whether the Legal Team should interview them.");
    S.profileStage=3;
    S.notice.legal=true;
-   task("Send an accusation against Owen Hawthorne to the Legal Team.");
+   task("Send Price, Julian to the Legal Team for interview.");
   }else if(L.n<7){
    add("theo",L.ok);
    add("theo",LEADS[S.lead].prompt);
