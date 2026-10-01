@@ -16,9 +16,19 @@
     "profileStage": 0,
     "pendingAccusation": "",
     "iris": false,
-    "messages": [],
+    "messages": [
+      {
+        "w": "player",
+        "t": "hi"
+      }
+    ],
     "docs": [],
-    "facts": {},
+    "facts": {
+      "identified": false,
+      "interrogationSent": false,
+      "reconstructionConfirmed": false,
+      "closureReady": false
+    },
     "task": "",
     "final": false,
     "hints": {},
@@ -28,5 +38,5 @@
       "legal": false
     }
   },
-  "updatedAt": "2026-09-30T13:34:48.788Z"
+  "updatedAt": "2026-10-01T10:56:25.563Z"
 }
