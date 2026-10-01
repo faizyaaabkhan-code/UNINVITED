@@ -344,6 +344,7 @@ function normalizeState(input){
  s.facts={identified:!!s.iris,interrogationSent:!!(preservedFacts.interrogationSent||hadReport),reconstructionConfirmed:!!preservedFacts.reconstructionConfirmed,closureReady:!!preservedFacts.closureReady};
  if(s.profileStage===1&&s.pendingAccusation!=="Gray, Jack"&&s.task==="Send Gray, Jack to the Legal Team for interview.")s.task="";
  if(s.profileStage===3&&s.pendingAccusation!=="Price, Julian"&&s.task==="Send Price, Julian to the Legal Team for interview.")s.task="";
+ if(s.lead>=4&&s.profileStage===3&&s.pendingAccusation==="")s.task="Find a name in the ledger that matches all four or at least three of the four characteristics.";
  if(s.final){
   s.task="CASE CLOSED";
  }else if(s.iris&&s.facts.interrogationSent&&!s.facts.reconstructionConfirmed){
@@ -663,7 +664,7 @@ function route(raw){
  }
  if(S.profileStage===1&&has(n,["gray jack","jack"])){
   S.pendingAccusation="Gray, Jack";
-  add("theo","Gray, Jack matches all four characteristics.\n\nNow request the Legal Team to interrogate him. Find out what he remembers.");
+  add("theo","Gray, Jack matches all four characteristics and also survived all the clue filters we did.\n\nHe's suspicious. Request the Legal Team to interrogate him.");
   task("Request the Legal Team to interrogate Gray, Jack.");
   save();
   return;
@@ -689,9 +690,11 @@ function route(raw){
  if(S.lead===3&&S.profileStage===0){
   if(has(n,["gray jack","jack"])){S.profileStage=1;S.pendingAccusation="Gray, Jack";task("Send Gray, Jack to the Legal Team for interview.");save();return}
  }
- if(S.lead===4&&S.profileStage===2){
-  if(has(n,["price julian","julian"])){S.profileStage=3;S.pendingAccusation="Price, Julian";task("Send Price, Julian to the Legal Team for interview.");save();return}
-  add("theo","That's not the person I'm looking for. Check the four characteristics against the remaining records again.");task("Find the person who matches three of the four profile characteristics.");return
+ if(S.lead===4&&S.profileStage===3&&has(n,["iris smith","iris"])){
+  add("theo","I checked the investigation records again. Iris Smith was part of the wedding-management team.\n\nWe don't have anything comparable on Iris as a guest. She matches the original profile, but she is not part of the guest-profile comparison we're testing here.\n\nLet's test another guest. Find the person who matches the profile by all four or at least three characteristics.");
+  task("Find another name in the ledger that matches all four or at least three of the four characteristics.");
+  save();
+  return;
  }
  return leadRoute(n);
 }
@@ -709,10 +712,11 @@ function leadRoute(n){
    S.notice.legal=false;
   }else if(L.n===4&&S.profileStage===2){
    add("theo",L.ok);
-   add("theo","Twenty-two.\n\nThe working profile gives us another test.\n\nFind a person who matches three of the four characteristics:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nMethod: P\n\nThere are two records at this stage that deserve attention. If Iris Smith comes up, I'll check the investigation records again.\n\nGive me the name you want to test next.");
+   add("theo","Let's test the original profile against these remaining guests.\n\nFind a person who matches all four or a minimum of three of the four characteristics:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nMethod: P\n\nGive me the name you want to test next.");
    S.profileStage=3;
    S.pendingAccusation="";
    S.notice.legal=false;
+   task("Find a name in the ledger that matches all four or at least three of the four characteristics.");
   }else if(L.n<7){
    add("theo",L.ok);
    add("theo",LEADS[S.lead].prompt);
