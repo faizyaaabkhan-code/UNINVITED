@@ -342,6 +342,8 @@ function normalizeState(input){
  if(s.iris){s.profileStage=4;s.lead=Math.max(7,Number(s.lead)||0)}
  var preservedFacts=s.facts&&typeof s.facts==="object"?s.facts:{};
  s.facts={identified:!!s.iris,interrogationSent:!!(preservedFacts.interrogationSent||hadReport),reconstructionConfirmed:!!preservedFacts.reconstructionConfirmed,closureReady:!!preservedFacts.closureReady};
+ if(s.profileStage===1&&s.pendingAccusation!=="Gray, Jack"&&s.task==="Send Gray, Jack to the Legal Team for interview.")s.task="";
+ if(s.profileStage===3&&s.pendingAccusation!=="Price, Julian"&&s.task==="Send Price, Julian to the Legal Team for interview.")s.task="";
  if(s.final){
   s.task="CASE CLOSED";
  }else if(s.iris&&s.facts.interrogationSent&&!s.facts.reconstructionConfirmed){
