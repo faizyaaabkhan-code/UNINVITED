@@ -677,38 +677,6 @@ function route(raw){
  }
  if(answerCaseQuestion(n))return;
  if(S.final){add("theo","CASE 0147 is closed. The investigation record is complete.");return}
- if(S.profileStage===1){
-  if(has(n,["gray jack","jack"])){
-   S.pendingAccusation="Gray, Jack";
-   add("theo","Gray, Jack matches all four characteristics.
-
-Now request the Legal Team to interrogate him. Find out what he remembers.");
-   task("Request the Legal Team to interrogate Gray, Jack.");
-   save();
-   return;
-  }
-  if(has(n,["email","legal team","interview"])){
-   if(S.pendingAccusation==="Gray, Jack"){task("Request the Legal Team to interrogate Gray, Jack.");save();return}
-  }
-  add("theo","Apply the four characteristics to the remaining records and give me the matching name.");
-  return;
- }
- if(S.profileStage===3){
-  if(has(n,["price julian","julian"])){
-   S.pendingAccusation="Price, Julian";
-   add("theo","Price, Julian matches three of the four characteristics.
-
-Now request the Legal Team to interrogate her. Find out what she remembers.");
-   task("Request the Legal Team to interrogate Price, Julian.");
-   save();
-   return;
-  }
-  if(has(n,["email","legal team","interview"])){
-   if(S.pendingAccusation==="Price, Julian"){task("Request the Legal Team to interrogate Price, Julian.");save();return}
-  }
-  add("theo","Apply the four characteristics to the remaining records and give me the matching name.");
-  return;
- }
  if(S.iris){
   if(has(n,["email","legal team","interrogate iris","interrogation","send the request","request the interview"])){
    task("Email the Legal Team and request an interrogation of Iris.");save();return;
