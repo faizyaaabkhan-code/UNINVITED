@@ -350,10 +350,10 @@ function normalizeState(input){
   s.task="Review Theo's reconstruction and confirm the case closure.";
  }else if(s.iris){
   s.task="Email the Legal Team and request an interrogation of Iris.";
- }else if(s.profileStage===1){
-  s.task="Send Gray, Jack to the Legal Team for interview.";
- }else if(s.profileStage===3){
-  s.task="Send Price, Julian to the Legal Team for interview.";
+ }else if(s.profileStage===1&&s.pendingAccusation==="Gray, Jack"){
+  s.task="Request the Legal Team to interrogate Gray, Jack.";
+ }else if(s.profileStage===3&&s.pendingAccusation==="Price, Julian"){
+  s.task="Request the Legal Team to interrogate Price, Julian.";
  }
  return s;
 }
@@ -659,15 +659,53 @@ function route(raw){
   save();
   return;
  }
+ if(S.profileStage===1&&has(n,["gray jack","jack"])){
+  S.pendingAccusation="Gray, Jack";
+  add("theo","Gray, Jack matches all four characteristics.\n\nNow request the Legal Team to interrogate him. Find out what he remembers.");
+  task("Request the Legal Team to interrogate Gray, Jack.");
+  save();
+  return;
+ }
+ if(S.profileStage===3&&has(n,["price julian","julian"])){
+  S.pendingAccusation="Price, Julian";
+  add("theo","Price, Julian matches three of the four characteristics.\n\nNow request the Legal Team to interrogate her. Find out what she remembers.");
+  task("Request the Legal Team to interrogate Price, Julian.");
+  save();
+  return;
+ }
  if(answerCaseQuestion(n))return;
  if(S.final){add("theo","CASE 0147 is closed. The investigation record is complete.");return}
  if(S.profileStage===1){
-  if(has(n,["email","legal team","gray jack","jack"])){task("Send Gray, Jack to the Legal Team for interview.");save();return}
-  add("theo","I want to test Jack first. Send him to the Legal Team for interview.");task("Send Gray, Jack to the Legal Team for interview.");return;
+  if(has(n,["gray jack","jack"])){
+   S.pendingAccusation="Gray, Jack";
+   add("theo","Gray, Jack matches all four characteristics.
+
+Now request the Legal Team to interrogate him. Find out what he remembers.");
+   task("Request the Legal Team to interrogate Gray, Jack.");
+   save();
+   return;
+  }
+  if(has(n,["email","legal team","interview"])){
+   if(S.pendingAccusation==="Gray, Jack"){task("Request the Legal Team to interrogate Gray, Jack.");save();return}
+  }
+  add("theo","Apply the four characteristics to the remaining records and give me the matching name.");
+  return;
  }
  if(S.profileStage===3){
-  if(has(n,["email","legal team","price julian","julian"])){task("Send Price, Julian to the Legal Team for interview.");save();return}
-  add("theo","I want to test Julian next. Send her to the Legal Team for interview.");task("Send Price, Julian to the Legal Team for interview.");return;
+  if(has(n,["price julian","julian"])){
+   S.pendingAccusation="Price, Julian";
+   add("theo","Price, Julian matches three of the four characteristics.
+
+Now request the Legal Team to interrogate her. Find out what she remembers.");
+   task("Request the Legal Team to interrogate Price, Julian.");
+   save();
+   return;
+  }
+  if(has(n,["email","legal team","interview"])){
+   if(S.pendingAccusation==="Price, Julian"){task("Request the Legal Team to interrogate Price, Julian.");save();return}
+  }
+  add("theo","Apply the four characteristics to the remaining records and give me the matching name.");
+  return;
  }
  if(S.iris){
   if(has(n,["email","legal team","interrogate iris","interrogation","send the request","request the interview"])){
@@ -697,14 +735,14 @@ function leadRoute(n){
    add("theo",L.ok);
    add("theo","There's another part of the original investigation I want you to see before we continue with the ledger.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us somewhere to start.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nMethod: P\n\nThis is a working profile, not proof of guilt. Test it against the remaining records.\n\nFind the person who matches all four characteristics. Give me the name.");
    S.profileStage=1;
-   S.notice.legal=true;
-   task("Send Gray, Jack to the Legal Team for interview.");
+   S.pendingAccusation="";
+   S.notice.legal=false;
   }else if(L.n===4&&S.profileStage===2){
    add("theo",L.ok);
    add("theo","Twenty-two.\n\nThe working profile gives us another test.\n\nFind a person who matches three of the four characteristics:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nMethod: P\n\nThere are two records at this stage that deserve attention. If Iris Smith comes up, I'll check the investigation records again.\n\nGive me the name you want to test next.");
-   S.profileStage=2;
-   S.notice.legal=true;
-   task("Find the suspicious 3/4 profile match and send Price, Julian to the Legal Team for interview.");
+   S.profileStage=3;
+   S.pendingAccusation="";
+   S.notice.legal=false;
   }else if(L.n<7){
    add("theo",L.ok);
    add("theo",LEADS[S.lead].prompt);
