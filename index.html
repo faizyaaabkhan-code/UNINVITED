@@ -483,10 +483,10 @@ function legal(){
   var clue=S.profileStage===1?"We believe Gray, Jack may be relevant to the investigation.":"We believe Price, Julian may be relevant to the investigation.";
   return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\'s Legal Team</p><p><strong>Subject:</strong> '+title+'</p><p>'+clue+'</p><p>Please interrogate '+person+' and report what they know about Margery\'s movements that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendSuspectInterrogation()">SEND EMAIL</button></div></div>'+docs;
  }
- if(S.docs.some(function(d){return d.id==="ella"||d.id==="owen"})){
-  return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The interview report is available below.</p></div>'+docs;
+ if(S.docs.some(function(d){return d.id==="jack"||d.id==="julian"||d.id==="ella"||d.id==="owen"})){
+  return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The interview report is available below. The Legal Team remains open for the rest of the investigation.</p></div>'+docs;
  }
- return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The Legal Team is locked until the investigation reaches a suspect interview.</p></div>';
+ return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The Legal Team is locked until the investigation reaches its first suspect interview.</p></div>';
 }
 function status(){
  return '<div class="panel"><div class="speaker">Investigation board</div><h2>CASE 0147</h2><p class="hint">Case progress.</p><div class="statusrow">'+
