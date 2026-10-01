@@ -317,9 +317,9 @@ const LEADS=[
  {n:2,answer:"162",prompt:"That's still too many people.\n\nI went back to the physical evidence.\n\nThere's a handwritten mark on one of the items recovered during the investigation. It's damaged, but I can make out what might be a first initial.\n\nT, H, J, or I.\n\nI'm not confident enough to say which one it is.\n\nSee what that does to the group.\n\nWhat count do you get?",ok:"162."},
  {n:3,answer:"52",prompt:"I went back to the catering records and the physical evidence from the reception.\n\nA residue recovered near the cellar route was compared with the wedding's catering inventory. The match is the gravy served with the chicken entrée.\n\nThat does not prove who touched the wall or who ate the meal. But it gives us another characteristic to test against the records.\n\nCheck the meal field.\n\nWhat count do you get?",ok:"52."},
  {n:4,answer:"22",prompt:"Check the remaining records for the bride's side.\n\nWhat count do you get?",ok:"22."},
- {n:5,answer:"11",prompt:"That's a much smaller group.\n\nI found the final seating revision. It was made after the original RSVP deadline and incorporated the late-confirmation list.\n\nFor this check, don't look for people who were simply late. We're looking for records that were not marked T — on time. That leaves E or L.\n\nCheck the RSVP field.\n\nWhat count do you get?",ok:"11."},
- {n:6,answer:"2",prompt:"Eleven.\n\nThere's one more record from the wedding inventory. An unidentified gift package was recorded, but we never established who sent it. We do have an estimated value: between $50 and $150.\n\nIt isn't proof of anything by itself. It's another characteristic we can test against the eleven records we have left.\n\nCheck the GIFT field for that range.\n\nWhat count do you get?",ok:"2."},
- {n:7,answer:"49",prompt:"Only two people still fit everything we've found.\n\nI went back to the evidence recovered from the reception.\n\nThere's a torn seating marker. Most of it is missing, but one detail is still readable:\n\nTable 49.\n\nI don't have the seat number.\n\nCheck the two remaining records against Table 49.\n\nGive me the full name, table number, and seat number of the person who remains.",ok:"Seven pieces of evidence. One person left."}
+ {n:5,answer:"11",prompt:"11.\n\nJulian is cleared too.\n\nBut his statement gives us one more useful distinction. He remembers that the person he saw was not marked T on the RSVP record.\n\nSo we're left with two possibilities:\n\nE — Early\n\nL — Late\n\nApply that RSVP filter to the 11 remaining records.\n\nWhat count do you get?"",ok:"11."},
+ {n:6,answer:"2",prompt:"Two records remain.\n\nWe've now used every characteristic we have: the original profile, the bride's side, RSVP timing, and the gift range.\n\nOne final piece of physical evidence can separate them.\n\nI found a torn seating marker. Most of it is missing, but one detail is readable:\n\nTable 49.\n\nCheck the two remaining records against Table 49.\n\nGive me the full name, table number, and seat number of the person who remains."",ok:"2."},
+ {n:7,answer:"49",prompt:"Two records remain.\n\nWe've now used every characteristic we have: the original profile, the bride's side, RSVP timing, and the gift range.\n\nOne final piece of physical evidence can separate them.\n\nI found a torn seating marker. Most of it is missing, but one detail is readable:\n\nTable 49.\n\nCheck the two remaining records against Table 49.\n\nGive me the full name, table number, and seat number of the person who remains."",ok:"Seven pieces of evidence. One person left."}
 ];
 const HINTS={1:["Count every record whose table number is 46, 47, 48, 49, or 50."],2:["Use the first initial of the guest’s first name. Keep T, H, J, and I."],3:["Use the MEAL field. Ck means Chicken."],4:["The pink guest badge points to the bride’s side. Use SIDE = Br."],5:["Use the RSVP status from Theo’s late-confirmation clue. Keep E or L."],6:["Use the GIFT bracket, not an exact price. $$ means $50–150."],7:["The torn marker gives only Table 49. Check the two remaining records and identify the person at that table."]};
 const initial={tab:"theo",lead:0,profileStage:0,pendingAccusation:"",iris:false,messages:[],docs:[],facts:{},task:"",final:false,hints:{},hintAvailable:false,notice:{theo:false,legal:false}};
@@ -558,7 +558,7 @@ function sendInterrogationEmail(){
  S.notice.theo=true;
  playMessageSound();
  S.docs.push({id:"interrogation",title:"IRIS SMITH — INTERROGATION REPORT",body:"<p>The Legal Team interrogated Iris Smith.</p><p>Iris admitted that she went to find Margery in the cellar. Their confrontation was rooted in a long-running professional conflict.</p><p>Iris worked in event design and logistics and had repeatedly helped Margery with events. Margery relied on her work but excluded her from meetings and client-facing interactions and took credit for work Iris had done. Iris had complained about this treatment, but Margery dismissed it as “how the industry works” and could affect Iris’s future recommendations and opportunities.</p><p>That conflict was still present during the Alder Hollow wedding.</p><p>Iris admitted that she confronted Margery in the cellar. They argued. Margery grabbed Iris. Iris pushed her, and Margery fell down the cellar stairs.</p><p><strong>Margery was still alive after the fall.</strong></p><p>Iris could have called for help.</p><p><strong>She didn't.</strong></p><p>She left the cellar and returned to the reception without telling anyone what had happened.</p>"});
- add("theo","The Legal Team has finished the Iris interrogation.\n\nNow we can reconstruct what happened in the cellar instead of treating the ledger identification as the end of the investigation.\n\nRead their report, then reconstruct the sequence with the Legal Team.");
+ add("theo","The Legal Team has finished the Iris interrogation.\n\nHer account changes what we can say about the cellar.\n\nWe now have a direct account from Iris that she went there, confronted Margery, pushed her, and left without calling for help.\n\nBut I don't want to treat her statement in isolation.\n\nRead the interrogation report and reconstruct the sequence with the Legal Team.\n\nWe need to see how her account fits the physical evidence and what we already know about Jasmine.");
  task("Open the Legal Team report and reconstruct the cellar sequence.");
  save();
  render();
@@ -570,7 +570,7 @@ function reconstructCellar(){
  S.docs.push({id:"reconstruction",title:"CELLAR RECONSTRUCTION — CASE 0147",body:"<p><strong>1. Iris went to the cellar to confront Margery.</strong></p><p><strong>2. They argued about the professional conflict between them.</strong></p><p><strong>3. Margery grabbed Iris.</strong></p><p><strong>4. Iris pushed Margery.</strong></p><p><strong>5. Margery fell down the cellar stairs and was still alive.</strong></p><p><strong>6. Iris could have called for help, but did not.</strong></p><p><strong>7. Iris left and returned to the reception without telling anyone.</strong></p><hr><p>The earlier evidence against Jasmine now has a different meaning. Jasmine did argue with Margery, but that argument concerned the secret marriage and Margery's blackmail. Jasmine's later lie was an attempt to protect her marriage.</p><p>The evidence does not place Jasmine in the cellar. Her lie explains why the original investigation focused on her; it does not establish that she caused Margery's fall.</p><p><strong>The physical evidence, ledger identification, and Iris's account now fit the same sequence.</strong></p>"});
  S.notice.theo=true;
  playMessageSound();
- add("theo","Now the pieces fit.\n\nIris is the person the ledger led us to, and her interrogation explains what the name meant. Jasmine's argument was real, and so was her lie — but the evidence does not place her in the cellar. She was protecting her marriage from Margery's blackmail.\n\nThe cellar reconstruction gives us the missing truth. The Legal Team can now close the case.");
+ add("theo","The reconstruction is complete.\n\nNow we can separate the two stories that were getting mixed together.\n\nJasmine really did argue with Margery.\n\nJasmine really did lie about what that argument was about.\n\nBut the evidence places the cellar confrontation somewhere else.\n\nIris's account, the physical evidence, and the ledger identification now point to the same sequence.\n\nJasmine's lie explains why she looked guilty. It does not put her in the cellar.\n\nThe Legal Team has enough to close the case.\n\nReview the reconstruction and confirm the case closure.");
  task("Review Theo's reconstruction and confirm the case closure.");
  save();
  render();
@@ -581,7 +581,7 @@ function closeCase(){
  S.task="CASE CLOSED";
  S.notice.theo=true;
  playMessageSound();
- add("theo","Jasmine has been released.\n\nIris Smith has been arrested.\n\nYou found the name in the records. The interrogation gave us the truth behind it.\n\nJasmine lied about the argument because she was protecting her marriage. Iris lied about the cellar because she knew what she had done — and chose not to call for help.\n\nYou found the name. I found the truth behind it.\n\nCASE 0147 — KILLER IDENTIFIED — IRIS SMITH\n\nCASE CLOSED.");
+ add("theo","Jasmine lied about the argument because she was protecting her marriage.\n\nIris concealed what happened in the cellar because she knew Margery was still alive and chose not to call for help.\n\nYou found the name.\n\nI found the truth behind it.");
  save();
  render();
 }
@@ -664,14 +664,14 @@ function route(raw){
  }
  if(S.profileStage===1&&has(n,["gray jack","jack"])){
   S.pendingAccusation="Gray, Jack";
-  add("theo","Gray, Jack matches all four characteristics and also survived all the clue filters we did.\n\nHe's suspicious. Request the Legal Team to interrogate him.");
+  add("theo","Gray, Jack matches all four characteristics, and he also survived every filter we've applied so far.\n\nThat doesn't make him the killer. It makes him the first person we need to question.\n\nRequest the Legal Team to interrogate Jack. Find out what he remembers from the reception.");
   task("Request the Legal Team to interrogate Gray, Jack.");
   save();
   return;
  }
  if(S.profileStage===3&&has(n,["price julian","julian"])){
   S.pendingAccusation="Price, Julian";
-  add("theo","Price, Julian matches three of the four characteristics.\n\nNow request the Legal Team to interrogate her. Find out what she remembers.");
+  add("theo","Price, Julian matches three of the four characteristics.\n\nHe isn't a four-for-four match like Jack was, but he is one of the remaining records that fits the original profile closely enough to investigate.\n\nLet's have the Legal Team interview him. Find out what he remembers.");
   task("Request the Legal Team to interrogate Price, Julian.");
   save();
   return;
@@ -706,13 +706,13 @@ function leadRoute(n){
   S.hintAvailable=false;
   if(L.n===3&&S.profileStage===0){
    add("theo",L.ok);
-   add("theo","There's another part of the original investigation I want you to see before we continue with the ledger.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us somewhere to start.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nMethod: P\n\nThis is a working profile, not proof of guilt. Test it against the remaining records.\n\nFind the person who matches all four characteristics. Give me the name.");
+   add("theo","52. We're down to 52 records.\n\nWe've narrowed the ledger using the physical evidence. Now I want to test something from the original investigation.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us another way to narrow the records.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nMethod: P\n\nThis is a working profile, not proof of guilt.\n\nTest those four characteristics against the 52 remaining records. Find the person who matches all four. Give me the name.");
    S.profileStage=1;
    S.pendingAccusation="";
    S.notice.legal=false;
   }else if(L.n===4&&S.profileStage===2){
    add("theo",L.ok);
-   add("theo","Let's test the original profile against these remaining guests.\n\nFind a person who matches all four or a minimum of three of the four characteristics:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nMethod: P\n\nGive me the name you want to test next.");
+   add("theo","22.\n\nGood. The pink badge narrows the remaining records to 22 people on the bride's side.\n\nNow we can reuse the original suspect profile against this smaller group.\n\nLet's test the profile again. This time, we're looking for someone who matches at least three of the four characteristics.\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nMethod: P\n\nFind a person who matches all four or at least three. Give me the name you want to test next.");
    S.profileStage=3;
    S.pendingAccusation="";
    S.notice.legal=false;
