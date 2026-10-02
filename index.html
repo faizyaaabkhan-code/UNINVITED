@@ -656,7 +656,7 @@ function route(raw){
  var currentLead=LEADS[S.lead];
  var advancesCurrentLead=currentLead&&(currentLead.n===7 ? (has(n,["iris","smith"])&&has(n,["49"])&&has(n,["8"])) : n===currentLead.answer);
  if(advancesCurrentLead){leadRoute(n);return}
- if(S.lead===4&&S.profileStage===2&&has(n,["julian"])){
+ if(S.lead===4&&S.profileStage===2&&has(n,["julian","julain"])){
   if(has(n,["iris"])){
    add("theo","I checked both names against the investigation records.\n\nIris Smith is in the master records, but she's part of the wedding-management team. We have a record for her because she had an assigned table and meal, but she isn't one of the ordinary guest records used for this profile.\n\nPrice, Julian is a different case. He matches three of the four characteristics, so he's a valid candidate to investigate at this stage.\n\nLet's have the Legal Team interview Julian. Find out what he remembers.");
   }else{
@@ -680,7 +680,7 @@ function route(raw){
   save();
   return;
  }
- if(S.profileStage===3&&has(n,["price julian","julian"])){
+ if(S.profileStage===3&&has(n,["price julian","julian","julain"])){
   S.pendingAccusation="Price, Julian";
   add("theo","Price, Julian matches three of the four characteristics.\n\nHe isn't a four-for-four match like Jack was, but he is one of the remaining records that fits the original profile closely enough to investigate.\n\nLet's have the Legal Team interview him. Find out what he remembers.");
   task("Request the Legal Team to interrogate Price, Julian.");
