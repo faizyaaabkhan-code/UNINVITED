@@ -658,10 +658,10 @@ function route(raw){
  if(advancesCurrentLead){leadRoute(n);return}
  if(S.lead===4&&S.profileStage===2&&has(n,["iris"])){
   if(has(n,["price julian","julian"])){
-   add("theo","I checked both names against the investigation records.\n\nIris Smith is in the master records, but she's part of the wedding-management team. The original profile was built around wedding guests, so Iris isn't a comparable guest-profile match.\n\nPrice, Julian is different. Julian matches three of the four characteristics and is a valid person to investigate at this stage.\n\nLet's have the Legal Team interview Julian. Find out what he remembers.");
+   add("theo","I checked both names against the investigation records.\n\nIris Smith is in the master records, but she's part of the wedding-management team. We have a record for her because she had an assigned table and meal, but she isn't one of the ordinary guest records used for this profile.\n\nPrice, Julian is a different case. He matches three of the four characteristics, so he's a valid candidate to investigate at this stage.\n\nLet's have the Legal Team interview Julian. Find out what he remembers.");
    task("Send Price, Julian to the Legal Team for interview.");
   }else{
-   add("theo","I checked the investigation records again. Iris Smith is in the master records, but she's part of the wedding-management team.\n\nThe original suspect profile was built around wedding guests, so Iris isn't a comparable guest-profile match. We shouldn't treat her as one of the 3/4 guest candidates at this stage.\n\nCheck the 22 remaining records again. Find another person who matches at least three of the four characteristics.");
+   add("theo","I checked the investigation records again. Iris Smith is in the master records, but she's part of the wedding-management team. We have a record for her, but she isn't one of the ordinary guest records used for this profile.\n\nDon't stop at Iris. Check the 22 remaining records again and see if there's another person who matches at least three of the four characteristics.");
    task("Find another person in the ledger who matches at least three of the four characteristics.");
   }
   save();
