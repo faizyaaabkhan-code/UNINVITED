@@ -657,8 +657,13 @@ function route(raw){
  var advancesCurrentLead=currentLead&&(currentLead.n===7 ? (has(n,["iris","smith"])&&has(n,["49"])&&has(n,["8"])) : n===currentLead.answer);
  if(advancesCurrentLead){leadRoute(n);return}
  if(S.lead===4&&S.profileStage===2&&has(n,["iris"])){
-  add("theo","I checked the investigation records again. Iris Smith was part of the wedding-management team.\n\nWe don't have anything comparable on Julian. She matches the original profile and survived the earlier filters. She's looking very suspicious.\n\nLet's interrogate Julian. Find out what she remembers.");
-  task("Send Price, Julian to the Legal Team for interview.");
+  if(has(n,["price julian","julian"])){
+   add("theo","I checked both names against the investigation records.\n\nIris Smith is in the master records, but she's part of the wedding-management team. The original profile was built around wedding guests, so Iris isn't a comparable guest-profile match.\n\nPrice, Julian is different. Julian matches three of the four characteristics and is a valid person to investigate at this stage.\n\nLet's have the Legal Team interview Julian. Find out what he remembers.");
+   task("Send Price, Julian to the Legal Team for interview.");
+  }else{
+   add("theo","I checked the investigation records again. Iris Smith is in the master records, but she's part of the wedding-management team.\n\nThe original suspect profile was built around wedding guests, so Iris isn't a comparable guest-profile match. We shouldn't treat her as one of the 3/4 guest candidates at this stage.\n\nCheck the 22 remaining records again. Find another person who matches at least three of the four characteristics.");
+   task("Find another person in the ledger who matches at least three of the four characteristics.");
+  }
   save();
   return;
  }
