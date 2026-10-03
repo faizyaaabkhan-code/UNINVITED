@@ -503,7 +503,8 @@ function progressTracker(){
  var steps=labels.map(function(label,index){
   var done=index<completed,current=index===completed&&completed<7;
   var state=done?"done":current?"current":"upcoming";
-  return '<li class="progress-step '+state+'"'+(current?' aria-current="step"':"")+'><span class="progress-index">'+(done?"✓":index+1)+'</span><span class="progress-label">'+label+'</span></li>';
+  var status=done?"complete":current?"current":"upcoming";
+  return '<li class="progress-step '+state+'" aria-label="'+label+': '+status+'" title="'+label+': '+status+'"'+(current?' aria-current="step"':"")+'><span class="progress-index" aria-hidden="true">'+(done?"✓":index+1)+'</span><span class="progress-label" aria-hidden="true">🔒</span></li>';
  }).join("");
  var note=S.final?"All seven evidence filters are complete.": "Your specific next action is shown in Next Move below.";
  return '<section class="progress-tracker" aria-label="Investigation progress"><div class="progress-heading"><strong>Evidence filters</strong><span>'+completed+' of 7 complete</span></div><div class="progress-track" role="progressbar" aria-label="Evidence filters completed" aria-valuemin="0" aria-valuemax="7" aria-valuenow="'+completed+'"><span style="width:'+Math.round(completed/7*100)+'%"></span></div><ol class="progress-steps">'+steps+'</ol><p class="progress-note">'+note+'</p></section>';
