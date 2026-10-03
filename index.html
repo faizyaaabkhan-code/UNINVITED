@@ -707,6 +707,12 @@ function route(raw){
   save();
   return;
  }
+ if(S.lead===4&&S.profileStage===3&&has(n,["iris smith","iris"])){
+  add("theo","I checked the investigation records again. Iris Smith was part of the wedding-management team.\n\nWe don't have anything comparable on Iris as a guest. She matches the original profile, but she is not part of the guest-profile comparison we're testing here.\n\nLet's test another guest. Find the person who matches the profile by all four or at least three characteristics.");
+  task("Find another name in the ledger that matches all four or at least three of the four characteristics.");
+  save();
+  return;
+ }
  if(answerCaseQuestion(n))return;
  if(S.final){add("theo","CASE 0147 is closed. The investigation record is complete.");return}
  if(S.iris){
@@ -720,12 +726,6 @@ function route(raw){
  }
  if(S.lead===3&&S.profileStage===0){
   if(has(n,["gray jack","jack"])){S.profileStage=1;S.pendingAccusation="Gray, Jack";task("Send Gray, Jack to the Legal Team for interview.");save();return}
- }
- if(S.lead===4&&S.profileStage===3&&has(n,["iris smith","iris"])){
-  add("theo","I checked the investigation records again. Iris Smith was part of the wedding-management team.\n\nWe don't have anything comparable on Iris as a guest. She matches the original profile, but she is not part of the guest-profile comparison we're testing here.\n\nLet's test another guest. Find the person who matches the profile by all four or at least three characteristics.");
-  task("Find another name in the ledger that matches all four or at least three of the four characteristics.");
-  save();
-  return;
  }
  return leadRoute(n);
 }
