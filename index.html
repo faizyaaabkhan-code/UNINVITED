@@ -302,6 +302,23 @@ header:after{
   .chat{min-height:390px}
 }
 
+<style>
+.progress-tracker{padding:0 8px 14px;margin:0 0 8px;border-bottom:1px solid var(--line)}
+.progress-heading{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px}
+.progress-heading strong{font:600 9px 'Montserrat',Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+.progress-heading span{font:11px 'Montserrat',Arial,sans-serif;color:var(--muted)}
+.progress-track{height:4px;background:#302a26;border-radius:99px;overflow:hidden}
+.progress-track span{display:block;height:100%;background:var(--gold);border-radius:inherit;transition:width .25s ease}
+.progress-steps{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;list-style:none;padding:0;margin:10px 0 0}
+.progress-step{display:flex;align-items:center;gap:5px;min-width:0;color:#81776e;font:9px 'Montserrat',Arial,sans-serif}
+.progress-index{display:grid;place-items:center;flex:0 0 18px;height:18px;border:1px solid #514740;border-radius:50%;font-size:9px}
+.progress-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.progress-step.done{color:var(--green)}
+.progress-step.done .progress-index{border-color:#536449;background:#20271d}
+.progress-step.current{color:var(--text)}
+.progress-step.current .progress-index{border-color:var(--gold);color:var(--gold);background:#282116}
+.progress-note{margin:8px 0 0;color:var(--muted);font:10px 'Montserrat',Arial,sans-serif}
+@media(max-width:650px){.progress-tracker{padding:0 3px 12px}.progress-steps{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:7px}.progress-label{font-size:8px}}
 </style>
 </head>
 <body><div class="wrap"><header><div class="kicker">Private Investigation Channel</div><div class="title">UNINVITED</div><div class="sub">CASE 0147 · Detective Theo Marsh</div></header><div id="app"></div></div>
@@ -480,12 +497,23 @@ function playMessageSound(){
  }catch(e){}
 }
 function typingBubble(){return '<div class="msg theo"><div class="bubble typing-bubble"><div class="speaker">Theo Marsh</div><span class="typing-dots"><i></i><i></i><i></i></span><span class="typing-label">Theo is typing…</span></div></div>';}
+function progressTracker(){
+ var completed=Math.max(0,Math.min(7,Number(S.lead)||0));
+ var labels=["CCTV gap","Initial mark","Meal clue","Bride's side","RSVP","Gift","Table 49"];
+ var steps=labels.map(function(label,index){
+  var done=index<completed,current=index===completed&&completed<7;
+  var state=done?"done":current?"current":"upcoming";
+  return '<li class="progress-step '+state+'"'+(current?' aria-current="step"':"")+'><span class="progress-index">'+(done?"✓":index+1)+'</span><span class="progress-label">'+label+'</span></li>';
+ }).join("");
+ var note=S.final?"All seven evidence filters are complete.": "Your specific next action is shown in Next Move below.";
+ return '<section class="progress-tracker" aria-label="Investigation progress"><div class="progress-heading"><strong>Evidence filters</strong><span>'+completed+' of 7 complete</span></div><div class="progress-track" role="progressbar" aria-label="Evidence filters completed" aria-valuemin="0" aria-valuemax="7" aria-valuenow="'+completed+'"><span style="width:'+Math.round(completed/7*100)+'%"></span></div><ol class="progress-steps">'+steps+'</ol><p class="progress-note">'+note+'</p></section>';
+}
 function theo(){
  var chat=S.messages.map(function(m){return '<div class="msg '+m.w+'"><div class="bubble"><div class="speaker">'+(m.w==="theo"?"Theo Marsh":"You")+'</div>'+esc(m.t)+'</div></div>'}).join("");
  var t=(S.task&&!window.__typing)?'<div class="task"><strong>Next move</strong>'+esc(S.task)+'</div>':"";
  var h=(!S.final&&!S.iris&&!window.__typing&&S.lead<7&&S.hintAvailable)?'<div class="hint-row"><button class="btn hint-btn" '+(S.hints[S.lead+1]?"disabled ":"")+'onclick="useHint()">'+(S.hints[S.lead+1]?"HINT USED":"NEED A HINT?")+'</button></div>':"";
  if(window.__typing)chat+=typingBubble();
- return '<div class="panel"><div class="chat" id="chat">'+chat+'</div>'+t+h+'<div class="composer"><input id="input" placeholder="'+(S.final?"Case closed.":"Ask Theo anything about the case…")+'" '+(S.final?"disabled":"")+' onkeydown="if(event.key===\'Enter\')send()"><button class="btn primary" onclick="send()" '+(S.final?"disabled":"")+'>Send</button></div></div>';
+ return '<div class="panel">'+progressTracker()+'<div class="chat" id="chat">'+chat+'</div>'+t+h+'<div class="composer"><input id="input" placeholder="'+(S.final?"Case closed.":"Ask Theo anything about the case…")+'" '+(S.final?"disabled":"")+' onkeydown="if(event.key===\'Enter\')send()"><button class="btn primary" onclick="send()" '+(S.final?"disabled":"")+'>Send</button></div></div>';
 }
 function legal(){
  var docs=S.docs.map(function(d){return '<div class="panel doc"><h3>'+esc(d.title)+'</h3>'+d.body+'</div>'}).join("");
