@@ -662,15 +662,23 @@ function route(raw){
  var hasSeat8=hasExactNumber(n,8);
  var advancesCurrentLead=currentLead&&(currentLead.n===7 ? hasIrisIdentification(n) : n===currentLead.answer);
  if(advancesCurrentLead){leadRoute(n);return}
- if(currentLead&&currentLead.n===7&&irisNamed){
+ if(currentLead&&currentLead.n===7&&(irisNamed||S.facts.pendingIrisName)){
+  if(irisNamed)S.facts.pendingIrisName=true;
+  if(hasTable49)S.facts.pendingIrisTable49=true;
+  if(hasSeat8)S.facts.pendingIrisSeat8=true;
   var missingDetails=[];
-  if(!hasTable49)missingDetails.push("the table number");
-  if(!hasSeat8)missingDetails.push("the seat number");
+  if(!S.facts.pendingIrisTable49)missingDetails.push("the table number");
+  if(!S.facts.pendingIrisSeat8)missingDetails.push("the seat number");
   if(missingDetails.length){
    add("theo","I have Iris Smith as the name. I still need "+missingDetails.join(" and ")+" before I can confirm the identification.");
    save();
    return;
   }
+  S.facts.pendingIrisName=false;
+  S.facts.pendingIrisTable49=false;
+  S.facts.pendingIrisSeat8=false;
+  leadRoute("iris smith table 49 seat 8");
+  return;
  }
  if(S.lead===4&&S.profileStage===2&&has(n,["julian","julain"])&&has(n,["iris"])){
   add("theo","I checked both names against the investigation records.\n\nIris Smith is in the master records, but she's part of the wedding-management team. We have a record for her because she had an assigned table and meal, but she isn't one of the ordinary guest records used for this profile.\n\nPrice, Julian is a different case. He matches three of the four characteristics, so he's a valid candidate to investigate at this stage.\n\nLet's have the Legal Team interview Julian. Find out what he remembers.");
@@ -701,7 +709,7 @@ function route(raw){
  }
  if(S.profileStage===3&&has(n,["iris"])&&has(n,["julian","julain"])){
   S.pendingAccusation="Price, Julian";
-  add("theo","I checked both names against the investigation records. Iris Smith is in the master records, but she was part of the wedding-management team rather than an ordinary guest. Check the remaining 22 records for another person who matches at least three of the original profile characteristics.\n\nPrice, Julian matches three of the four characteristics, so he is also a valid candidate to investigate. Ask the Legal Team to interview Julian and find out what he remembers.");
+  add("theo","I checked both names against the investigation records. Iris Smith is in the master records, but she was part of the wedding-management team rather than an ordinary guest.\n\nPrice, Julian matches three of the four characteristics, so he is also a valid candidate to investigate. Ask the Legal Team to interview Julian and find out what he remembers.");
   task("Request the Legal Team to interrogate Price, Julian. Also identify another person among the 22 remaining records who matches at least three profile characteristics.");
   save();
   return;
@@ -740,6 +748,11 @@ function leadRoute(n){
  if(!L)return;
  if(n===L.answer||(L.n===7&&hasIrisIdentification(n))){
   S.lead++;
+  if(L.n===7){
+   S.facts.pendingIrisName=false;
+   S.facts.pendingIrisTable49=false;
+   S.facts.pendingIrisSeat8=false;
+  }
   S.hintAvailable=false;
   if(L.n===3&&S.profileStage===0){
    add("theo",L.ok);
