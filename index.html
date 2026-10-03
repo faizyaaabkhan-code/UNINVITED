@@ -656,6 +656,16 @@ function route(raw){
  var currentLead=LEADS[S.lead];
  var advancesCurrentLead=currentLead&&(currentLead.n===7 ? (has(n,["iris","smith"])&&has(n,["49"])&&has(n,["8"])) : n===currentLead.answer);
  if(advancesCurrentLead){leadRoute(n);return}
+ if(S.lead===7&&has(n,["iris","smith"])){
+  var missingDetails=[];
+  if(!has(n,["49"]))missingDetails.push("the table number");
+  if(!has(n,["8"]))missingDetails.push("the seat number");
+  if(missingDetails.length){
+   add("theo","I have Iris Smith as the name. I still need "+missingDetails.join(" and ")+" before I can confirm the identification.");
+   save();
+   return;
+  }
+ }
  if(S.lead===4&&S.profileStage===2&&has(n,["julian","julain"])&&has(n,["iris"])){
   add("theo","I checked both names against the investigation records.\n\nIris Smith is in the master records, but she's part of the wedding-management team. We have a record for her because she had an assigned table and meal, but she isn't one of the ordinary guest records used for this profile.\n\nPrice, Julian is a different case. He matches three of the four characteristics, so he's a valid candidate to investigate at this stage.\n\nLet's have the Legal Team interview Julian. Find out what he remembers.");
   S.pendingAccusation="Price, Julian";
