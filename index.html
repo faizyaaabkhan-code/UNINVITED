@@ -654,12 +654,12 @@ function answerCaseQuestion(n){
 function route(raw){
  var n=norm(raw);
  var currentLead=LEADS[S.lead];
- var advancesCurrentLead=currentLead&&(currentLead.n===7 ? (/(^|\\s)(iris|smith)(\\s|$)/.test(n)&&/(^|\\s)49(\\s|$)/.test(n)&&/(^|\\s)8(\\s|$)/.test(n)) : n===currentLead.answer);
+ var advancesCurrentLead=currentLead&&(currentLead.n===7 ? (/(^|\s)(iris|smith)(\s|$)/.test(n)&&/(^|\s)49(\s|$)/.test(n)&&/(^|\s)8(\s|$)/.test(n)) : n===currentLead.answer);
  if(advancesCurrentLead){leadRoute(n);return}
- if(currentLead&&currentLead.n===7&&/(^|\\s)(iris|smith)(\\s|$)/.test(n)){
+ if(currentLead&&currentLead.n===7&&/(^|\s)(iris|smith)(\s|$)/.test(n)){
   var missingDetails=[];
-  if(!/(^|\\s)49(\\s|$)/.test(n))missingDetails.push("the table number");
-  if(!/(^|\\s)8(\\s|$)/.test(n))missingDetails.push("the seat number");
+  if(!/(^|\s)49(\s|$)/.test(n))missingDetails.push("the table number");
+  if(!/(^|\s)8(\s|$)/.test(n))missingDetails.push("the seat number");
   if(missingDetails.length){
    add("theo","I have Iris Smith as the name. I still need "+missingDetails.join(" and ")+" before I can confirm the identification.");
    save();
