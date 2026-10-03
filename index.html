@@ -611,7 +611,7 @@ const CASE_KNOWLEDGE=[
  {keys:["what is jasmine row","what are jasmine records","what is jasmine table","what is jasmine seat"],minLead:0,text:"Jasmine Rivers is recorded at Table 47, Seat 8, with E/M, $$, Br, Ck."},
  {keys:["what happened to jack","what did jack see","what did jack tell us"],minProfile:2,text:"The Legal Team report says Jack remembered seeing a pink guest badge near the reception area. He could not identify who was wearing it, but the badge gives us the bride's-side characteristic."},
  {keys:["what happened to julian","what did julian see","what did julian tell us"],minProfile:4,text:"The Legal Team report says Julian remembered seeing someone moving away from the reception around the time Margery left. Julian could not identify the person, but remembered that the person was not marked T on the RSVP record — it was either E or L."},
- {keys:["who is jack","who's jack","who is gray jack","tell me about jack"],minProfile:1,text:"Gray, Jack is the first person being tested against the working suspect profile. He matches three of four characteristics: first name I–Q, bride's side, and odd-numbered table. His ledger method is M, not P."},
+ {keys:["who is jack","who's jack","who is gray jack","tell me about jack"],minProfile:1,text:"Gray, Jack is the first person being tested against the working suspect profile. He matches all four characteristics: first name I–Q, bride's side, odd-numbered table, and Method P."},
  {keys:["who is julian","who's julian","who is price julian","tell me about julian"],minProfile:3,text:"Price, Julian is the next person being tested against the working suspect profile. She matches three of the four characteristics."},
  {keys:["what is the suspect profile","what are the four characteristics","what profile are we using"],minProfile:1,text:"The original detective's working profile has four characteristics: first name I–Q, bride's side, odd-numbered table, and Method P. It is a working profile, not a complete definition of the killer. A candidate can match at least three of these four characteristics."},
  {keys:["who is iris","who's iris","tell me about iris","what is iris","who is iris smith","iris"],minIris:true,text:"Iris Smith is the person identified by the ledger investigation: Table 49, Seat 8. She was part of the wedding management team in event design and logistics rather than an ordinary guest, so the late-confirmation guest criterion does not apply to her."},
@@ -702,7 +702,7 @@ function route(raw){
  }
  if(S.profileStage===1&&has(n,["gray jack","jack"])){
   S.pendingAccusation="Gray, Jack";
-  add("theo","Gray, Jack matches three of the four working-profile characteristics: first name I–Q, bride's side, and odd-numbered table. His method is M, so he does not match Method P. He survived the filters we've applied so far.\n\nThat doesn't make him the killer. It makes him the first person we need to question.\n\nRequest the Legal Team to interrogate Jack. Find out what he remembers from the reception.");
+  add("theo","Gray, Jack matches all four working-profile characteristics, including Method P, and he survived every filter we've applied so far.\n\nThat doesn't make him the killer. It makes him the first person we need to question.\n\nRequest the Legal Team to interrogate Jack. Find out what he remembers from the reception.");
   task("Request the Legal Team to interrogate Gray, Jack.");
   save();
   return;
@@ -756,11 +756,11 @@ function leadRoute(n){
   S.hintAvailable=false;
   if(L.n===3&&S.profileStage===0){
    add("theo",L.ok);
-   add("theo","52. We're down to 52 records.\n\nWe've narrowed the ledger using the physical evidence. Now I want to test something from the original investigation.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us another way to narrow the records.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nMethod: P\n\nThis is a working profile, not proof of guilt.\n\nTest the four characteristics against the 52 remaining records. Find a person who matches at least three of them. Give me the name.");
+   add("theo","52. We're down to 52 records.\n\nWe've narrowed the ledger using the physical evidence. Now I want to test something from the original investigation.\n\nThe detective who built the original case left behind a working suspect profile. I don't know whether the profile is correct, but it gives us another way to narrow the records.\n\nFour things stand out:\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nMethod: P\n\nThis is a working profile, not proof of guilt.\n\nTest the four characteristics against the 52 remaining records. Find the person who matches all four characteristics. Give me the name.");
    S.profileStage=1;
    S.pendingAccusation="";
    S.notice.legal=false;
-   task("Find a person who matches at least three of the four working-profile characteristics.");
+   task("Find a person who matches all four working-profile characteristics.");
   }else if(L.n===4&&S.profileStage===2){
    add("theo",L.ok);
    add("theo","22.\n\nGood. The pink badge narrows the remaining records to 22 people on the bride's side.\n\nNow we can reuse the original suspect profile against this smaller group.\n\nLet's test the profile again. This time, we're looking for someone who matches at least three of the four characteristics.\n\nFirst name: I–Q\nWedding side: Bride's side\nTable: Odd-numbered\nMethod: P\n\nFind a person who matches all four or at least three. Give me the name you want to test next.");
