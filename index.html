@@ -318,7 +318,7 @@ const LEADS=[
  {n:3,answer:"52",prompt:"I went back to the catering records and the physical evidence from the reception.\n\nA residue recovered near the cellar route was compared with the wedding's catering inventory. The match is the gravy served with the chicken entrée.\n\nThat does not prove who touched the wall or who ate the meal. But it gives us another characteristic to test against the records.\n\nCheck the meal field.\n\nWhat count do you get?",ok:"52."},
  {n:4,answer:"22",prompt:"Check the remaining records for the bride's side.\n\nWhat count do you get?",ok:"22."},
  {n:5,answer:"11",prompt:"11.\n\nJulian is cleared too.\n\nBut his statement gives us one more useful distinction. He remembers that the person he saw was not marked T on the RSVP record.\n\nSo we're left with two possibilities:\n\nE — Early\n\nL — Late\n\nApply that RSVP filter to the 11 remaining records.\n\nWhat count do you get?",ok:"11."},
- {n:6,answer:"2",prompt:"11.\n\nJulian's statement has given us the RSVP distinction. Now there's one more characteristic we can use before the final seating evidence.\n\nThe unidentified gift was in the $50–150 range. In the ledger, that is the $$ gift bracket.\n\nCheck the 11 remaining records for Gift = $$ .\n\nWhat count do you get?",ok:"2."},
+ {n:6,answer:"2",prompt:"11.\n\nJulian's memory gives us an RSVP distinction, but it still leaves several possible guests. Before we turn to the torn seating marker, the gift evidence may narrow the list further. The unidentified gift was valued at $50–150; the ledger marks that range as $.\n\nApply Gift = $ to the 11 remaining records.\n\nHow many remain?",ok:"2."},
  {n:7,answer:"49",prompt:"Two records remain.\n\nWe've now used every characteristic we have: the original profile, the bride's side, RSVP timing, and the gift range.\n\nOne final piece of physical evidence can separate them.\n\nI found a torn seating marker. Most of it is missing, but one detail is readable:\n\nTable 49.\n\nCheck the two remaining records against Table 49.\n\nGive me the full name, table number, and seat number of the person who remains.",ok:"Seven pieces of evidence. One person left."}
 ];
 const HINTS={1:["Count every record whose table number is 46, 47, 48, 49, or 50."],2:["Use the first initial of the guest’s first name. Keep T, H, J, and I."],3:["Use the MEAL field. Ck means Chicken."],4:["The pink guest badge points to the bride’s side. Use SIDE = Br."],5:["Use the RSVP status from Theo’s late-confirmation clue. Keep E or L."],6:["Use the GIFT bracket, not an exact price. $$ means $50–150."],7:["The torn marker gives only Table 49. Check the two remaining records and identify the person at that table."]};
@@ -327,7 +327,7 @@ let S=load();
 function normalizeState(input){
  var s;
  try{s=structuredClone(input||initial)}catch(e){s=structuredClone(initial)}
- s.docs=Array.isArray(s.docs)?s.docs.map(function(d){if(!d)return d;if(d.id==="ella"){d.id="jack";d.title="GRAY, JACK — INTERROGATION REPORT";d.body="<p>We interviewed Gray, Jack.</p><p>Jack denied killing Margery.</p><p>During the interview, he remembered seeing a pink guest badge near the reception area.</p><p>He could not identify who was wearing it.</p><p>But he remembers one detail clearly:</p><p><strong>The person was wearing a pink guest badge.</strong></p><p>Jack has been cleared as the person responsible for Margery's death.</p>";}if(d.id==="owen"){d.id="julian";d.title="PRICE, JULIAN — INTERROGATION REPORT";d.body="<p>We interviewed Price, Julian.</p><p>Julian denied killing Margery.</p><p>During the interview, Julian remembered seeing someone moving away from the reception around the time Margery left.</p><p>Julian could not identify the person.</p><p>What Julian remembers is that the person was not marked T on the RSVP record. It was either E or L.</p><p>Julian has been cleared as the person responsible for Margery's death.</p>";}return d;}).filter(function(d){return d&&["jack","julian","interrogation","reconstruction"].indexOf(d.id)>=0}):[];
+ s.docs=Array.isArray(s.docs)?s.docs.map(function(d){if(!d)return d;if(d.id==="ella"){d.id="jack";d.title="GRAY, JACK — INTERROGATION REPORT";d.body="<p>We interviewed Gray, Jack.</p><p>Jack denied killing Margery.</p><p>During the interview, he remembered seeing a pink guest badge near the reception area.</p><p>He could not identify who was wearing it.</p><p>But he remembers one detail clearly:</p><p><strong>The person was wearing a pink guest badge.</strong></p><p>Jack has been cleared as the person responsible for Margery's death.</p>";}if(d.id==="owen"){d.id="julian";d.title="PRICE, JULIAN — INTERROGATION REPORT";d.body="<p>We interviewed Price, Julian.</p><p>Julian denied killing Margery.</p><p>During the interview, Julian remembered seeing someone moving away from the reception around the time Margery left.</p><p>Julian could not identify the person.</p><p>What Julian remembers is that the person was not marked T on the RSVP record. It was either E or L.</p><p>Julian has been cleared as the person responsible for Margery's death.</p>";}return d;}).filter(function(d){return d&&["jack","julian","interrogation"].indexOf(d.id)>=0}):[];
  s.facts=s.facts||{};
  s.hints=s.hints&&typeof s.hints==="object"?s.hints:{};s.hintAvailable=!!s.hintAvailable;
  s.profileStage=Number.isFinite(Number(s.profileStage))?Number(s.profileStage):0;
@@ -341,16 +341,21 @@ function normalizeState(input){
  var hadReport=s.docs.some(function(d){return d.id==="interrogation"});
  if(s.iris){s.profileStage=4;s.lead=Math.max(7,Number(s.lead)||0)}
  var preservedFacts=s.facts&&typeof s.facts==="object"?s.facts:{};
- s.facts={identified:!!s.iris,interrogationSent:!!(preservedFacts.interrogationSent||hadReport),reconstructionConfirmed:!!preservedFacts.reconstructionConfirmed,closureReady:!!preservedFacts.closureReady};
+  s.facts={identified:!!s.iris,interrogationSent:!!(preservedFacts.interrogationSent||hadReport)};
+ if(s.facts.interrogationSent&&!s.final){
+  s.final=true;
+  if(msgText.indexOf("i found the truth behind it")<0){
+   s.messages=Array.isArray(s.messages)?s.messages:[];
+   s.messages.push({w:"theo",t:"The Legal Team completed Iris’s interrogation. Iris admitted she confronted Margery in the cellar, pushed her, and left without calling for help while Margery was still alive. Her account fits the physical evidence and the ledger identification.\n\nJasmine did argue with Margery and later lied about it to protect her secret marriage from Margery’s blackmail. That explains why Jasmine looked guilty, but the evidence does not place her in the cellar. Iris’s account and the investigation evidence point to Iris as responsible for Margery’s death.\n\nCase 0147 is closed."});
+  }
+ }
  if(s.profileStage===1&&s.pendingAccusation!=="Gray, Jack"&&s.task==="Send Gray, Jack to the Legal Team for interview.")s.task="";
  if(s.profileStage===3&&s.pendingAccusation!=="Price, Julian"&&s.task==="Send Price, Julian to the Legal Team for interview.")s.task="";
  if(s.lead>=4&&s.profileStage===3&&s.pendingAccusation==="")s.task="Find a name in the ledger that matches all four or at least three of the four characteristics.";
  if(s.final){
   s.task="CASE CLOSED";
- }else if(s.iris&&s.facts.interrogationSent&&!s.facts.reconstructionConfirmed){
-  s.task="Open the Legal Team report and reconstruct the cellar sequence.";
- }else if(s.iris&&s.facts.reconstructionConfirmed&&!s.final){
-  s.task="Review Theo's reconstruction and confirm the case closure.";
+ }else if(s.iris&&s.facts.interrogationSent){
+  s.task="CASE CLOSED";
  }else if(s.iris){
   s.task="Email the Legal Team and request an interrogation of Iris.";
  }else if(s.profileStage===1&&s.pendingAccusation==="Gray, Jack"){
@@ -472,13 +477,7 @@ function legal(){
   if(!S.facts.interrogationSent){
    return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\'s Legal Team</p><p><strong>Subject:</strong> Request for Iris Smith Interrogation</p><p>We have identified Iris Smith, Table 49, Seat 8.</p><p>Please interrogate Iris and find out what happened between Iris and Margery.</p><p>We need to know what happened that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendInterrogationEmail()">SEND EMAIL</button></div></div>'+docs;
   }
-  if(!S.facts.reconstructionConfirmed){
-   return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The interrogation is complete. Before we close the case, reconstruct the sequence in the cellar.</p><div class="legal-choices"><button class="btn primary" onclick="reconstructCellar()">RECONSTRUCT THE CELLAR</button></div></div>'+docs;
-  }
-  if(!S.final){
-   return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The cellar reconstruction has been recorded. Theo has reinterpreted the evidence concerning Jasmine.</p><div class="legal-choices"><button class="btn primary" onclick="closeCase()">CONFIRM CASE CLOSURE</button></div></div>'+docs;
-  }
-  return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The investigation record is complete.</p></div>'+docs;
+  return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The interrogation report is available below. Theo has completed the case summary.</p></div>'+docs;
  }
  if(S.profileStage===1||S.profileStage===3){
   var person=S.profileStage===1?"Gray, Jack":"Price, Julian";
@@ -561,30 +560,9 @@ function sendInterrogationEmail(){
  S.notice.theo=true;
  playMessageSound();
  S.docs.push({id:"interrogation",title:"IRIS SMITH — INTERROGATION REPORT",body:"<p>The Legal Team interrogated Iris Smith.</p><p>Iris admitted that she went to find Margery in the cellar. Their confrontation was rooted in a long-running professional conflict.</p><p>Iris worked in event design and logistics and had repeatedly helped Margery with events. Margery relied on her work but excluded her from meetings and client-facing interactions and took credit for work Iris had done. Iris had complained about this treatment, but Margery dismissed it as “how the industry works” and could affect Iris’s future recommendations and opportunities.</p><p>That conflict was still present during the Alder Hollow wedding.</p><p>Iris admitted that she confronted Margery in the cellar. They argued. Margery grabbed Iris. Iris pushed her, and Margery fell down the cellar stairs.</p><p><strong>Margery was still alive after the fall.</strong></p><p>Iris could have called for help.</p><p><strong>She didn't.</strong></p><p>She left the cellar and returned to the reception without telling anyone what had happened.</p>"});
- add("theo","The Legal Team has finished the Iris interrogation.\n\nHer account changes what we can say about the cellar.\n\nWe now have a direct account from Iris that she went there, confronted Margery, pushed her, and left without calling for help.\n\nBut I don't want to treat her statement in isolation.\n\nRead the interrogation report and reconstruct the sequence with the Legal Team.\n\nWe need to see how her account fits the physical evidence and what we already know about Jasmine.");
- task("Open the Legal Team report and reconstruct the cellar sequence.");
- save();
- render();
-}
-function reconstructCellar(){
- if(!S.facts.interrogationSent||S.facts.reconstructionConfirmed)return;
- S.facts.reconstructionConfirmed=true;
- S.facts.closureReady=true;
- S.docs.push({id:"reconstruction",title:"CELLAR RECONSTRUCTION — CASE 0147",body:"<p><strong>1. Iris went to the cellar to confront Margery.</strong></p><p><strong>2. They argued about the professional conflict between them.</strong></p><p><strong>3. Margery grabbed Iris.</strong></p><p><strong>4. Iris pushed Margery.</strong></p><p><strong>5. Margery fell down the cellar stairs and was still alive.</strong></p><p><strong>6. Iris could have called for help, but did not.</strong></p><p><strong>7. Iris left and returned to the reception without telling anyone.</strong></p><hr><p>The earlier evidence against Jasmine now has a different meaning. Jasmine did argue with Margery, but that argument concerned the secret marriage and Margery's blackmail. Jasmine's later lie was an attempt to protect her marriage.</p><p>The evidence does not place Jasmine in the cellar. Her lie explains why the original investigation focused on her; it does not establish that she caused Margery's fall.</p><p><strong>The physical evidence, ledger identification, and Iris's account now fit the same sequence.</strong></p>"});
- S.notice.theo=true;
- playMessageSound();
- add("theo","The reconstruction is complete.\n\nNow we can separate the two stories that were getting mixed together.\n\nJasmine really did argue with Margery.\n\nJasmine really did lie about what that argument was about.\n\nBut the evidence places the cellar confrontation somewhere else.\n\nIris's account, the physical evidence, and the ledger identification now point to the same sequence.\n\nJasmine's lie explains why she looked guilty. It does not put her in the cellar.\n\nThe Legal Team has enough to close the case.\n\nReview the reconstruction and confirm the case closure.");
- task("Review Theo's reconstruction and confirm the case closure.");
- save();
- render();
-}
-function closeCase(){
- if(!S.facts.reconstructionConfirmed||S.final)return;
  S.final=true;
  S.task="CASE CLOSED";
- S.notice.theo=true;
- playMessageSound();
- add("theo","Jasmine lied about the argument because she was protecting her marriage.\n\nIris concealed what happened in the cellar because she knew Margery was still alive and chose not to call for help.\n\nYou found the name.\n\nI found the truth behind it.");
+ add("theo","The Legal Team has finished Iris’s interrogation. Her account fits the physical evidence and the ledger identification.\n\nIris admitted that she confronted Margery in the cellar, pushed her, and left without calling for help while Margery was still alive.\n\nJasmine did argue with Margery and later lied about it to protect her secret marriage from Margery’s blackmail. That explains why Jasmine looked guilty, but the evidence does not place her in the cellar. Iris’s account and the investigation evidence point to Iris as responsible for Margery’s death.\n\nCase 0147 is closed.");
  save();
  render();
 }
