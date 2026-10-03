@@ -693,6 +693,13 @@ function route(raw){
   save();
   return;
  }
+ if(S.profileStage===3&&has(n,["iris"])&&has(n,["julian","julain"])){
+  S.pendingAccusation="Price, Julian";
+  add("theo","I checked both names against the investigation records. Iris Smith is in the master records, but she was part of the wedding-management team rather than an ordinary guest. Check the remaining 22 records for another person who matches at least three of the original profile characteristics.\n\nPrice, Julian matches three of the four characteristics, so he is also a valid candidate to investigate. Ask the Legal Team to interview Julian and find out what he remembers.");
+  task("Request the Legal Team to interrogate Price, Julian. Also identify another person among the 22 remaining records who matches at least three profile characteristics.");
+  save();
+  return;
+ }
  if(S.profileStage===3&&has(n,["price julian","julian","julain"])){
   S.pendingAccusation="Price, Julian";
   add("theo","Price, Julian matches three of the four characteristics.\n\nHe isn't a four-for-four match like Jack was, but he is one of the remaining records that fits the original profile closely enough to investigate.\n\nLet's have the Legal Team interview him. Find out what he remembers.");
