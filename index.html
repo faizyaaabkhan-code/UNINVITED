@@ -327,6 +327,7 @@ let S=load();
 function normalizeState(input){
  var s;
  try{s=structuredClone(input||initial)}catch(e){s=structuredClone(initial)}
+ var didMigrate=false;
  s.docs=Array.isArray(s.docs)?s.docs.map(function(d){if(!d)return d;if(d.id==="ella"){d.id="jack";d.title="GRAY, JACK — INTERROGATION REPORT";d.body="<p>We interviewed Gray, Jack.</p><p>Jack denied killing Margery.</p><p>During the interview, he remembered seeing a pink guest badge near the reception area.</p><p>He could not identify who was wearing it.</p><p>But he remembers one detail clearly:</p><p><strong>The person was wearing a pink guest badge.</strong></p><p>Jack has been cleared as the person responsible for Margery's death.</p>";}if(d.id==="owen"){d.id="julian";d.title="PRICE, JULIAN — INTERROGATION REPORT";d.body="<p>We interviewed Price, Julian.</p><p>Julian denied killing Margery.</p><p>During the interview, Julian remembered seeing someone moving away from the reception around the time Margery left.</p><p>Julian could not identify the person.</p><p>What Julian remembers is that the person was not marked T on the RSVP record. It was either E or L.</p><p>Julian has been cleared as the person responsible for Margery's death.</p>";}return d;}).filter(function(d){return d&&["jack","julian","interrogation"].indexOf(d.id)>=0}):[];
  s.facts=s.facts||{};
  s.hints=s.hints&&typeof s.hints==="object"?s.hints:{};s.hintAvailable=!!s.hintAvailable;
@@ -334,6 +335,19 @@ function normalizeState(input){
  s.pendingAccusation=s.pendingAccusation==="Ella Taylor"?"Gray, Jack":s.pendingAccusation==="Owen Hawthorne"?"Price, Julian":(s.pendingAccusation||"");
  s.notice=s.notice&&typeof s.notice==="object"?s.notice:{theo:false,legal:false};s.notice.theo=!!s.notice.theo;s.notice.legal=!!s.notice.legal;
  if(s.tab==="status")s.tab="theo";
+ s.messages=Array.isArray(s.messages)?s.messages:[];
+ var legacyEndSummary="The Legal Team has finished Iris’s interrogation. Her account fits the physical evidence and the ledger identification.\n\nIris admitted that she confronted Margery in the cellar, pushed her, and left without calling for help while Margery was still alive.\n\nJasmine did argue with Margery and later lied about it to protect her secret marriage from Margery’s blackmail. That explains why Jasmine looked guilty, but the evidence does not place her in the cellar. Iris’s account and the investigation evidence point to Iris as responsible for Margery’s death.\n\nCase 0147 is closed.";
+ s.messages=s.messages.map(function(m){
+  if(!m||m.w!=="theo")return m;
+  var t=String(m.t||"");
+  if(t.indexOf("The Legal Team has finished the Iris interrogation.")===0){didMigrate=true;return {w:"theo",t:legacyEndSummary};}
+  if(t.indexOf("The reconstruction is complete.")===0){didMigrate=true;return null;}
+  if(t.indexOf("Jasmine lied about the argument because she was protecting her marriage.")===0&&t.indexOf("You found the name.")>=0){didMigrate=true;return null;}
+  return m;
+ }).filter(Boolean);
+ if(didMigrate&&!s.messages.some(function(m){return String(m&&m.t||"").indexOf("Case 0147 is closed.")>=0})){
+  s.messages.push({w:"theo",t:legacyEndSummary});
+ }
  var msgText=(s.messages||[]).map(function(m){return String(m&&m.t||"")}).join(" ").toLowerCase();
  if(s.profileStage===0&&msgText.indexOf("ella taylor")>=0){s.profileStage=1;s.pendingAccusation="Ella Taylor";}
  if(s.profileStage===2&&msgText.indexOf("owen hawthorne")>=0&&msgText.indexOf("send an accusation against owen")>=0){s.profileStage=3;s.pendingAccusation="Owen Hawthorne";}
@@ -344,9 +358,9 @@ function normalizeState(input){
   s.facts={identified:!!s.iris,interrogationSent:!!(preservedFacts.interrogationSent||hadReport)};
  if(s.facts.interrogationSent&&!s.final){
   s.final=true;
-  if(msgText.indexOf("i found the truth behind it")<0){
-   s.messages=Array.isArray(s.messages)?s.messages:[];
-   s.messages.push({w:"theo",t:"The Legal Team completed Iris’s interrogation. Iris admitted she confronted Margery in the cellar, pushed her, and left without calling for help while Margery was still alive. Her account fits the physical evidence and the ledger identification.\n\nJasmine did argue with Margery and later lied about it to protect her secret marriage from Margery’s blackmail. That explains why Jasmine looked guilty, but the evidence does not place her in the cellar. Iris’s account and the investigation evidence point to Iris as responsible for Margery’s death.\n\nCase 0147 is closed."});
+  if(msgText.indexOf("case 0147 is closed")<0){
+   s.messages.push({w:"theo",t:legacyEndSummary});
+   didMigrate=true;
   }
  }
  if(s.profileStage===1&&s.pendingAccusation!=="Gray, Jack"&&s.task==="Send Gray, Jack to the Legal Team for interview.")s.task="";
@@ -363,6 +377,7 @@ function normalizeState(input){
  }else if(s.profileStage===3&&s.pendingAccusation==="Price, Julian"){
   s.task="Request the Legal Team to interrogate Price, Julian.";
  }
+ if(didMigrate){localStorage.setItem(KEY,JSON.stringify(s));}
  return s;
 }
 function load(){try{return normalizeState(JSON.parse(localStorage.getItem(KEY))||initial)}catch(e){return structuredClone(initial)}}
