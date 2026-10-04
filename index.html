@@ -428,7 +428,7 @@ function hasToken(s,words){var tokens=norm(s).split(" ");return words.some(funct
 function mentionsIris(s){return hasToken(s,["iris"])}
 function hasIrisIdentification(s){return mentionsIris(s)&&hasExactNumber(s,49)&&hasExactNumber(s,8)}
 function fact(k){return !!S.facts[k]}
-function task(t){S.task=t;save()}
+function task(t){S.task=t;if(/Legal Team.*interrogat|Email the Legal Team and request an interrogation/i.test(t))S.notice.legal=S.tab!=="legal";save()}
 function opening(){return;}
 function getAuth(){try{return JSON.parse(localStorage.getItem(AUTH_KEY))||null}catch(e){return null}}
 function setAuth(a){localStorage.setItem(AUTH_KEY,JSON.stringify(a))}
