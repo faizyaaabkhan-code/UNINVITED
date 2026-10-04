@@ -359,12 +359,12 @@ function normalizeState(input){
   if(!m||m.w!=="theo")return m;
   var t=String(m.t||"");
   if((t.indexOf("Julian's statement has given us the RSVP distinction.")>=0||t.indexOf("Julian's memory gives us an RSVP distinction, but it still leaves several possible guests.")>=0||t.indexOf("Before we turn to the torn seating marker")>=0)&&t.indexOf("How many remain?")>=0){didMigrate=true;return {w:"theo",t:"Julian's account has narrowed the RSVP group to 11 guests. While reviewing the case file, I found a record of an unidentified gift. We still don't know who sent it, but its value is estimated at $50–150. In the ledger, that range is marked $$.\n\nApply Gift = $$ to the 11 remaining records.\n\nHow many remain?"};}
-  if(t.indexOf("The Legal Team has finished the Iris interrogation.")===0){didMigrate=true;return {w:"theo",t:legacyEndSummary};}
+  if(t.indexOf("The Legal Team has finished Iris")===0||t.indexOf("The Legal Team has finished the Iris interrogation.")===0){didMigrate=true;return {w:"theo",t:legacyEndSummary};}
   if(t.indexOf("The reconstruction is complete.")===0){didMigrate=true;return null;}
   if(t.indexOf("Jasmine lied about the argument because she was protecting her marriage.")===0&&t.indexOf("You found the name.")>=0){didMigrate=true;return null;}
   return m;
  }).filter(Boolean);
- if(didMigrate&&!s.messages.some(function(m){return String(m&&m.t||"").indexOf("Case 0147 is closed.")>=0})){
+ if(didMigrate&&!s.messages.some(function(m){return String(m&&m.t||"").indexOf("CASE 0147 — SOLVED.")>=0})){
   s.messages.push({w:"theo",t:legacyEndSummary});
  }
  var msgText=(s.messages||[]).map(function(m){return String(m&&m.t||"")}).join(" ").toLowerCase();
