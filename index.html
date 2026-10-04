@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>UNINVITED — Private Case Room</title>
 <style>
-*{box-sizing:border-box}:root{--bg:#0d0c0b;--panel:#171513;--panel2:#1e1a18;--text:#f1ece5;--muted:#aaa198;--line:#39312c;--accent:#9f4643;--gold:#c9a86b;--green:#8ea77c}body{margin:0;background:radial-gradient(circle at 50% -10%,#241c19 0,#0d0c0b 45%);color:var(--text);font:15px/1.6 Georgia,serif}.wrap{max-width:1060px;margin:auto;padding:22px 18px 60px}header{border-bottom:1px solid var(--line);padding:8px 0 18px;margin-bottom:14px}.kicker{font:10px Arial,sans-serif;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}.title{font-size:34px;letter-spacing:.16em;margin:4px 0}.sub{color:var(--muted);font-size:13px}.nav{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.tab,.btn{border:1px solid var(--line);background:rgba(23,21,19,.9);color:var(--text);padding:10px 14px;border-radius:7px;cursor:pointer}.tab.active,.btn.primary{background:var(--accent);border-color:var(--accent)}.tab:disabled{opacity:.38;cursor:not-allowed}.panel{background:rgba(23,21,19,.94);border:1px solid var(--line);border-radius:10px;padding:18px;margin:10px 0}.chat{height:54vh;min-height:420px;overflow:auto;padding:8px 4px}.msg{margin:15px 0;display:flex}.msg.theo{justify-content:flex-start}.msg.player{justify-content:flex-end}.bubble{max-width:78%;padding:13px 16px;border-radius:10px;white-space:pre-wrap}.theo .bubble{background:var(--panel2);border:1px solid var(--line)}.player .bubble{background:#382525;border:1px solid #65403e}.speaker{font:10px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}.player .speaker{color:#d5aaa5}.composer{display:flex;gap:8px;margin-top:12px}.composer input{flex:1;background:#0b0a09;border:1px solid var(--line);color:var(--text);padding:13px;border-radius:7px;font:15px Georgia,serif}.composer button{min-width:100px}.task{border-left:3px solid var(--gold);padding:11px 14px;background:#141210;margin:14px 0;color:#ddd4c9}.task strong{display:block;color:var(--gold);font:10px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:3px}.statusrow{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.statusbox{background:var(--panel2);border:1px solid var(--line);padding:12px;border-radius:7px}.statusbox b{display:block;color:var(--gold);font:10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}.statusbox span{color:var(--muted)}.small{font:11px Arial,sans-serif;color:var(--muted)}.locked{color:var(--muted);font-style:italic}.doc{background:#eee7da;color:#211c18;padding:20px;border-radius:7px}.doc h3{margin-top:0;color:#211c18}.journey{display:none!important;gap:5px;flex-wrap:wrap;margin:0 0 12px}.step{font:9px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 8px;border:1px solid var(--line);border-radius:5px;color:#80776f}.step.on{color:var(--gold);border-color:#705b40;background:#211c16}.step.done{color:var(--green);border-color:#48543e}.hint{font-size:13px;color:var(--muted);margin:0 0 10px}.legal-intro{color:#bdb4aa}.doc ul{padding-left:20px}.typing-bubble{min-width:180px}.notice-dot{display:inline-block;width:8px;height:8px;background:#c73f3b;border-radius:50%;margin-left:7px;vertical-align:middle;box-shadow:0 0 0 2px rgba(199,63,59,.12)}.hint-btn:disabled{opacity:.42;cursor:not-allowed;filter:saturate(.35)}.typing-dots{display:inline-flex;gap:4px;vertical-align:middle;margin-right:8px}.typing-dots i{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;animation:typingPulse 1s infinite ease-in-out}.typing-dots i:nth-child(2){animation-delay:.15s}.typing-dots i:nth-child(3){animation-delay:.3s}.typing-label{font:11px Arial,sans-serif;color:var(--muted)}@keyframes typingPulse{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-2px)}}.legal-choices{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.legal-choices .btn{font:11px Arial,sans-serif;letter-spacing:.04em}@media(max-width:650px){.bubble{max-width:92%}.statusrow{grid-template-columns:1fr}.composer{flex-direction:column}.composer button{width:100%}.chat{height:55vh;min-height:380px}}
+*{box-sizing:border-box}:root{--bg:#0d0c0b;--panel:#171513;--panel2:#1e1a18;--text:#f1ece5;--muted:#aaa198;--line:#39312c;--accent:#9f4643;--gold:#c9a86b;--green:#8ea77c}body{margin:0;background:radial-gradient(circle at 50% -10%,#241c19 0,#0d0c0b 45%);color:var(--text);font:15px/1.6 Georgia,serif}.wrap{max-width:1060px;margin:auto;padding:22px 18px 60px}header{border-bottom:1px solid var(--line);padding:8px 0 18px;margin-bottom:14px}.kicker{font:10px Arial,sans-serif;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}.title{font-size:34px;letter-spacing:.16em;margin:4px 0}.sub{color:var(--muted);font-size:13px}.nav{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.tab,.btn{border:1px solid var(--line);background:rgba(23,21,19,.9);color:var(--text);padding:10px 14px;border-radius:7px;cursor:pointer}.tab.active,.btn.primary{background:var(--accent);border-color:var(--accent)}.tab:disabled{opacity:.38;cursor:not-allowed}.panel{background:rgba(23,21,19,.94);border:1px solid var(--line);border-radius:10px;padding:18px;margin:10px 0}.chat{height:54vh;min-height:420px;overflow:auto;padding:8px 4px}.msg{margin:15px 0;display:flex}.msg.theo{justify-content:flex-start}.msg.player{justify-content:flex-end}.bubble{max-width:78%;padding:13px 16px;border-radius:10px;white-space:pre-wrap}.theo .bubble{background:var(--panel2);border:1px solid var(--line)}.player .bubble{background:#382525;border:1px solid #65403e}.speaker{font:10px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}.player .speaker{color:#d5aaa5}.composer{display:flex;gap:8px;margin-top:12px}.composer input{flex:1;background:#0b0a09;border:1px solid var(--line);color:var(--text);padding:13px;border-radius:7px;font:15px Georgia,serif}.composer button{min-width:100px}.task{border-left:3px solid var(--gold);padding:11px 14px;background:#141210;margin:14px 0;color:#ddd4c9}.task strong{display:block;color:var(--gold);font:10px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:3px}.statusrow{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.statusbox{background:var(--panel2);border:1px solid var(--line);padding:12px;border-radius:7px}.statusbox b{display:block;color:var(--gold);font:10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}.statusbox span{color:var(--muted)}.small{font:11px Arial,sans-serif;color:var(--muted)}.locked{color:var(--muted);font-style:italic}.doc{background:#eee7da;color:#211c18;padding:20px;border-radius:7px}.doc h3{margin-top:0;color:#211c18}.journey{display:none!important;gap:5px;flex-wrap:wrap;margin:0 0 12px}.step{font:9px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 8px;border:1px solid var(--line);border-radius:5px;color:#80776f}.step.on{color:var(--gold);border-color:#705b40;background:#211c16}.step.done{color:var(--green);border-color:#48543e}.hint{font-size:13px;color:var(--muted);margin:0 0 10px}.legal-intro{color:#bdb4aa}.doc ul{padding-left:20px}.typing-bubble{min-width:180px}.notice-dot{display:inline-block;width:8px;height:8px;background:#c73f3b;border-radius:50%;margin-left:7px;vertical-align:middle;box-shadow:0 0 0 2px rgba(199,63,59,.12)}.hint-btn:disabled{opacity:.42;cursor:not-allowed;filter:saturate(.35)}.typing-dots{display:inline-flex;gap:4px;vertical-align:middle;margin-right:8px}.typing-dots i{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;animation:typingPulse 1s infinite ease-in-out}.typing-dots i:nth-child(2){animation-delay:.15s}.typing-dots i:nth-child(3){animation-delay:.3s}.typing-label{font:11px Arial,sans-serif;color:var(--muted)}@keyframes typingPulse{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-2px)}}.legal-choices{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.legal-choices .btn{font:11px Arial,sans-serif;letter-spacing:.04em}.legal-timer{border-color:#705b40}.legal-timer strong{font:700 22px Arial,sans-serif;color:var(--gold)}@media(max-width:650px){.bubble{max-width:92%}.statusrow{grid-template-columns:1fr}.composer{flex-direction:column}.composer button{width:100%}.chat{height:55vh;min-height:380px}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 Georgia,serif}.wrap{max-width:980px;margin:auto;padding:24px 18px 60px}header{border-bottom:1px solid var(--line);padding:10px 0 20px;margin-bottom:18px}.kicker{font:11px Arial,sans-serif;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}.title{font-size:32px;letter-spacing:.12em;margin:5px 0}.sub{color:var(--muted)}.nav{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tab,.btn{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:10px 14px;border-radius:8px;cursor:pointer}.tab.active,.btn.primary{background:var(--accent);border-color:var(--accent)}.tab:disabled{opacity:.4;cursor:not-allowed}.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin:12px 0}.chat{max-height:58vh;overflow:auto;padding:4px}.msg{margin:12px 0;display:flex}.msg.theo{justify-content:flex-start}.msg.player{justify-content:flex-end}.bubble{max-width:82%;padding:12px 15px;border-radius:12px;white-space:pre-wrap}.theo .bubble{background:var(--panel2);border:1px solid var(--line)}.player .bubble{background:#382525;border:1px solid #65403e}.speaker{font:10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}.composer{display:flex;gap:8px;margin-top:12px}.composer input{flex:1;background:#0e0d0c;border:1px solid var(--line);color:var(--text);padding:12px;border-radius:8px;font:15px Georgia,serif}.composer button{min-width:100px}.task{border-left:3px solid var(--gold);padding:10px 14px;background:#171513;margin:14px 0}.task strong{display:block;color:var(--gold);font:11px Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase}.statusrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.statusbox{background:var(--panel2);border:1px solid var(--line);padding:10px;border-radius:8px}.statusbox b{display:block;color:var(--gold);font:11px Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em}.statusbox span{color:var(--muted)}.small{font:12px Arial,sans-serif;color:var(--muted)}.locked{color:var(--muted);font-style:italic}.doc{background:#eee7da;color:#211c18;padding:20px;border-radius:8px}.doc h3{margin-top:0}@media(max-width:650px){.bubble{max-width:92%}.statusrow{grid-template-columns:1fr}.composer{flex-direction:column}.composer button{width:100%}}
 
 .auth-shell{min-height:82vh;display:flex;align-items:center;justify-content:center;padding:30px 0}.auth-card{width:min(520px,100%);background:rgba(23,21,19,.96);border:1px solid var(--line);border-radius:14px;padding:28px;box-shadow:0 18px 60px rgba(0,0,0,.35)}.auth-brand{text-align:center;margin-bottom:22px}.auth-brand .title{font-size:28px}.auth-title{font-size:23px;margin:4px 0 8px}.auth-copy{color:var(--muted);font-size:13px;margin:0 0 18px}.auth-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:18px}.auth-tab{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px 8px;border-radius:7px;cursor:pointer;font:11px Arial,sans-serif;letter-spacing:.05em}.auth-tab.active{background:var(--accent);border-color:var(--accent)}.auth-form label{display:block;font:10px Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin:13px 0 6px}.auth-form input{width:100%;background:#0b0a09;border:1px solid var(--line);color:var(--text);padding:12px;border-radius:7px;font:15px Georgia,serif}.auth-actions{margin-top:18px}.auth-actions button{width:100%}.auth-error{display:none;background:#3b2422;border:1px solid #6b3d38;color:#e9c8c2;padding:10px 12px;border-radius:7px;margin:12px 0;font-size:13px}.auth-note{font:11px Arial,sans-serif;color:var(--muted);margin-top:16px;text-align:center}.account-bar{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin:-4px 0 12px;font:11px Arial,sans-serif;color:var(--muted)}.account-bar #saveState{color:var(--gold)}.account-bar button{padding:6px 9px}.code-box{letter-spacing:.2em;text-transform:uppercase;text-align:center}.auth-divider{text-align:center;margin:18px 0;color:var(--muted);font:12px Arial,sans-serif;letter-spacing:.12em}.login-option{border:1px solid var(--line);border-radius:8px;padding:16px;margin-bottom:4px}.login-option h3{margin:0 0 10px;font-size:17px}.small-copy{font:12px Arial,sans-serif;color:var(--muted);margin:0 0 12px}.auth-success{text-align:center;color:var(--gold);font:11px Arial,sans-serif;letter-spacing:.16em;margin-bottom:12px}.case-code-display{background:#0b0a09;border:1px solid var(--gold);border-radius:8px;padding:18px 12px;text-align:center;color:var(--gold);font:700 24px/1.2 Arial,sans-serif;letter-spacing:.16em;margin:20px 0}.auth-actions{margin-top:16px}.create-account-hero{text-align:center;margin-bottom:24px}.create-kicker{font:10px Arial,sans-serif;letter-spacing:.22em;color:var(--gold);margin-bottom:10px}.create-account-hero .auth-title{margin-bottom:10px}.create-account-hero .auth-copy{max-width:520px;margin:0 auto}.create-actions{margin-top:24px}.create-account-btn{width:100%;border:1px solid #b95a55;border-radius:8px;background:linear-gradient(180deg,#ad4d49,#8f3e3b);color:#fff;padding:15px 18px;cursor:pointer;text-align:center;box-shadow:0 8px 22px rgba(0,0,0,.28)}.create-account-btn span{display:block;font:600 16px Arial,sans-serif;letter-spacing:.08em}.create-account-btn small{display:block;margin-top:5px;font:12px Georgia,serif;color:#ead8d2}.create-account-btn:hover{background:linear-gradient(180deg,#bb5752,#99423f);transform:translateY(-1px)}.return-note{text-align:center;margin-top:18px;font:12px Arial,sans-serif;color:var(--muted)}.text-link{border:0;background:none;color:var(--gold);padding:0;cursor:pointer;font:inherit;text-decoration:underline}.auth-tabs{display:none}
@@ -339,7 +339,7 @@ const LEADS=[
  {n:7,answer:"49",prompt:"Two records remain.\n\nWe've now used every characteristic we have: the original profile, the bride's side, RSVP timing, and the gift range.\n\nOne final piece of physical evidence can separate them.\n\nI found a torn seating marker. Most of it is missing, but one detail is readable:\n\nTable 49.\n\nCheck the two remaining records against Table 49.\n\nGive me the full name, table number, and seat number of the person who remains.",ok:"Seven pieces of evidence. One person left."}
 ];
 const HINTS={1:["Count every record whose table number is 46, 47, 48, 49, or 50."],2:["Use the first initial of the guest’s first name. Keep T, H, J, and I."],3:["Use the MEAL field. Ck means Chicken."],4:["The pink guest badge points to the bride’s side. Use SIDE = Br."],5:["Use the RSVP status from Theo’s late-confirmation clue. Keep E or L."],6:["Use the GIFT bracket, not an exact price. $$ means $50–150."],7:["The torn marker gives only Table 49. Check the two remaining records and identify the person at that table."]};
-const initial={tab:"theo",lead:0,profileStage:0,pendingAccusation:"",iris:false,messages:[],docs:[],facts:{},task:"",final:false,hints:{},hintAvailable:false,notice:{theo:false,legal:false}};
+const initial={tab:"theo",lead:0,profileStage:0,pendingAccusation:"",iris:false,messages:[],docs:[],facts:{},interrogationTimer:null,task:"",final:false,hints:{},hintAvailable:false,notice:{theo:false,legal:false}};
 let S=load();
 function normalizeState(input){
  var s;
@@ -347,13 +347,14 @@ function normalizeState(input){
  var didMigrate=false;
  s.docs=Array.isArray(s.docs)?s.docs.map(function(d){if(!d)return d;if(d.id==="ella"){d.id="jack";d.title="GRAY, JACK — INTERROGATION REPORT";d.body="<p>We interviewed Gray, Jack.</p><p>Jack denied killing Margery.</p><p>During the interview, he remembered seeing a pink guest badge near the reception area.</p><p>He could not identify who was wearing it.</p><p>But he remembers one detail clearly:</p><p><strong>The person was wearing a pink guest badge.</strong></p><p>Jack has been cleared as the person responsible for Margery's death.</p>";}if(d.id==="owen"){d.id="julian";d.title="PRICE, JULIAN — INTERROGATION REPORT";d.body="<p>We interviewed Price, Julian.</p><p>Julian denied killing Margery.</p><p>During the interview, Julian remembered seeing someone moving away from the reception around the time Margery left.</p><p>Julian could not identify the person.</p><p>What Julian remembers is that the person was not marked T on the RSVP record. It was either E or L.</p><p>Julian has been cleared as the person responsible for Margery's death.</p>";}return d;}).filter(function(d){return d&&["jack","julian","interrogation"].indexOf(d.id)>=0}):[];
  s.facts=s.facts||{};
+ s.interrogationTimer=s.interrogationTimer&&["jack","julian","iris"].indexOf(s.interrogationTimer.suspect)>=0&&Number.isFinite(Number(s.interrogationTimer.readyAt))?s.interrogationTimer:null;
  s.hints=s.hints&&typeof s.hints==="object"?s.hints:{};s.hintAvailable=!!s.hintAvailable;
  s.profileStage=Number.isFinite(Number(s.profileStage))?Number(s.profileStage):0;
  s.pendingAccusation=s.pendingAccusation==="Ella Taylor"?"Gray, Jack":s.pendingAccusation==="Owen Hawthorne"?"Price, Julian":(s.pendingAccusation||"");
  s.notice=s.notice&&typeof s.notice==="object"?s.notice:{theo:false,legal:false};s.notice.theo=!!s.notice.theo;s.notice.legal=!!s.notice.legal;
  if(s.tab==="status")s.tab="theo";
  s.messages=Array.isArray(s.messages)?s.messages:[];
- var legacyEndSummary="The Legal Team has finished Iris’s interrogation. Her account fits the physical evidence and the ledger identification.\n\nIris admitted that she confronted Margery in the cellar, pushed her, and left without calling for help while Margery was still alive.\n\nJasmine did argue with Margery and later lied about it to protect her secret marriage from Margery’s blackmail. That explains why Jasmine looked guilty, but the evidence does not place her in the cellar. Iris’s account and the investigation evidence point to Iris as responsible for Margery’s death.\n\nCase 0147 is closed.";
+ var legacyEndSummary="CASE 0147 — SOLVED.\n\nYou followed the evidence all the way through: physical clues narrowed the ledger, Jack and Julian's interviews gave us the bride's-side and RSVP filters, and the unidentified gift narrowed the field to two records. The torn marker's Table 49 detail led you to Iris Smith, Table 49, Seat 8.\n\nThe Legal Team's interview confirmed what the ledger alone could not: Iris confronted Margery in the cellar and pushed her down the stairs. Margery was still alive afterward. Iris chose to leave without calling for help.\n\nJasmine's argument and her lie about the secret marriage made her look guilty, but they did not place her in the cellar. Her lie concealed Margery's blackmail; Iris's own account places her at the fatal confrontation.\n\nYour identification connected the records to the person responsible. The case is closed.";
  s.messages=s.messages.map(function(m){
   if(!m||m.w!=="theo")return m;
   var t=String(m.t||"");
@@ -423,7 +424,8 @@ function add(w,t){S.messages.push({w:w,t:t});save()}
 function norm(s){return String(s).toLowerCase().replace(/[^a-z0-9$ ]/g," ").replace(/\s+/g," ").trim()}
 function has(s,a){return a.some(function(x){return s.indexOf(x)>=0})}
 function hasExactNumber(s,n){return new RegExp("(^|[^0-9])"+n+"([^0-9]|$)").test(s)}
-function mentionsIris(s){return /(^|\s)(iris|smith)(\s|$)/.test(s)}
+function hasToken(s,words){var tokens=norm(s).split(" ");return words.some(function(word){return tokens.indexOf(word)>=0})}
+function mentionsIris(s){return hasToken(s,["iris"])}
 function hasIrisIdentification(s){return mentionsIris(s)&&hasExactNumber(s,49)&&hasExactNumber(s,8)}
 function fact(k){return !!S.facts[k]}
 function task(t){S.task=t;save()}
@@ -468,7 +470,7 @@ function render(){
  var account=auth
   ? '<div class="account-bar">Case '+esc(auth.player.caseCode)+' · Signed in as '+esc(auth.player.name)+' · <span id="saveState">'+saveStateLabel()+'</span> <button class="btn" onclick="logout()">SIGN OUT</button></div>'
   : '<div class="account-bar">Guest case · <span id="saveState">'+saveStateLabel()+'</span> · <button class="btn" onclick="exitGuestCase()">SAVE & EXIT</button></div>';
- var nav=account+'<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH'+(S.notice.theo?'<span class="notice-dot"></span>':"")+'</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!(S.iris||S.profileStage===1||S.profileStage===2||S.profileStage===3||S.docs.some(function(d){return d.id==="jack"||d.id==="julian"}))?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+((S.iris||S.profileStage>=1||S.docs.some(function(d){return d.id==="ella"||d.id==="owen"}))?"🔓":"🔒")+(S.notice.legal?'<span class="notice-dot"></span>':"")+'</button><button class="tab" onclick="resetCase()">START OVER</button></div>';
+ var nav=account+'<div class="nav"><button class="tab '+(S.tab==="theo"?"active":"")+'" onclick="tab(\'theo\')">THEO MARSH'+(S.notice.theo?'<span class="notice-dot"></span>':"")+'</button><button class="tab '+(S.tab==="legal"?"active":"")+'" '+(!canContactLegalTeam()?"disabled":"")+' onclick="tab(\'legal\')">LEGAL TEAM '+(canContactLegalTeam()?"🔓":"🔒")+(S.notice.legal?'<span class="notice-dot"></span>':"")+'</button><button class="tab" onclick="resetCase()">START OVER</button></div>';
  document.getElementById("app").innerHTML=nav+(S.tab==="theo"?theo():S.tab==="legal"?legal():status())+'<div class="small" style="margin-top:12px">Private case channel · Your investigation is saved to your case.</div>';updateSaveIndicator();
 }
 function journeyBar(){ return ""; }
@@ -521,24 +523,40 @@ function theo(){
  if(window.__typing)chat+=typingBubble();
  return '<div class="panel">'+progressTracker()+'<div class="chat" id="chat">'+chat+'</div>'+t+h+'<div class="composer"><input id="input" placeholder="'+(S.final?"Case closed.":"Ask Theo anything about the case…")+'" '+(S.final?"disabled":"")+' onkeydown="if(event.key===\'Enter\')send()"><button class="btn primary" onclick="send()" '+(S.final?"disabled":"")+'>Send</button></div></div>';
 }
+function formatRemaining(ms){
+ var total=Math.max(0,Math.ceil(ms/1000)),minutes=Math.floor(total/60),seconds=total%60;
+ return String(minutes).padStart(2,"0")+":"+String(seconds).padStart(2,"0");
+}
+function canContactLegalTeam(){
+ return !!(S.iris||S.facts.interrogationSent||S.interrogationTimer||
+  (S.profileStage===1&&S.pendingAccusation==="Gray, Jack")||
+  (S.profileStage===3&&S.pendingAccusation==="Price, Julian")||
+  S.docs.some(function(d){return d.id==="jack"||d.id==="julian"||d.id==="interrogation"}));
+}
+function interrogationTimerCard(){
+ if(!S.interrogationTimer)return "";
+ var names={jack:"Gray, Jack",julian:"Price, Julian",iris:"Iris Smith"};
+ var remaining=Math.max(0,S.interrogationTimer.readyAt-Date.now());
+ return '<div class="panel legal-timer"><div class="speaker">INTERVIEW IN PROGRESS</div><p>The Legal Team is interviewing '+names[S.interrogationTimer.suspect]+'.</p><p>Estimated time remaining: <strong id="interrogationCountdown">'+formatRemaining(remaining)+'</strong></p><p class="small">You can switch tabs or close the page; this timer will keep its place.</p></div>';
+}
 function legal(){
  var docs=S.docs.map(function(d){return '<div class="panel doc"><h3>'+esc(d.title)+'</h3>'+d.body+'</div>'}).join("");
+ if(S.interrogationTimer)return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Your request is with the interview team. We will notify you when the report is ready.</p></div>'+interrogationTimerCard()+docs;
  if(S.iris){
   if(!S.facts.interrogationSent){
-   return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\'s Legal Team</p><p><strong>Subject:</strong> Request for Iris Smith Interrogation</p><p>We have identified Iris Smith, Table 49, Seat 8.</p><p>Please interrogate Iris and find out what happened between Iris and Margery.</p><p>We need to know what happened that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendInterrogationEmail()">SEND EMAIL</button></div></div>'+docs;
+   return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\'s Legal Team</p><p><strong>Subject:</strong> Request for Iris Smith Interrogation</p><p>We have identified Iris Smith, Table 49, Seat 8.</p><p>Please interrogate Iris and find out what happened between Iris and Margery.</p><p>We need to know what happened that night.</p><p><strong>Estimated interview time: 15 minutes.</strong></p></div><div class="legal-choices"><button class="btn primary" onclick="sendInterrogationEmail()">SEND EMAIL</button></div></div>'+docs;
   }
   return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The interrogation report is available below. Theo has completed the case summary.</p></div>'+docs;
  }
- if(S.profileStage===1||S.profileStage===3){
-  var person=S.profileStage===1?"Gray, Jack":"Price, Julian";
-  var title=S.profileStage===1?"Request for Gray, Jack Interrogation":"Request for Price, Julian Interrogation";
-  var clue=S.profileStage===1?"We believe Gray, Jack may be relevant to the investigation.":"We believe Price, Julian may be relevant to the investigation.";
-  return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Theo asked you to contact us directly.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\'s Legal Team</p><p><strong>Subject:</strong> '+title+'</p><p>'+clue+'</p><p>Please interrogate '+person+' and report what they know about Margery\'s movements that night.</p></div><div class="legal-choices"><button class="btn primary" onclick="sendSuspectInterrogation()">SEND EMAIL</button></div></div>'+docs;
+ if((S.profileStage===1&&S.pendingAccusation==="Gray, Jack")||(S.profileStage===3&&S.pendingAccusation==="Price, Julian")){
+  var isJack=S.pendingAccusation==="Gray, Jack", person=isJack?"Gray, Jack":"Price, Julian";
+  var title=isJack?"Request for Gray, Jack Interrogation":"Request for Price, Julian Interrogation";
+  return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">Theo has requested an interview. Review the details and send the request when ready.</p><div class="doc" style="margin-top:14px"><p><strong>To:</strong> Jasmine\'s Legal Team</p><p><strong>Subject:</strong> '+title+'</p><p>We believe '+person+' may be relevant to the investigation.</p><p>Please interrogate '+person+' and report what they know about Margery\'s movements that night.</p><p><strong>Estimated interview time: '+(isJack?"5 minutes":"10 minutes")+'.</strong></p></div><div class="legal-choices"><button class="btn primary" onclick="sendSuspectInterrogation()">SEND EMAIL</button></div></div>'+docs;
  }
  if(S.docs.some(function(d){return d.id==="jack"||d.id==="julian"||d.id==="ella"||d.id==="owen"})){
   return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The interview report is available below. The Legal Team remains open for the rest of the investigation.</p></div>'+docs;
  }
- return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The Legal Team is locked until the investigation reaches its first suspect interview.</p></div>';
+ return '<div class="panel"><div class="speaker">Jasmine\'s Legal Team</div><p class="legal-intro">The Legal Team unlocks when Theo identifies a suspect and asks you to request an interview.</p></div>';
 }
 function status(){
  return '<div class="panel"><div class="speaker">Investigation board</div><h2>CASE 0147</h2><p class="hint">Case progress.</p><div class="statusrow">'+
@@ -580,41 +598,53 @@ function scrollChatToBottom(){
  requestAnimationFrame(function(){go();requestAnimationFrame(go);});
 }
 function legalSend(){return}
-function sendSuspectInterrogation(){
- if(S.profileStage!==1&&S.profileStage!==3)return;
- var person=S.profileStage===1?"Gray, Jack":"Price, Julian";
- var isJack=S.profileStage===1;
- S.docs.push({id:isJack?"jack":"julian",title:person.toUpperCase()+" — INTERROGATION REPORT",body:isJack
-  ?"<p>We interviewed Gray, Jack.</p><p>Jack denied killing Margery.</p><p>During the interview, he remembered seeing a pink guest badge near the reception area.</p><p>He could not identify who was wearing it.</p><p>But he remembers one detail clearly:</p><p><strong>The person was wearing a pink guest badge.</strong></p><p>Jack has been cleared as the person responsible for Margery's death.</p>"
-  :"<p>We interviewed Price, Julian.</p><p>Julian denied killing Margery.</p><p>During the interview, Julian remembered seeing someone moving away from the reception around the time Margery left.</p><p>Julian could not identify the person.</p><p>What Julian remembers is that the person was not marked T on the RSVP record. It was either E or L.</p><p>Julian has been cleared as the person responsible for Margery's death.</p>"});
- S.profileStage=isJack?2:4;
- S.pendingAccusation="";
- S.notice.theo=true;
- playMessageSound();
- if(isJack){
-  add("theo","I got the email from the Legal Team.\n\nJack wasn't our killer. But his statement gives us something we didn't have before.\n\nHe remembers the person wearing a pink guest badge.\n\nI checked the reception records. The pink badge was assigned to the bride's side.\n\nCheck the remaining records for the bride's side.\n\nWhat count do you get?");
-  task("Check the remaining records for the bride's side. What count do you get?");
+function startInterrogationTimer(suspect,durationMs){
+ if(S.interrogationTimer)return;
+ S.interrogationTimer={suspect:suspect,readyAt:Date.now()+durationMs};
+ S.notice.legal=false;
+ S.notice.theo=S.tab!=="theo";
+ var who={jack:"Gray, Jack",julian:"Price, Julian",iris:"Iris Smith"}[suspect];
+ add("theo","The Legal Team has received the request to interview "+who+". The interview is underway and should take about "+(durationMs/60000)+" minutes. I'll let you know when their report is ready.");
+ S.task="LEGAL TEAM INTERVIEW IN PROGRESS";
+ save();render();scrollChatToBottom();
+}
+function completeInterrogation(){
+ var timer=S.interrogationTimer;if(!timer||timer.readyAt>Date.now())return;
+ S.interrogationTimer=null;
+ S.notice.legal=S.tab!=="legal";S.notice.theo=S.tab!=="theo";
+ if(timer.suspect==="jack"){
+  S.docs.push({id:"jack",title:"GRAY, JACK — INTERROGATION REPORT",body:"<p>We interviewed Gray, Jack.</p><p>Jack denied killing Margery.</p><p>During the interview, he remembered seeing a pink guest badge near the reception area. He could not identify who was wearing it, but the detail is clear: the person wore a pink guest badge.</p><p>Jack has been cleared as the person responsible for Margery's death.</p>"});
+  S.profileStage=2;S.pendingAccusation="";
+  add("theo","The Legal Team's five-minute interview with Gray, Jack is complete. Jack is cleared as the person responsible for Margery's death. He remembered a pink guest badge near the reception; the badge was assigned to the bride's side. That gives us a new ledger filter.");
+  S.task="Check the remaining records for the bride's side. What count do you get?";
+ }else if(timer.suspect==="julian"){
+  S.docs.push({id:"julian",title:"PRICE, JULIAN — INTERROGATION REPORT",body:"<p>We interviewed Price, Julian.</p><p>Julian denied killing Margery.</p><p>He remembered seeing someone moving away from the reception around the time Margery left. Julian could not identify the person, but remembers the person was not marked T on the RSVP record — it was either E or L.</p><p>Julian has been cleared as the person responsible for Margery's death.</p>"});
+  S.profileStage=4;S.pendingAccusation="";
+  add("theo","The Legal Team's ten-minute interview with Price, Julian is complete. Julian is cleared as the person responsible for Margery's death. He remembers that the person he saw was marked E or L, not T. We can apply that RSVP distinction to the 22 remaining records.");
+  S.task="Check the remaining records against the RSVP initials E or L. What count do you get?";
  }else{
-  add("theo","I got the email from the Legal Team.\n\nJulian wasn't our killer either. But his statement gives us another way to test the remaining records.\n\nHe remembers that the person was not marked T on the RSVP record. It was either E or L.\n\nCheck the remaining records against those RSVP initials: E or L.\n\nWhat count do you get?");
-  task("Check the remaining records against the RSVP initials E or L. What count do you get?");
+  S.facts.interrogationSent=true;
+  S.docs.push({id:"interrogation",title:"IRIS SMITH — INTERROGATION REPORT",body:"<p>The Legal Team interviewed Iris Smith.</p><p>Iris admitted that she went to find Margery in the cellar. Their confrontation was rooted in a long-running professional conflict.</p><p>Iris worked in event design and logistics. Margery repeatedly relied on Iris's work while excluding her from meetings and client-facing interactions and taking credit for what Iris had done. Margery dismissed Iris's complaints and threatened to stop recommending her.</p><p>Iris confronted Margery in the cellar. They argued. Margery grabbed Iris. Iris pushed her, and Margery fell down the cellar stairs.</p><p><strong>Margery was still alive after the fall. Iris could have called for help. She didn't.</strong></p><p>Iris left the cellar and returned to the reception without telling anyone what had happened.</p>"});
+  S.final=true;S.task="CASE CLOSED";
+  add("theo","CASE 0147 — SOLVED.\n\nYou followed the evidence all the way through: the physical clues narrowed the ledger, Jack and Julian's interviews gave us the bride's-side and RSVP filters, and the unidentified gift narrowed the field to two records. The torn marker's Table 49 detail led you to Iris Smith, Table 49, Seat 8.\n\nThe Legal Team's 15-minute interview has now confirmed what the ledger alone could not: Iris confronted Margery in the cellar and pushed her down the stairs. Margery was still alive afterward. Iris chose to leave without calling for help.\n\nJasmine's argument and her lie about the secret marriage made her look guilty, but they did not place her in the cellar. Her lie concealed Margery's blackmail; Iris's own account places her at the fatal confrontation.\n\nYour identification connected the records to the person responsible. The case is closed.");
  }
- save();
- render();
+ playMessageSound();save();render();scrollChatToBottom();
+}
+function updateInterrogationTimer(){
+ if(!S.interrogationTimer)return;
+ if(S.interrogationTimer.readyAt<=Date.now()){completeInterrogation();return}
+ var countdown=document.getElementById("interrogationCountdown");
+ if(countdown)countdown.textContent=formatRemaining(S.interrogationTimer.readyAt-Date.now());
+}
+window.setInterval(updateInterrogationTimer,1000);
+function sendSuspectInterrogation(){
+ if(S.interrogationTimer||(S.profileStage!==1&&S.profileStage!==3))return;
+ var suspect=S.profileStage===1?"jack":"julian";
+ startInterrogationTimer(suspect,suspect==="jack"?5*60*1000:10*60*1000);
 }
 function sendInterrogationEmail(){
- if(S.facts.interrogationSent)return;
- if(!S.iris && Number(S.lead)<7)return;
- S.iris=true;
- S.facts.identified=true;
- S.facts.interrogationSent=true;
- S.notice.theo=true;
- playMessageSound();
- S.docs.push({id:"interrogation",title:"IRIS SMITH — INTERROGATION REPORT",body:"<p>The Legal Team interrogated Iris Smith.</p><p>Iris admitted that she went to find Margery in the cellar. Their confrontation was rooted in a long-running professional conflict.</p><p>Iris worked in event design and logistics and had repeatedly helped Margery with events. Margery relied on her work but excluded her from meetings and client-facing interactions and took credit for work Iris had done. Iris had complained about this treatment, but Margery dismissed it as “how the industry works” and could affect Iris’s future recommendations and opportunities.</p><p>That conflict was still present during the Alder Hollow wedding.</p><p>Iris admitted that she confronted Margery in the cellar. They argued. Margery grabbed Iris. Iris pushed her, and Margery fell down the cellar stairs.</p><p><strong>Margery was still alive after the fall.</strong></p><p>Iris could have called for help.</p><p><strong>She didn't.</strong></p><p>She left the cellar and returned to the reception without telling anyone what had happened.</p>"});
- S.final=true;
- S.task="CASE CLOSED";
- add("theo","The Legal Team has finished Iris’s interrogation. Her account fits the physical evidence and the ledger identification.\n\nIris admitted that she confronted Margery in the cellar, pushed her, and left without calling for help while Margery was still alive.\n\nJasmine did argue with Margery and later lied about it to protect her secret marriage from Margery’s blackmail. That explains why Jasmine looked guilty, but the evidence does not place her in the cellar. Iris’s account and the investigation evidence point to Iris as responsible for Margery’s death.\n\nCase 0147 is closed.");
- save();
- render();
+ if(S.interrogationTimer||S.facts.interrogationSent||!S.iris)return;
+ startInterrogationTimer("iris",15*60*1000);
 }
 const CASE_KNOWLEDGE=[
  {keys:["who is jasmine","who's jasmine","who jasmine","who is jamine","who jamine","tell me about jasmine","tell me about jamine","what is jasmine","what is jamine","jasmine"],minLead:0,text:"Jasmine Rivers is the bride. The original investigation arrested her two days after Margery's death. Jasmine and Ethan Mercer had secretly married about six weeks before the public wedding. The private marriage was deliberate: Ethan's father had agreed to restore Ethan to the family business only after the public wedding, which was also meant to mark a family reconciliation. Jasmine and Ethan therefore agreed to keep the courthouse marriage private until after the ceremony. Margery discovered the marriage certificate and realized that exposing it before the wedding could disrupt Ethan's reconciliation with his family. She demanded $5,000 for silence and later another $15,000, which Jasmine refused. Around 8:05 PM Jasmine and Margery argued. Jasmine returned to the reception and did not follow Margery to the cellar. Jasmine later lied to police about the subject of the argument because admitting the truth would expose Margery's blackmail and the private marriage."},
@@ -708,48 +738,48 @@ function route(raw){
   leadRoute("iris smith table 49 seat 8");
   return;
  }
- if(S.lead===4&&S.profileStage===2&&has(n,["julian","julain"])&&has(n,["iris"])){
+ if(S.lead===4&&S.profileStage===2&&hasToken(n,["julian","julain"])&&hasToken(n,["iris"])){
   add("theo","I checked both names against the investigation records.\n\nIris Smith is in the master records, but she's part of the wedding-management team. We have a record for her because she had an assigned table and meal, but she isn't one of the ordinary guest records used for this profile.\n\nPrice, Julian is a different case. He matches three of the four characteristics, so he's a valid candidate to investigate at this stage.\n\nLet's have the Legal Team interview Julian. Find out what he remembers.");
   S.pendingAccusation="Price, Julian";
-  task("Request the Legal Team to interrogate Price, Julian.");
+  task("Request the Legal Team to interrogate Price, Julian.");S.notice.legal=S.tab!=="legal";
   save();
   return;
  }
- if(S.lead===4&&S.profileStage===2&&has(n,["julian","julain"])&&!has(n,["iris"])){
+ if(S.lead===4&&S.profileStage===2&&hasToken(n,["julian","julain"])&&!hasToken(n,["iris"])){
    S.pendingAccusation="Price, Julian";
    add("theo","Price, Julian matches three of the four characteristics.\n\nHe isn't a four-for-four match like Jack was, but he is one of the remaining records that fits the original profile closely enough to investigate.\n\nLet's have the Legal Team interview him. Find out what he remembers.");
-   task("Request the Legal Team to interrogate Price, Julian.");
+   task("Request the Legal Team to interrogate Price, Julian.");S.notice.legal=S.tab!=="legal";
    save();
    return;
  }
- if(S.lead===4&&S.profileStage===2&&has(n,["iris"])&&!has(n,["julian","julain"])){
+ if(S.lead===4&&S.profileStage===2&&hasToken(n,["iris"])&&!hasToken(n,["julian","julain"])){
   add("theo","I checked the investigation records again. Iris Smith is in the master records, but she's part of the wedding-management team. We have a record for her, but she isn't one of the ordinary guest records used for this profile.\n\nDon't stop at Iris. Check the 22 remaining records again and see if there's another person who matches at least three of the four characteristics.");
   task("Find another person in the ledger who matches at least three of the four characteristics.");
   save();
   return;
  }
- if(S.profileStage===1&&has(n,["gray jack","jack"])){
+ if(S.profileStage===1&&hasToken(n,["jack"])){
   S.pendingAccusation="Gray, Jack";
   add("theo","Gray, Jack matches all four working-profile characteristics, including Method P, and he survived every filter we've applied so far.\n\nThat doesn't make him the killer. It makes him the first person we need to question.\n\nRequest the Legal Team to interrogate Jack. Find out what he remembers from the reception.");
-  task("Request the Legal Team to interrogate Gray, Jack.");
+  task("Request the Legal Team to interrogate Gray, Jack.");S.notice.legal=S.tab!=="legal";
   save();
   return;
  }
- if(S.profileStage===3&&has(n,["iris"])&&has(n,["julian","julain"])){
+ if(S.profileStage===3&&hasToken(n,["iris"])&&hasToken(n,["julian","julain"])){
   S.pendingAccusation="Price, Julian";
   add("theo","I checked both names against the investigation records. Iris Smith is in the master records, but she was part of the wedding-management team rather than an ordinary guest.\n\nPrice, Julian matches three of the four characteristics, so he is also a valid candidate to investigate. Ask the Legal Team to interview Julian and find out what he remembers.");
   task("Request the Legal Team to interrogate Price, Julian. Also identify another person among the 22 remaining records who matches at least three profile characteristics.");
   save();
   return;
  }
- if(S.profileStage===3&&has(n,["price julian","julian","julain"])){
+ if(S.profileStage===3&&hasToken(n,["price","julian","julain"])){
   S.pendingAccusation="Price, Julian";
   add("theo","Price, Julian matches three of the four characteristics.\n\nHe isn't a four-for-four match like Jack was, but he is one of the remaining records that fits the original profile closely enough to investigate.\n\nLet's have the Legal Team interview him. Find out what he remembers.");
-  task("Request the Legal Team to interrogate Price, Julian.");
+  task("Request the Legal Team to interrogate Price, Julian.");S.notice.legal=S.tab!=="legal";
   save();
   return;
  }
- if(S.profileStage===3&&has(n,["iris"])&&!has(n,["julian","julain"])){
+ if(S.profileStage===3&&hasToken(n,["iris"])&&!hasToken(n,["julian","julain"])){
   add("theo","I checked the investigation records again. Iris Smith was part of the wedding-management team.\n\nWe don't have anything comparable on Iris as a guest. She matches the original profile, but she is not part of the guest-profile comparison we're testing here.\n\nLet's test another guest. Find the person who matches the profile by all four or at least three characteristics.");
   task("Find another name in the ledger that matches all four or at least three of the four characteristics.");
   save();
@@ -759,15 +789,15 @@ function route(raw){
  if(S.final){add("theo","CASE 0147 is closed. The investigation record is complete.");return}
  if(S.iris){
   if(has(n,["email","legal team","interrogate iris","interrogation","send the request","request the interview"])){
-   task("Email the Legal Team and request an interrogation of Iris.");save();return;
+   task("Email the Legal Team and request an interrogation of Iris.");S.notice.legal=S.tab!=="legal";save();return;
   }
   if(has(n,["who killed","killer","is iris the killer","did iris kill"])){
-   add("theo","Iris Smith has been identified, but I want the Legal Team to interrogate her before we close the case.");task("Email the Legal Team and request an interrogation of Iris.");return;
+   add("theo","Iris Smith has been identified, but I want the Legal Team to interrogate her before we close the case.");task("Email the Legal Team and request an interrogation of Iris.");S.notice.legal=S.tab!=="legal";return;
   }
   return add("theo","Iris has been identified. The next step is to email the Legal Team and ask them to interrogate her.");
  }
  if(S.lead===3&&S.profileStage===0){
-  if(has(n,["gray jack","jack"])){S.profileStage=1;S.pendingAccusation="Gray, Jack";task("Send Gray, Jack to the Legal Team for interview.");save();return}
+  if(hasToken(n,["jack"])){S.profileStage=1;S.pendingAccusation="Gray, Jack";task("Send Gray, Jack to the Legal Team for interview.");save();return}
  }
  return leadRoute(n);
 }
@@ -806,7 +836,7 @@ function leadRoute(n){
    S.iris=true;S.facts.identified=true;
    S.notice.legal=true;
    add("theo","Iris Smith. Table 49, Seat 8.\n\nThat's the identification I needed.\n\nThere's one important complication with her record.\n\nIris wasn't an ordinary wedding guest. She was part of the wedding-management team.\n\nThe master ledger contains her because she had an assigned table and meal, but the original suspect profile was built from the guest records.\n\nSo Iris was never supposed to be treated as a normal guest during that earlier profile comparison.\n\nThat doesn't clear her.\n\nIt tells us something important: the ledger has led us to someone who falls outside the assumptions of the original profile.\n\nNow we need to find out what she was doing.\n\nEmail Jasmine's Legal Team and request an interrogation of Iris.");
-   task("Email the Legal Team and request an interrogation of Iris.");
+   task("Email the Legal Team and request an interrogation of Iris.");S.notice.legal=S.tab!=="legal";
   }
   save();
  }else {
