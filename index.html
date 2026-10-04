@@ -500,11 +500,16 @@ function typingBubble(){return '<div class="msg theo"><div class="bubble typing-
 function progressTracker(){
  var completed=Math.max(0,Math.min(7,Number(S.lead)||0));
  var labels=["CCTV gap","Initial mark","Meal clue","Bride's side","RSVP","Gift","Table 49"];
+ var clueSignals=["camera coverage","handwritten mark","residue recovered","pink guest badge","not marked t on the rsvp record","unidentified gift","torn seating marker"];
+ var conversation=(S.messages||[]).map(function(m){return String(m&&m.t||"").toLowerCase()}).join(" ");
  var steps=labels.map(function(label,index){
-  var done=index<completed,current=index===completed&&completed<7;
+  var done=index<completed;
+  var revealed=done||conversation.indexOf(clueSignals[index])>=0;
+  var current=index===completed&&completed<7&&revealed;
   var state=done?"done":current?"current":"upcoming";
-  var status=done?"complete":current?"current":"upcoming";
-  return '<li class="progress-step '+state+'" aria-label="'+label+': '+status+'" title="'+label+': '+status+'"'+(current?' aria-current="step"':"")+'><span class="progress-index" aria-hidden="true">'+(done?"✓":index+1)+'</span><span class="progress-label" aria-hidden="true">🔒</span></li>';
+  var status=done?"complete":current?"current":revealed?"revealed":"upcoming";
+  var clueMark=revealed?label:"🔒";
+  return '<li class="progress-step '+state+'" aria-label="'+label+': '+status+'" title="'+label+': '+status+'"'+(current?' aria-current="step"':"")+'><span class="progress-index" aria-hidden="true">'+(done?"✓":index+1)+'</span><span class="progress-label" aria-hidden="true">'+clueMark+'</span></li>';
  }).join("");
  var note=S.final?"All seven evidence filters are complete.": "Your specific next action is shown in Next Move below.";
  return '<section class="progress-tracker" aria-label="Investigation progress"><div class="progress-heading"><strong>Evidence filters</strong><span>'+completed+' of 7 complete</span></div><div class="progress-track" role="progressbar" aria-label="Evidence filters completed" aria-valuemin="0" aria-valuemax="7" aria-valuenow="'+completed+'"><span style="width:'+Math.round(completed/7*100)+'%"></span></div><ol class="progress-steps">'+steps+'</ol><p class="progress-note">'+note+'</p></section>';
